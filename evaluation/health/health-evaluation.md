@@ -1,8 +1,6 @@
-Thanks for uploading the policy documents. I’ve reviewed both the **benchmark policy** and the **RAG-generated policy** and evaluated them using the criteria from your evaluation process. Here's a detailed comparative analysis:
-
----
 
 ## 🧩 **Evaluation Summary**
+
 
 | **Criteria**                   | **Benchmark (ChatGPT)** | **RAG-Generated** |
 | ------------------------------ | ----------------------- | ----------------- |
@@ -45,6 +43,3 @@ Thanks for uploading the policy documents. I’ve reviewed both the **benchmark 
 * **No Inline Citations**: Mentions sources at the end but lacks inline attributions.
 * **Less Transparent**: Doesn’t explicitly state limitations or data source constraints.
 
----
-
-Would you like this comparison in a downloadable report format (e.g., PDF or Word), or should we proceed with evaluations for additional policies?
