@@ -1,3 +1,4 @@
+
 # AI Policy Evaluation Process Documentation
 
 ## Overview
@@ -14,70 +15,85 @@ Both systems use carefully crafted system prompts:
 1. **Benchmark system prompt**: Basic instructions for creating cybersecurity policies with general guidance on collecting organizational context
 2. **RAG-enabled system prompt**: Similar instructions but with strict constraints to only use information from the vector store, with explicit warnings against using general knowledge
 
-Key differences in the prompts:
-- The RAG-enabled prompt explicitly requires citations to vector store documents
-- The RAG prompt emphasizes limitations and encourages transparency when information is not available
+**Key differences in the prompts**:
+
+* The RAG-enabled prompt explicitly requires citations to vector store documents
+* The RAG prompt emphasizes limitations and encourages transparency when information is not available
 
 ## Evaluation Scenarios
 
 The evaluation tests the systems across diverse organizational contexts with specific constraints:
-- Organization type
-- Size (number of personnel)
-- Geographic location
-- Resource constraints
-- Regulatory environment
+
+* Organization type
+* Size (number of personnel)
+* Geographic location
+* Resource constraints
+* Regulatory environment
 
 ## Evaluation Methodology
 
 The evaluation process follows these steps:
 
-1. **Prompt Engineering**: 
-   - Creating specialized prompts for each organizational context
-   - Ensuring prompts contain adequate constraints to test adaptation
+1. **Prompt Engineering**:
+
+   * Creating specialized prompts for each organizational context
+   * Ensuring prompts contain adequate constraints to test adaptation
 
 2. **Document Generation**:
-   - Generating benchmark documents with vanilla ChatGPT
-   - Generating comparison documents with RAG-enabled assistant
+
+   * Generating benchmark documents with vanilla ChatGPT
+   * Generating comparison documents with RAG-enabled assistant
 
 3. **Comparative Analysis**:
-   - Applying standardized evaluation criteria
-   - Documenting qualitative and quantitative differences
-   - Creating side-by-side comparison reports
+
+   * Applying standardized evaluation criteria
+   * Documenting qualitative and quantitative differences
+   * Creating side-by-side comparison reports
 
 ## Evaluation Criteria
 
-The following criteria are used to evaluate the AI-generated policies, with each criterion scored on a scale of 1-5:
-- 1: Very Poor
-- 2: Poor
-- 3: Acceptable
-- 4: Good
-- 5: Excellent
+The following criteria are used to compare the AI-generated policies. Each criterion is scored on a **7-point relative scale**, evaluating the **performance of the RAG-enabled system relative to the benchmark**:
+
+| Score | Meaning                        |
+| ----- | ------------------------------ |
+| +3    | Much better than benchmark     |
+| +2    | Clearly better than benchmark  |
+| +1    | Slightly better than benchmark |
+| 0     | Comparable to benchmark        |
+| -1    | Slightly worse than benchmark  |
+| -2    | Clearly worse than benchmark   |
+| -3    | Much worse than benchmark      |
 
 ### Content Quality
-- **Comprehensiveness** (1-5): Coverage of essential policy elements
-- **Domain-specific relevance** (1-5): Adaptation to the organization's context
-- **Technical accuracy** (1-5): Correctness of security controls and measures
-- **Regulatory alignment** (1-5): Compliance with relevant standards and regulations
+
+* **Comprehensiveness**: Coverage of essential policy elements
+* **Domain-specific relevance**: Adaptation to the organization's context
+* **Technical accuracy**: Correctness of security controls and measures
+* **Regulatory alignment**: Compliance with relevant standards and regulations
 
 ### Structural Elements
-- **Organization** (1-5): Logical flow and hierarchical structure
-- **Readability** (1-5): Clarity and accessibility of content
-- **Formatting** (1-5): Effective use of sections, bullets, and emphasis
+
+* **Organization**: Logical flow and hierarchical structure
+* **Readability**: Clarity and accessibility of content
+* **Formatting**: Effective use of sections, bullets, and emphasis
 
 ### Contextual Adaptation
-- **Organizational awareness** (1-5): Adaptation to size and resource constraints
-- **Sector-specific guidance** (1-5): Industry-relevant security controls
-- **Geographical relevance** (1-5): Regional regulatory requirements
+
+* **Organizational awareness**: Adaptation to size and resource constraints
+* **Sector-specific guidance**: Industry-relevant security controls
+* **Geographical relevance**: Regional regulatory requirements
 
 ### Evidence and Citation
-- **Source attribution** (1-5): Proper citation of authoritative sources
-- **Evidence-based recommendations** (1-5): Grounding in established practices
-- **Transparency** (1-5): Clear indication of knowledge limitations
+
+* **Source attribution**: Proper citation of authoritative sources
+* **Evidence-based recommendations**: Grounding in established practices
+* **Transparency**: Clear indication of knowledge limitations
 
 ### Implementability
-- **Actionability** (1-5): Practical and implementable controls
-- **Resource consideration** (1-5): Alignment with organizational capabilities
-- **Scalability** (1-5): Adaptability to organizational growth or change
+
+* **Actionability**: Practical and implementable controls
+* **Resource consideration**: Alignment with organizational capabilities
+* **Scalability**: Adaptability to organizational growth or change
 
 ## Documentation Format
 
@@ -89,8 +105,8 @@ The evaluation produces the following documentation:
 
 ## Current Limitations and Notes
 
-- The RAG-enabled system currently uses a very limited set of documents in its vector store. It is likely that deploying all 200+ available documents would significantly improve the quality of generated policies.
-- A planned extension of this evaluation is to compare the benchmark with a local RAG implementation using smaller models such as Mistral 7B or equivalent. This would provide insights into the viability of deployment in environments with stricter data privacy requirements or limited cloud access.
+* The RAG-enabled system currently uses a very limited set of documents in its vector store. It is likely that deploying all 200+ available documents would significantly improve the quality of generated policies.
+* A planned extension of this evaluation is to compare the benchmark with a local RAG implementation using smaller models such as Mistral 7B or equivalent. This would provide insights into the viability of deployment in environments with stricter data privacy requirements or limited cloud access.
 
 ## Future Work
 
@@ -102,3 +118,4 @@ Potential areas for further evaluation:
 4. **Expansion to additional policy types**: Privacy policies, acceptable use policies, etc.
 5. **Vector store optimization**: Evaluating the impact of different document sources and embedding methods
 6. **Local deployment testing**: Comparing cloud-based vs. local RAG implementations with smaller models
+
