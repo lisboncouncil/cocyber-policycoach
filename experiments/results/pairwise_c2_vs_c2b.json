@@ -1,0 +1,622 @@
+[
+  {
+    "ctx": "ctx-H",
+    "policy": "accesscontrol",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 5,
+          "score_B": 1,
+          "winner": "A",
+          "rationale": "Policy A is comprehensive, internally consistent, and complete with annexes and revision history. Policy B is catastrophically broken with a massive 'Govern' string repetition that destroys the document, plus contradictions (BYOD allowed in scope vs. implicit prohibition)."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A explicitly addresses 35 legacy kiosks, 1.5 FTE IT, MSP coordination, SPID/CIE federation, Capo Sala, CCNL Sanit\u00e0, and 4h/1h RTO. Policy B mentions Italian context generically but lacks specific organizational tailoring (e.g., invents 'ISO' role despite no CISO in place)."
+        },
+        "C3_evidence_citation": {
+          "score_A": 5,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A cites pervasively with specific articles and ISO controls (5.16, 5.17, 5.18, 8.2; NIS2 Art. 21/23; GDPR Art. 9/32). Policy B cites broadly but at a more generic level and references ISO 27001 'Annex A.9' which is the 2013 numbering, not 2022."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A's controls are realistic given MSP-led implementation and compensating controls for legacy kiosks. Policy B proposes PAM/JIT, VDI, and 10-year log retention without resource consideration; the broken section also makes implementation impossible."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A systematically maps NIS2, GDPR, D.Lgs. 196/2003, AGID, ISO 27001:2022, NIST CSF 2.0, and Garante Privacy provvedimenti. Policy B references most frameworks but the NIST CSF section is destroyed by the 'Govern' repetition, and FSE regional regulations are absent."
+        },
+        "C6_source_attribution": {
+          "score_A": 4,
+          "score_B": 1,
+          "winner": "A",
+          "rationale": "Policy A attributes individual controls to specific clauses inline (e.g., 'Source: ISO 27001:2022 Control 5.17' at 4.3.1). Policy B has only a generic compliance list at the end with no per-control attribution."
+        },
+        "C7_resource_consideration": {
+          "score_A": 4,
+          "score_B": 1,
+          "winner": "A",
+          "rationale": "Policy A acknowledges 1.5 FTE, MSP outsourcing, legacy kiosk constraints, and high clinical turnover as structural inputs. Policy B shows no awareness of the 70k\u20ac budget or 1.5 FTE envelope and proposes ambitious controls (PAM, VDI) without trade-off reasoning."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A is dramatically superior across every criterion: it is complete, well-cited, contextually tailored to an Italian ASL hospital with MSP, and calibrated to the stated resource envelope. Policy B suffers a catastrophic generation failure (endless 'Govern' repetition) that renders the compliance section unusable, and even its readable portions are generic and resource-blind. The gap is not close."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 25234,
+      "output_tokens": 1280,
+      "latency_s": 17.783
+    }
+  },
+  {
+    "ctx": "ctx-H",
+    "policy": "dataprot",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A is comprehensive with sections on retention tables, breach response, break-glass, definitions, and enforcement tiers. Policy B is much shorter, missing retention schedules, disposal, physical security, and has a duplicated section numbering (two 3.4s)."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "A explicitly references the 35 legacy kiosks, 60 mobile devices, 220 workstations, specific wards, MSP, SPID/CIE, and FSE. B mentions the constraints (1.5 FTE, MSP, legacy kiosks, RTO 4h/1h) but in less detail."
+        },
+        "C3_evidence_citation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "A cites pervasively at the control level with specific articles (GDPR Art. 16, 28, 32-34; NIS2 Art. 21, 23; ISO Annex A 5.9, 5.16-5.18; AGID measures). B cites at a coarser level with fewer inline references."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "tie",
+          "rationale": "Both propose realistic controls; A is more ambitious (monthly encryption verification, 6-month access reviews, annual supply chain assessments) but feasible via MSP. B is leaner and equally implementable."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "A covers GDPR (multiple articles), Italian Privacy Code (incl. Art. 110-bis, 167-169), NIS2 (incl. 24h/72h CSIRT reporting), AGID Misure Minime, and Garante. B mentions the same frameworks but with less specific obligation mapping (e.g., no NIS2 24h early warning)."
+        },
+        "C6_source_attribution": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "A attributes nearly every substantive control to a specific clause/article inline. B attributes some controls (e.g., GDPR Art. 32, ISO A.9, NIST PR.IP-12) but many statements lack per-control citation."
+        },
+        "C7_resource_consideration": {
+          "score_A": 3,
+          "score_B": 4,
+          "winner": "B",
+          "rationale": "B explicitly opens \u00a75.4 with 'Given the resource constraints (1.5 FTE IT staff, reliance on MSP), the following controls are prioritized', making the envelope a structural input. A references resources implicitly (training hours, MSP reliance) but doesn't visibly reason about trade-offs."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A is substantially more complete, technically detailed, and densely cited at the per-control level, with explicit retention tables, breach timelines aligned to NIS2/GDPR, and stronger contextual hooks (kiosks, mobile devices, wards). Policy B is more concise and slightly better at acknowledging the resource envelope but misses key content (retention, disposal, physical security) and provides shallower regulatory mapping. The gap on content, citation, and regulatory alignment outweighs B's edge on resource framing."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 13495,
+      "output_tokens": 1235,
+      "latency_s": 14.371
+    }
+  },
+  {
+    "ctx": "ctx-H",
+    "policy": "infosec",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A is comprehensive with definitions, revision history, enforcement matrix, exceptions process, related documents, and detailed control sections. Policy B is much shorter, omits definitions/revision history, and contains a notable inconsistency (Control 5.1 effectively endorses an 18-month DR test cycle while flagging the 18-month gap as a non-conformity)."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Both reference the specific environment (FSE, PACS, 35 kiosks, MSP, 1.5 FTE, RTOs), but A weaves these into nearly every control (e.g., kiosk auto-logout, per-shift credentials, no-payment authority, CCNL enforcement, Codice Penale references). B touches the context but more sparsely and with less operational specificity."
+        },
+        "C3_evidence_citation": {
+          "score_A": 5,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Both cite real frameworks accurately. A is more pervasive and precise (specific ISO 27001:2022 control numbers, NIS2 articles, AGID Misure Minime, GDPR articles) and includes a dedicated compliance references section; B's citations are accurate but thinner and include one minor odd reference (Codice Privacy Art. 2-ter for encryption)."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Both are broadly realistic for the envelope. A explicitly calibrates (compensating controls for kiosks, MSP-delivered scans, exception process with time limits); B is also implementable but proposes monthly MSP vulnerability scanning and micro-segmentation planning without addressing budget trade-offs as clearly."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "A systematically covers NIS2 (Arts 21, 23, 28, 34), GDPR (Arts 5, 24, 25, 32, 33), D.Lgs. 196/2003, AGID Misure Minime and Linee Guida, plus specific reporting timelines (24h CSIRT, 72h Garante). B mentions the same frameworks but omits concrete obligations like the 24h NIS2 early-warning and 72h GDPR breach notification timelines."
+        },
+        "C6_source_attribution": {
+          "score_A": 5,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "A attributes nearly every substantive control to a specific clause (ISO 27001:2022 5.x/8.x, NIS2 article, AGID Misure Minime, NIST CSF subcategory). B provides per-control source tags but is less granular and occasionally vague (e.g., 'AGID guidelines', 'ISO 22301')."
+        },
+        "C7_resource_consideration": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "A explicitly references the 70k EUR budget, 1.5 FTE, 2h training, MSP reliance, and scales controls accordingly (e.g., compensating controls vs aggressive patching, MSP-led scans). B notes the 1.5 FTE and MSP role but does not visibly reason within the budget envelope or trade off ambition."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A is materially stronger on virtually every axis: deeper completeness, tighter per-control attribution, fuller regulatory coverage (including concrete NIS2/GDPR reporting timelines), and more explicit calibration to the hospital's resource envelope and clinical-safety constraints. Policy B is competent and contextually aware but shorter, less granular, and contains a minor internal inconsistency around DR test frequency. The gap is clear rather than marginal."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 13537,
+      "output_tokens": 1429,
+      "latency_s": 17.022
+    }
+  },
+  {
+    "ctx": "ctx-H",
+    "policy": "ir",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A is comprehensive with detailed phases, threat-specific responses, evidence preservation, exceptions handling, and annexes; Policy B is structurally complete but shallow, missing forensics, evidence preservation specifics, and detailed escalation timing."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A explicitly references the 35 legacy kiosks, 1.5 FTE, MSP, FSE, RTOs of 1h/4h, paper-based contingency, and Italian-specific authorities like Polizia Postale and PEC; Policy B mentions the systems but offers mostly generic content with limited tailoring."
+        },
+        "C3_evidence_citation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A cites NIS2 Articles 21/23, GDPR Art. 33/34, ISO 27001 specific controls (5.24\u20135.28), NIST CSF RS subcategories, AGID Misure Minime throughout; Policy B cites the regulations broadly but with much less precision."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Both are broadly implementable; Policy A acknowledges resource constraints with hybrid CIRT and tabletop-only testing, while B is feasible but assumes a DPO and Communications Lead that may not be staffed. The 15-minute reporting target in A is ambitious but defensible."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A covers NIS2 24h/72h/1-month reporting cascade, CSIRT Italia, Garante, Postal Police, regional ASL/FSE channels, and PEC; Policy B mentions GDPR 72h and NIS2 generally but omits the early-warning 24h obligation and regional FSE notification."
+        },
+        "C6_source_attribution": {
+          "score_A": 4,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A attributes most substantive controls to specific clauses (ISO A.5.26, NIST RS.RC-01, NIS2 Art. 23.4, GDPR Art. 33); Policy B references frameworks at section level without per-control attribution."
+        },
+        "C7_resource_consideration": {
+          "score_A": 4,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A explicitly references the 70k EUR budget, 1.5 FTE, 15k legal budget, and shapes the hybrid CIRT and testing cadence around them; Policy B notes the 1.5 FTE once but does not reason within the envelope."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A is substantially stronger across nearly every criterion: it is deeply tailored to the Italian SSN hospital context, cites specific regulatory articles and control identifiers, addresses NIS2's full 24h/72h/1-month reporting cascade, integrates clinical safety primacy, and explicitly calibrates to budget and staffing constraints. Policy B is a competent but generic incident response template with thin attribution, missing NIS2 early-warning detail, and weak contextual adaptation."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 13494,
+      "output_tokens": 1244,
+      "latency_s": 14.759
+    }
+  },
+  {
+    "ctx": "ctx-H",
+    "policy": "password",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A is comprehensive, covering break-glass, shared/service accounts, MSP-specific controls, brute force protection, and exception management with internal consistency. Policy B is shorter, omits break-glass and service account handling, and provides less technical depth."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A explicitly addresses the 35 legacy kiosks, 60 point-of-care devices, MSP role, 24/7 clinical operations, SPID/CIE, CCNL disciplinary frame, and Direttore di Guardia. Policy B mentions FSE/PACS but is otherwise largely generic and ignores legacy kiosks, MSP specifics, and clinical workflow constraints."
+        },
+        "C3_evidence_citation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A cites NIS2 Art. 21(2)(c), GDPR Art. 32/5(1)(f), ISO 27001:2022 specific controls (5.17, 8.2, 8.5, 8.15), NIST SP 800-63B, AGID, and Garante. Policy B cites high-level references but uses ISO 27001:2022 Annex A.9.4 (a 2013 numbering, inaccurate for 2022) reducing accuracy."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A acknowledges legacy constraints with compensating controls and phased remediation, fitting the 1.5 FTE + MSP envelope. Policy B mandates an organisation-approved password manager and 60/90-day rotations without addressing whether such tools exist within budget or how legacy kiosks comply."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A explicitly maps to NIS2 (essential entity), GDPR, D.Lgs. 196/2003 as amended by 101/2018, AGID Misure Minime, Garante sanit\u00e0, and ISO 27001:2022. Policy B omits NIS2 entirely \u2014 a major gap for an essential entity in healthcare."
+        },
+        "C6_source_attribution": {
+          "score_A": 4,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A attributes specific controls inline (e.g., MFA\u2192NIS2 Art.21(2)(c); shared password change\u2192ISO 27001:2022 5.17; brute force\u2192NIST CSF PR.AC-7). Policy B groups references at the end with little per-control traceability."
+        },
+        "C7_resource_consideration": {
+          "score_A": 4,
+          "score_B": 1,
+          "winner": "A",
+          "rationale": "Policy A explicitly references the 1.5 FTE IT, 2h/year training, MSP outsourcing, and balances length over complexity for usability; staged MFA targets reflect budget reality. Policy B shows no acknowledgement of the resource envelope."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A is clearly superior across all seven criteria: it is contextually tailored to an Italian provincial SSN hospital, technically thorough on break-glass/legacy kiosks/MSP, precisely attributes controls to NIS2/GDPR/ISO/NIST/AGID clauses, and visibly reasons within the stated budget and staffing envelope. Policy B is a competent but generic password policy that omits NIS2, ignores the legacy-kiosk reality, miscites ISO 27001:2022 (Annex A.9.4 is 2013 numbering), and does not engage with the organisation's resource constraints."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 10568,
+      "output_tokens": 1390,
+      "latency_s": 16.762
+    }
+  },
+  {
+    "ctx": "ctx-M",
+    "policy": "accesscontrol",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 5,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Policy A is more comprehensive (annexes, definitions, detailed account types, sanitization, brute-force lockout) and internally consistent. Policy B is solid but thinner on operational detail and contains a minor inconsistency (cites NIST CSF v1.1 while profile specifies 2.0)."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A explicitly references the headcount breakdown (1500/200/300), workstation counts, Romanian ISPs, SOFA jurisdictional nuance, framework nation clearance validation, and TEMPEST/SCIF specifics. Policy B is more generic and could fit any NATO detachment with minimal change."
+        },
+        "C3_evidence_citation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A cites pervasively and accurately (C-M(2002)49, AC/322-D(2017)0009, AC/35-D/1015, 1029, AJP-3.20, ISO 27001:2022 specific controls, NIST CSF 2.0 PR.AA-01, GDPR Art.32). Policy B cites less precisely and includes a questionable reference (ISO/IEC 27001:2022 A.9.4.2 is a 2013 numbering, not 2022) and outdated NIST CSF v1.1."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "tie",
+          "rationale": "Both policies propose controls realistic for a 25-FTE security staff with classified-level budget. Policy A's 6-month review cadence is arguably more sustainable than B's quarterly reviews of all accounts, but both are plausible."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Policy A covers NATO IS Policy, AC directives, AJP-3.20, ISO 27001:2022, NIST CSF 2.0, Romanian Law 58/2019 (with NIS2), GDPR Art.32, and SOFA. Policy B covers the same families but omits C-M(2002)49 and AC/322-D(2017)0009 (the core INFOSEC directives) and uses outdated NIST CSF."
+        },
+        "C6_source_attribution": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A attributes individual controls to specific clauses (ISO 27001:2022 5.16/5.17/5.18/8.2, AC/35-D/1029 para 4.2, C-M(2002)49 Annex X, NIST CSF 2.0 PR.AA-01). Policy B groups references mostly at the section or document level with fewer per-control identifiers."
+        },
+        "C7_resource_consideration": {
+          "score_A": 3,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A names the personnel counts and workstation envelope in scope and uses the 24/7 SOC and 25-FTE staffing implicitly. Neither policy explicitly reasons about budget trade-offs, but B shows even less acknowledgement of the envelope."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A is clearly stronger across content depth, contextual tailoring, citation precision, and per-control attribution. It integrates the specific organisational profile (headcount, workstations, Romanian ISPs, framework nation, SOFA, TEMPEST) and ties controls to named clauses. Policy B is competently structured but more generic, contains minor citation inaccuracies (ISO control numbering, outdated NIST CSF version), and omits the foundational NATO INFOSEC directives (C-M(2002)49, AC/322-D(2017)0009)."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 12918,
+      "output_tokens": 1409,
+      "latency_s": 18.012
+    }
+  },
+  {
+    "ctx": "ctx-M",
+    "policy": "dataprot",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A is comprehensive with backup/recovery RPOs, retention, supply chain, exception management, and detailed encryption tables. Policy B omits MISSION SECRET domain entirely (despite it being in the org profile), is much thinner, and contains minor inconsistencies (e.g., 'NSa' undefined, DoD 5220.22-M cited which is deprecated)."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A explicitly references the 1,500/200/300 staffing split, 1,200/800 workstation count, MISSION SECRET, TEMPEST SCIFs, two-person COMSEC integrity, 2 red-team engagements/year, and Romanian supervisory authority. Policy B is more generic and notably omits MISSION SECRET and other organisation-specific details."
+        },
+        "C3_evidence_citation": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A cites NATO directives, GDPR articles, ISO 27001 controls, and NIST CSF subcategories inline, even flagging some 'unsupported' claims honestly. Policy B lists references but with errors (cites both Law 190/2018 and Law 58/2019 inconsistently; AC/35-D1 is malformed)."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Both are implementable within the stated envelope (25 FTE, 24/7 SOC, 6 exercises). Policy A's quarterly exception reviews and semi-annual backup tests are realistic; Policy B's quarterly access audits are also feasible but less detailed about resource demands."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A systematically covers NATO C-M(2002)49, AC/322-D(2017)0009, AC/35-D/1015 and 1029, AJP-3.20, GDPR articles, Romanian Law 58/2019/NIS2, and SOFA limitations. Policy B confuses Romanian laws (190/2018 vs 58/2019), omits AC/322-D(2017)0009, and gives lighter GDPR treatment."
+        },
+        "C6_source_attribution": {
+          "score_A": 4,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A attributes individual controls inline (e.g., ISO A.5.15 for need-to-know, GDPR Art. 25 for privacy-by-design, NIST PR.DS-1). Policy B groups references at the end with little per-control attribution."
+        },
+        "C7_resource_consideration": {
+          "score_A": 3,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A references the staff counts, workstation counts, 24/7 SOC, and 2 red-team engagements as structural inputs, though without explicit trade-offs. Policy B shows minimal awareness of the resource envelope beyond naming roles."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A is materially more comprehensive, better tailored to the multinational detachment (including MISSION SECRET, TEMPEST, COMSEC two-person integrity, GDPR/SOFA interplay), and more rigorously attributed to source standards. Policy B is competent but generic, omits a stated classification domain, and contains regulatory citation errors. The gap is clear across nearly every criterion."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 14186,
+      "output_tokens": 1324,
+      "latency_s": 14.887
+    }
+  },
+  {
+    "ctx": "ctx-M",
+    "policy": "infosec",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A is more comprehensive with deeper coverage of COMSEC, CDS, spillage, GDPR, and insider threat, though it is truncated mid-section. Policy B is complete but shallower and contains a probable inaccuracy (cites Romanian Law 362/2018, which is not the principal cybersecurity transposition; the profile cites Law 58/2019)."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Policy A explicitly addresses kinetic-cyber convergence, HUMINT recruitment, ORCON, SOFA Art. VII limitations, and SCIF/TEMPEST specifics tailored to the detachment. Policy B references the headline context elements (workstation counts, classification domains) but stays closer to generic NATO templating."
+        },
+        "C3_evidence_citation": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A cites a wide range of normative sources (NATO directives, ISO 27001 controls, NIST CSF functions, GDPR Art. 32, SOFA Art. VII) with specific clause numbers. Policy B cites sources but more loosely, and includes at least one questionable reference (Law 362/2018) and vague 'NATO COMSEC Directives'."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "tie",
+          "rationale": "Both fit within the stated 25 FTE / 40h training / 6 exercises / 2 red-team envelope and align controls with existing SOC, PKI, and CDS infrastructure. Neither proposes obviously unaffordable measures."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A explicitly handles GDPR Art. 32, Romanian Law 58/2019, SOFA limits, NATO Cyber Defence Pledge, and NCIRC reporting chains. Policy B references the same frameworks but omits GDPR entirely and miscites the Romanian cybersecurity law."
+        },
+        "C6_source_attribution": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A attributes nearly every substantive control to a specific clause or control identifier (e.g., A.5.16, PR.AA-01, AC/35-D/1015 para. 42). Policy B groups sources per section rather than per control and uses vaguer attributions."
+        },
+        "C7_resource_consideration": {
+          "score_A": 3,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A explicitly tags 40h training, 2 red-team engagements, and 6 exercises to the 'Resource Envelope' but does not visibly trade off ambition against the envelope. Policy B mentions the 25-person staff and training hours but does not reason about resource calibration."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A outperforms on content depth, contextual tailoring (kinetic-cyber, HUMINT, ORCON, SOFA Art. VII, GDPR), per-control source attribution, and regulatory coverage. Policy B is cleaner and complete (with signature block and references appendix) but is shallower, omits GDPR, and miscites the Romanian cybersecurity law. The gap is meaningful across most criteria despite Policy A's truncated ending."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 12821,
+      "output_tokens": 1297,
+      "latency_s": 16.798
+    }
+  },
+  {
+    "ctx": "ctx-M",
+    "policy": "ir",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A covers all standard IR phases with depth (preparation through post-incident), includes detailed roles, evidence handling, exceptions and enforcement. Policy B is shorter, has a confused severity table (SLA column duplicates timing values), and omits detailed evidence/retention sections."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A weaves in specific numbers (2000 personnel, 1200/800 workstations, 25 FTE, 6 exercises, 2 red teams), domain names (NU/NR/NS/MISSION SECRET), CDS, TEMPEST/SCIF, SOFA Art. VII. Policy B mentions context but lacks the numerical and structural specificity, and references CTS while the org only handles up to NS/MISSION SECRET."
+        },
+        "C3_evidence_citation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A cites NATO directives (C-M(2002)49, AC/322-D(2017)0009, AC/35-D/1015, AC/35-D/1029), ISO 27001:2022 Annex A controls, NIST CSF 2.0, GDPR articles, and Law 58/2019 articles throughout. Policy B lists sources only in a final block with few inline citations."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Both are realistic given the substantial resource envelope. Policy A maps SLAs and exercise counts directly to stated capacity; Policy B's quarterly TTX plus annual full-scale is also feasible but less precisely scoped."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "Policy A explicitly addresses NATO IS Policy, NIS2/Law 58/2019, GDPR Arts. 33/34, SOFA Art. VII, ORCON, and coalition info-sharing. Policy B covers the main frameworks but omits AC/35-D/1029, ORCON detail, and specific GDPR article references."
+        },
+        "C6_source_attribution": {
+          "score_A": 4,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A attaches per-section 'Source:' lines mapping controls to specific clauses (e.g., ISO A.5.24-A.5.28, GDPR Art. 33). Policy B largely aggregates sources at the end without per-control traceability."
+        },
+        "C7_resource_consideration": {
+          "score_A": 4,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A explicitly references the 25 FTE, 40h training, 6 exercises and 2 red-team engagements as structural inputs. Policy B does not acknowledge the budget/staff envelope explicitly."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A is clearly superior: it is more complete, precisely tailored to the detachment's structure and numbers, systematically cites NATO/EU/ISO/NIST sources at the control level, and explicitly reasons within the stated resource envelope. Policy B is competent but generic, has a minor inconsistency in the severity matrix, and lacks per-control source attribution and explicit envelope calibration."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 14107,
+      "output_tokens": 1258,
+      "latency_s": 14.74
+    }
+  },
+  {
+    "ctx": "ctx-M",
+    "policy": "password",
+    "config_A": "C2",
+    "config_B": "C2b",
+    "result": {
+      "criteria": {
+        "C1_content_quality": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A is comprehensive with detailed sections on COMSEC TPI, break-glass, MISSION SECRET domain, exceptions, and enforcement gradations. Policy B omits MISSION SECRET domain entirely (despite being in scope), has shorter coverage, and contains a minor inconsistency (30-day NS change vs 365-day log retention is fine, but no MISSION SECRET reference is a gap)."
+        },
+        "C2_contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A explicitly tailors to the detachment: 2000 personnel, 1200/800 workstations, MISSION SECRET, SCIF/TEMPEST, SOFA, host-nation Romanian Penal Code Art. 360, ORCON, NCIRC reporting. Policy B references NATO context but omits MISSION SECRET, SOFA, TEMPEST/SCIF specifics, and threat actor calibration."
+        },
+        "C3_evidence_citation": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A cites specific articles/sections (C-M(2002)49 Art.5, AC/322-D(2017)0009 \u00a74.2, GDPR Art.32, NIST SP 800-63B \u00a75.1.1, ISO 27001 A.5.17/A.8.5). Policy B lists references generically without article/clause precision."
+        },
+        "C4_implementability": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A's controls fit the resource envelope (25 FTE security staff, 24/7 SOC, PKI already deployed) and use risk-based validity periods. Policy B's 30-day password rotation on NS and weekly ISSM log review across 1200 classified workstations is operationally burdensome and contradicts modern NIST guidance."
+        },
+        "C5_regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Policy A explicitly maps to NATO IS Policy, AC/322-D, AC/35-D/1015, Romanian Law 58/2019 (NIS2), GDPR Art.32, NIST 800-63B, ISO 27001:2022, and SOFA. Policy B lists references but does not map controls to obligations and omits GDPR entirely."
+        },
+        "C6_source_attribution": {
+          "score_A": 4,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A attributes individual controls inline (e.g., complexity rules to NIST 800-63B, sharing to AC/35-D/1015, MFA AAL2/3 to NIST). Policy B provides a reference list but rarely ties specific controls to specific sources."
+        },
+        "C7_resource_consideration": {
+          "score_A": 3,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "Policy A references the 40h/year training, 2 red-team engagements/year, and 24/7 SOC, integrating them into monitoring/validation. Policy B mentions annual training and quarterly audits but does not visibly reason about the envelope."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A is materially stronger across every criterion: it is contextually tailored to the detachment (MISSION SECRET, SCIF/TEMPEST, SOFA, NCIRC, Romanian penal code), provides precise per-control citations, and adopts risk-based modern authentication guidance. Policy B is competent but generic \u2014 it omits the MISSION SECRET domain, lacks GDPR mapping, uses outdated short rotation cycles, and provides only list-level source attribution. The gap is substantial."
+      }
+    },
+    "meta": {
+      "model": "claude-opus-4-7",
+      "input_tokens": 12667,
+      "output_tokens": 1375,
+      "latency_s": 16.273
+    }
+  }
+]

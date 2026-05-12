@@ -1,0 +1,11 @@
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+
+# Python
+__pycache__/
+*.pyc
