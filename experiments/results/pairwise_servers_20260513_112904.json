@@ -1,0 +1,234 @@
+[
+  {
+    "id": "ctx-H_password",
+    "policy_type": "Password Policy",
+    "model_A": "Kimi K2.5 (reasoning)",
+    "model_B": "Kimi K2.6 (no-reasoning)",
+    "len_A": 1715,
+    "len_B": 982,
+    "verdict": {
+      "criteria": {
+        "content_quality": {
+          "score_A": 7,
+          "score_B": 5,
+          "winner": "A",
+          "rationale": "A provides a comprehensive current-state assessment with identified critical risks; B is a structured intake summary with a single follow-up question, offering less synthesised content."
+        },
+        "contextual_adaptation": {
+          "score_A": 7,
+          "score_B": 7,
+          "winner": "tie",
+          "rationale": "Both reference the hospital's specifics (Dedalus EHR, flat network, AD, no CISO). A elaborates risks; B asks a targeted clarifying question relevant to the password scenario."
+        },
+        "evidence_citation": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "Neither cites standards explicitly. A references regulatory obligations (GDPR, NIS2 24h reporting) more concretely; B mentions regulations only as labels."
+        },
+        "implementability": {
+          "score_A": 6,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "A frames concrete gaps that map to actionable controls and signals readiness to produce POL-001; B is still gathering input and not yet actionable."
+        },
+        "regulatory_alignment": {
+          "score_A": 7,
+          "score_B": 5,
+          "winner": "A",
+          "rationale": "A explicitly flags NIS2 non-compliance areas (24h reporting, risk management) and ties GDPR/Italian law to gaps; B lists regulations without linking them to identified deficiencies."
+        },
+        "source_attribution": {
+          "score_A": 3,
+          "score_B": 3,
+          "winner": "tie",
+          "rationale": "Neither attributes specific framework clauses or standards (e.g., NIST CSF, ISO 27001 controls); both rely on generic references."
+        },
+        "resource_consideration": {
+          "score_A": 5,
+          "score_B": 6,
+          "winner": "B",
+          "rationale": "B explicitly captures budget range (\u20ac5\u201320M) and size, providing better resource framing; A notes size but not financial constraints."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A delivers a more mature, audit-ready situational assessment with explicit risks and regulatory linkage, positioning the engagement to produce a usable policy. Policy B is methodical and captures budget context but remains in intake mode with limited analytical value. For an auditor seeking evidence-driven progress toward POL-001, A is stronger overall."
+      }
+    }
+  },
+  {
+    "id": "ctx-H_dataprot",
+    "policy_type": "Data Protection Policy",
+    "model_A": "Kimi K2.5 (reasoning)",
+    "model_B": "Kimi K2.6 (no-reasoning)",
+    "len_A": 1388,
+    "len_B": 2292,
+    "verdict": {
+      "criteria": {
+        "content_quality": {
+          "score_A": 6,
+          "score_B": 8,
+          "winner": "B",
+          "rationale": "B captures more granular detail (detection capabilities, backup posture, external support gaps) and proposes a prioritized policy generation plan. A is concise but less comprehensive."
+        },
+        "contextual_adaptation": {
+          "score_A": 6,
+          "score_B": 9,
+          "winner": "B",
+          "rationale": "B tailors adaptations explicitly to legacy EHR constraints, fragmented governance, absence of IR retainer, and healthcare threat vectors. A mentions context but with less specificity in adaptation plan."
+        },
+        "evidence_citation": {
+          "score_A": 7,
+          "score_B": 6,
+          "winner": "A",
+          "rationale": "A cites NIS2 Article 3 explicitly and GDPR Article 9; B references NIS2 timelines (24h/72h) and Article 9 but with less precise article citation."
+        },
+        "implementability": {
+          "score_A": 6,
+          "score_B": 8,
+          "winner": "B",
+          "rationale": "B's prioritized two-policy plan (CIRP first, then Access Control) is more actionable for a resource-constrained hospital than A's single-document approach."
+        },
+        "regulatory_alignment": {
+          "score_A": 7,
+          "score_B": 7,
+          "winner": "tie",
+          "rationale": "Both align with NIS2 and GDPR, though A classifies as Important Entity and B as Essential Entity \u2014 under NIS2 Annex I, healthcare providers are typically Essential, so B is likely more accurate, but A cites the specific article."
+        },
+        "source_attribution": {
+          "score_A": 7,
+          "score_B": 7,
+          "winner": "tie",
+          "rationale": "Both reference ISO 27001 templates (POL-001 vs POL-008/002) and applicable regulations; neither provides deeper source documentation."
+        },
+        "resource_consideration": {
+          "score_A": 6,
+          "score_B": 9,
+          "winner": "B",
+          "rationale": "B explicitly factors in budget constraints, lack of IR retainer, no cyber insurance, no SIEM/EDR, and fragmented governance. A acknowledges size but less detailed resource mapping."
+        }
+      },
+      "overall": {
+        "winner": "B",
+        "rationale": "Policy B demonstrates superior intake depth, contextual specificity (detection, backups, external support), and a prioritized implementation plan suited to the hospital's resource gaps. A is cleaner and cites NIS2 Article 3 explicitly but is less comprehensive and may misclassify the entity tier. B is the stronger pre-generation artefact for this scenario."
+      }
+    }
+  },
+  {
+    "id": "ctx-M_ir",
+    "policy_type": "Incident Response Policy",
+    "model_A": "Kimi K2.5 (reasoning)",
+    "model_B": "Kimi K2.6 (no-reasoning)",
+    "len_A": 844,
+    "len_B": 892,
+    "verdict": {
+      "criteria": {
+        "content_quality": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "tie",
+          "rationale": "Both are clarifying questions rather than policy content. A drills into legal citation specifics; B confirms organizational identity\u2014both useful preliminary scoping."
+        },
+        "contextual_adaptation": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "tie",
+          "rationale": "A acknowledges the dual NATO/Romanian escalation chain (ACO/SHAPE, MApN/CERT-RO, NCI Agency) precisely. B restates scope (NATO SECRET, Romania, NIS2) and probes entity type\u2014both adapt well to the scenario."
+        },
+        "evidence_citation": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "tie",
+          "rationale": "A cites specific Romanian laws (362/2022, 362/2018) as answer choices. B cites NATO C-M(2002)49, NIS2, ISO 27001. Comparable specificity."
+        },
+        "implementability": {
+          "score_A": 3,
+          "score_B": 3,
+          "winner": "tie",
+          "rationale": "Neither yet produces actionable procedures; both are scoping steps that will shape implementable output downstream."
+        },
+        "regulatory_alignment": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "A",
+          "rationale": "A explicitly distinguishes NIS2 transposition (Law 362/2022) from the older Law 362/2018 and military classified regs\u2014stronger Romanian legal granularity. B references NIS2 generically."
+        },
+        "source_attribution": {
+          "score_A": 4,
+          "score_B": 4,
+          "winner": "tie",
+          "rationale": "Both name authoritative sources (Romanian laws vs NATO C-M and ISO). Neither cites article/section level."
+        },
+        "resource_consideration": {
+          "score_A": 2,
+          "score_B": 3,
+          "winner": "B",
+          "rationale": "B's question about entity type (government vs NATO-affiliated vs contractor) directly informs resource and obligation scope. A focuses narrowly on legal citations without addressing organizational capacity."
+        }
+      },
+      "overall": {
+        "winner": "B",
+        "rationale": "Both responses are well-scoped clarifying turns suitable for an incident response policy in a NATO/Romania context. B is slightly stronger because identifying the entity type is a prerequisite that determines which regulatory regime (including the choices A is asking about) actually applies, and it restates the full scope clearly. A's question is valuable but premature without entity classification."
+      }
+    }
+  },
+  {
+    "id": "ctx-M_accesscontrol",
+    "policy_type": "Access Control Policy",
+    "model_A": "Kimi K2.5 (reasoning)",
+    "model_B": "Kimi K2.6 (no-reasoning)",
+    "len_A": 819,
+    "len_B": 811,
+    "verdict": {
+      "criteria": {
+        "content_quality": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "A demonstrates substantive domain knowledge by naming NISP, CAC/PIV PKI, and need-to-know principles relevant to the scenario. B is more procedural and generic, focusing on template selection rather than substantive content."
+        },
+        "contextual_adaptation": {
+          "score_A": 5,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "A immediately recognizes the NATO Forward Presence context and asks a targeted scoping question about personnel size and NATO classification level. B asks a basic sector-identification question despite the scenario already clearly indicating NATO/military context."
+        },
+        "evidence_citation": {
+          "score_A": 3,
+          "score_B": 3,
+          "winner": "tie",
+          "rationale": "A references NISP and PKI standards but without formal citation. B references ISO 27001 template POL-002 and acknowledges retrieved context, roughly equivalent in citation depth."
+        },
+        "implementability": {
+          "score_A": 4,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "A's scoping question directly enables tailoring to operational scale and classification, accelerating implementation. B's generic sector question delays reaching actionable specifics."
+        },
+        "regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "A explicitly anchors on NATO Information Security Policy, the correct authoritative framework for the scenario. B defaults to ISO 27001, which is relevant but secondary in a classified NATO environment."
+        },
+        "source_attribution": {
+          "score_A": 3,
+          "score_B": 4,
+          "winner": "B",
+          "rationale": "B is transparent about the limitations of the retrieved context and explicitly identifies the template (POL-002) it will use. A makes claims about frameworks without attribution to retrieved sources."
+        },
+        "resource_consideration": {
+          "score_A": 4,
+          "score_B": 2,
+          "winner": "A",
+          "rationale": "A's question about personnel count directly addresses resourcing and scale. B does not yet address resource or scale considerations."
+        }
+      },
+      "overall": {
+        "winner": "A",
+        "rationale": "Policy A demonstrates clear subject-matter expertise in NATO classified environments and asks a precisely targeted scoping question that advances both regulatory alignment and implementability. Policy B is more transparent about source limitations but starts from a generic baseline that wastes a clarification turn on information already evident from the scenario. A is materially better aligned with the ctx-M_accesscontrol NATO scenario."
+      }
+    }
+  }
+]

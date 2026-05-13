@@ -17,8 +17,8 @@ Generation: Benchmarking Private RAG Against Frontier AI Models}
 
 \titlerunning{Privacy by Design in AI-Assisted Policy Generation}
 
-\author{Davide Carboni \and Marcello Verona}
-\authorrunning{Carboni and Verona}
+\author{VV.AA.}
+\authorrunning{VV.AA.}
 \institute{The Lisbon Council, Brussels, Belgium}
 
 \maketitle
@@ -43,34 +43,46 @@ privacy-preserving AI \and LLM evaluation}
 \section{Introduction}
 % -----------------------------------------------------------------------
 
-Frontier AI models are now routinely used to draft cybersecurity
-policies, risk assessments, and compliance documentation. The value
-proposition is clear: scalable access to expertise that would otherwise
-require expensive consultants. The problem is equally clear: the data fed
-into these systems is by definition sensitive — organisational structure,
-threat models, known vulnerabilities, gap analyses, compliance regimes.
-Under GDPR Art.~28, 32, and 44--49~\cite{gdpr2016}, NIS2~\cite{nis22022},
-and the AI Act~\cite{aiact2024}, organisations in regulated sectors
-(healthcare, defence, finance) cannot route this data through processors
-without an adequate Data Processing Agreement (DPA), let alone across
-extra-EU boundaries without a transfer mechanism. Consumer-tier chat
-assistants based on frontier AI models are structurally incompatible with
-these requirements.
+The NIS2 Directive~\cite{nis22022} extends mandatory cybersecurity
+obligations to over 160,000 organisations across the EU --- healthcare,
+energy, transport, public administration, defence supply chains --- many of
+which previously operated without formal information security policies.
+Combined with GDPR~\cite{gdpr2016} and the AI Act~\cite{aiact2024}, regulated
+organisations now face a growing policy compliance gap: the legal requirement
+to produce, maintain, and audit cybersecurity policy artefacts has outpaced
+the internal capacity to create them. The burden falls hardest on
+resource-constrained organisations --- a regional hospital with a single IT
+manager, a small NATO support unit without a dedicated CISO --- for which
+producing context-specific, regulation-aligned policies from scratch
+represents a prohibitive cost in both expertise and time.
 
-The industry has responded with two patterns: cloud RAG on proprietary
-providers (OpenAI Assistants, Azure OpenAI) — which improves grounding but
-does not address EU data residency, open-weight portability, or DPA; and
-private RAG on EU-resident open-weight models — which addresses all three.
-Recent work has begun to validate the effectiveness of AI-assisted policy
-generation: GPT-generated GRC policies have been shown to outperform
-human-written ones in certain contexts, particularly with tailored
-prompts~\cite{mcintosh2023harnessing,jawhar2024aibased}. Yet three
-conditions that regulated organisations cannot waive remain unaddressed:
-the privacy implications of routing sensitive organisational data to
-frontier processors without adequate DPA or EU residency guarantees; the
-reproducibility of outputs across model versions; and the audit trail of
-cited sources. No study evaluates output quality and privacy posture
-simultaneously under the same rubric.
+Frontier AI models offer a compelling response: scalable, on-demand access
+to expertise that would otherwise require external consultants.
+The effectiveness of AI-assisted policy generation has begun to be
+validated~\cite{mcintosh2023harnessing,jawhar2024aibased}. Yet effective
+policy generation is not a one-shot task. A policy that does not reflect the
+organisation's actual asset inventory, threat model, regulatory regime, and
+operational constraints is at best a template and at worst a compliance
+artefact that conveys false assurance. Context-elicitation --- a structured
+dialogue that gathers organisational specifics before drafting --- is
+therefore essential to output quality.
+
+Here lies a fundamental tension. The data required to generate a useful
+policy is by definition sensitive: organisational structure, known
+vulnerabilities, gap analyses, incident history, cloud footprint. Under
+GDPR Arts~28, 32, and 44--49~\cite{gdpr2016}, organisations in regulated
+sectors cannot route this data through processors without an adequate Data
+Processing Agreement (DPA), let alone across extra-EU boundaries without a
+transfer mechanism. A healthcare provider generating its data protection
+policy through a consumer-tier frontier assistant is, structurally, already
+in violation of the regime the policy is meant to implement. The industry
+has responded with two patterns: cloud RAG on proprietary providers
+(OpenAI Assistants, Azure OpenAI) --- which improves grounding but does not
+address EU data residency, open-weight portability, or DPA; and private RAG
+on EU-resident open-weight models --- which addresses all three. Yet no
+prior study evaluates output quality and privacy compliance of the
+underlying inference architecture simultaneously under the same evaluation
+rubric.
 
 \textbf{Research question:} \textit{Does a well-architected private RAG
 system (EU-region + DPA + open-weight) produce cybersecurity policies of
@@ -100,17 +112,35 @@ cases, quality is assessed informally without a replicable evaluation
 rubric, and no privacy-compliant architecture is tested.
 
 LLM-as-judge methodology provides the evaluation backbone for our
-study~\cite{anthropic2024demystifying}. The seven-criterion rubric we
-employ follows the structured grader design combining code-based checks
-with LLM-based scoring on Likert scales.
+study~\cite{anthropic2024demystifying}. Zheng et al.~\cite{zheng2023judging}
+demonstrate that GPT-4 as a judge reaches over 80\% agreement with human
+experts on instruction-following tasks; positional and verbosity biases can be
+partially mitigated by swapping answer positions and using chain-of-thought
+prompting. Liu et al.~\cite{liu2023geval} introduce G-Eval, a form-filling
+framework with probability-weighted scoring that correlates more strongly with
+human judgement than string-overlap metrics. Human calibration of automated
+rubrics is typically quantified via Cohen's~$\kappa$; Dubois et
+al.~\cite{dubois2023alpacafarm} provide a methodological baseline for this
+calibration step in the context of preference evaluation.
 
-To our knowledge, no prior work evaluates both the output quality of
-AI-generated cybersecurity policies and the privacy compliance of the
-underlying architecture within a unified experimental framework.
-
-\textbf{[TODO: to be completed — add further related work on LLM-as-judge
-calibration (Zheng et al.\ NeurIPS 2023; G-Eval; AlpacaFarm) and on
-privacy-preserving inference architectures.]}
+The deployment of AI for cybersecurity policy generation in regulated
+organisations raises privacy constraints that go beyond GDPR surface
+compliance. Two distinct properties must be distinguished:
+\textit{data residency} — the physical location of storage and processing,
+including logs, backups, and telemetry — and \textit{data sovereignty} — the
+legal jurisdiction governing the provider and its sub-processor
+chain~\cite{gdpr2016,schremsii2020}. A provider incorporated outside the EU
+may retain legal exposure even when operating EU-located servers: the US
+Clarifying Lawful Overseas Use of Data Act (CLOUD Act)~\cite{cloudact2018}
+permits US authorities to compel disclosure of data held by US-incorporated
+entities regardless of physical location. An additional risk vector is the
+sub-processor chain: a provider with EU legal domicile may add an extra-EU
+sub-processor unilaterally, extending the exposure perimeter without customer
+notification~\cite{gdpr2016}. Existing benchmarks of AI-assisted
+cybersecurity policy generation~\cite{mcintosh2023harnessing,jawhar2024aibased}
+evaluate output quality in isolation; to our knowledge, no prior work
+simultaneously evaluates output quality and the privacy compliance of the
+underlying inference architecture within a unified framework.
 
 
 % -----------------------------------------------------------------------
@@ -389,6 +419,33 @@ dimension assessed from published provider documentation; a more nuanced
 analysis should evaluate the full sub-processor chain and the legal
 jurisdiction of each entity in the inference path. We leave this as a
 direction for future work.
+
+These considerations are acquiring regulatory urgency. In April~2026 the
+European Commission awarded its first procurement contract under the Cloud
+Sovereignty Framework~\cite{ecseal2026}, which defines five Sovereignty
+Effectiveness Assurance Levels (SEAL-0 to SEAL-4) and sets SEAL-2 as the
+minimum threshold for EU institutional procurement. Under this framework,
+frontier AI providers incorporated outside the EU qualify at SEAL-0 at best,
+regardless of server location; all four winning consortia are EU-incorporated.
+The private RAG architecture evaluated in this paper --- EU-resident open-weight
+models under a DPA with an EU-incorporated provider --- aligns structurally
+with SEAL-2 requirements, making the 9\% quality gap relative to the best
+frontier configuration the operational cost of regulatory-grade sovereignty.
+The adequacy basis underpinning US transfers, the EU--US Data Privacy
+Framework~\cite{dpf2023}, meanwhile faces continued uncertainty: the General
+Court upheld it in September~2025~\cite{latombe2025}, but the case is on
+appeal before the CJEU, and the temporary loss of quorum of the Privacy and
+Civil Liberties Oversight Board --- a structural redress pillar of the
+framework --- illustrates the fragility of building long-term GDPR compliance
+on executive-dependent mechanisms.
+The GDPR and the CLOUD Act are therefore in structural, not episodic,
+conflict~\cite{schremsii2020,cloudact2018}: two sovereign legal orders
+asserting concurrent jurisdiction over the same data. The Cloud Sovereignty
+Framework~\cite{ecseal2026} represents the first objective metric for
+distinguishing verifiable legal sovereignty from superficial geographic
+residency claims. For AI-assisted policy generation in regulated EU contexts,
+a provider's SEAL level is a criterion complementary to, and arguably more
+discriminating than, ISO/IEC~27001 certification or server location alone.
 
 \textbf{[TODO: to be completed — add limitations, future work (human
 calibration Cohen's~$\kappa$, broader context coverage, additional

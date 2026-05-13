@@ -1,0 +1,234 @@
+[
+  {
+    "id": "ctx-H_password",
+    "policy_type": "Password Policy",
+    "model_A": "GLM-5.1",
+    "model_B": "Kimi K2.5",
+    "len_A": 1509,
+    "len_B": 14794,
+    "verdict": {
+      "criteria": {
+        "content_quality": {
+          "score_A": 2,
+          "score_B": 4,
+          "winner": "B",
+          "rationale": "A is only a pre-generation summary/confirmation prompt, not a policy. B provides substantive policy sections with concrete requirements, though it is truncated mid-section."
+        },
+        "contextual_adaptation": {
+          "score_A": 3,
+          "score_B": 4,
+          "winner": "B",
+          "rationale": "Both reference the hospital, Dedalus EHR, AD, and Italian context. B operationalises this within scope, roles, and tiered password requirements; A only catalogues context."
+        },
+        "evidence_citation": {
+          "score_A": 2,
+          "score_B": 3,
+          "winner": "B",
+          "rationale": "A mentions NIST SP 800-63B and ISO 27001 generically. B cites GDPR (EU) 2016/679 and NIS2 (EU) 2022/2555 explicitly, though neither cites specific clauses."
+        },
+        "implementability": {
+          "score_A": 1,
+          "score_B": 4,
+          "winner": "B",
+          "rationale": "A contains no implementable controls. B specifies length tiers, complexity, deny-lists, role responsibilities, and references to AD enforcement\u2014directly actionable for the 4-person IT team."
+        },
+        "regulatory_alignment": {
+          "score_A": 2,
+          "score_B": 4,
+          "winner": "B",
+          "rationale": "A lists obligations without mapping. B explicitly aligns with GDPR, NIS2, and Italian healthcare context, with MFA emphasis appropriate for Dati Sanitari."
+        },
+        "source_attribution": {
+          "score_A": 2,
+          "score_B": 2,
+          "winner": "tie",
+          "rationale": "Both name frameworks (ISO 27001, NIST 800-63B in A; ISO 27001 in B) without precise control references or citations."
+        },
+        "resource_consideration": {
+          "score_A": 2,
+          "score_B": 3,
+          "winner": "B",
+          "rationale": "A mentions implementation timeline and priorities but no detail. B assigns realistic roles to the small IT team and notes 'where technically feasible' caveats acknowledging legacy constraints."
+        }
+      },
+      "overall": {
+        "winner": "B",
+        "rationale": "Policy A is merely a pre-drafting confirmation message, not a policy artefact, while Policy B delivers a structured, ISO 27001-aligned draft with concrete password controls tailored to the hospital's systems and regulatory context. Although B is truncated mid-section (\u00a74.2) and lacks deeper citation of specific NIST/ISO clauses, it is materially more useful and auditable. B wins decisively across nearly all criteria."
+      }
+    }
+  },
+  {
+    "id": "ctx-H_dataprot",
+    "policy_type": "Data Protection Policy",
+    "model_A": "GLM-5.1",
+    "model_B": "Kimi K2.5",
+    "len_A": 2004,
+    "len_B": 12928,
+    "verdict": {
+      "criteria": {
+        "content_quality": {
+          "score_A": 4,
+          "score_B": 6,
+          "winner": "B",
+          "rationale": "A is only a scoping summary with no policy content delivered. B provides a structured policy document with sections, definitions, and threat vectors, though truncated."
+        },
+        "contextual_adaptation": {
+          "score_A": 7,
+          "score_B": 7,
+          "winner": "tie",
+          "rationale": "A captures rich context (flat network, legacy EHR, no CISO, untested backups) but doesn't apply it to policy text. B references Italian healthcare context and Garante but uses generic [Organisation] placeholders instead of Ospedale Regionale di Cagliari specifics."
+        },
+        "evidence_citation": {
+          "score_A": 3,
+          "score_B": 6,
+          "winner": "B",
+          "rationale": "A mentions frameworks generically. B cites specific instruments: GDPR Arts 33-34, NIS2 Art 23, Legislative Decrees 196/2003 and 101/2018, NIST SP 800-61, AGID guidelines."
+        },
+        "implementability": {
+          "score_A": 2,
+          "score_B": 5,
+          "winner": "B",
+          "rationale": "A provides no implementable artefact, only an intent to proceed. B offers a usable draft skeleton, though truncated mid-section and lacking CIRT roles, playbooks, and procedures."
+        },
+        "regulatory_alignment": {
+          "score_A": 4,
+          "score_B": 7,
+          "winner": "B",
+          "rationale": "A identifies GDPR Art 9 and NIS2 applicability. B operationalises GDPR 72-hour notification, NIS2 Art 23 timelines, Garante notification, and Italian Data Protection Code."
+        },
+        "source_attribution": {
+          "score_A": 3,
+          "score_B": 5,
+          "winner": "B",
+          "rationale": "Neither provides formal citations. B references specific legal instruments and standards by number; A names them only at high level."
+        },
+        "resource_consideration": {
+          "score_A": 6,
+          "score_B": 3,
+          "winner": "A",
+          "rationale": "A explicitly acknowledges the 200-person hospital, single IT Manager dual role, no CISO, and tailors scope of 4 policies accordingly. B ignores resource constraints and assumes CISO/CIRT capability not present."
+        }
+      },
+      "overall": {
+        "winner": "B",
+        "rationale": "Policy A never delivers a policy \u2014 it stops at a scoping recap awaiting user confirmation. Policy B actually generates a structured, regulation-aligned Incident Response Plan tailored to Italian healthcare, despite being truncated and using placeholders rather than the organisation's specifics. For an auditor evaluating policy artefacts, B is materially more useful even with its gaps."
+      }
+    }
+  },
+  {
+    "id": "ctx-M_ir",
+    "policy_type": "Incident Response Policy",
+    "model_A": "GLM-5.1",
+    "model_B": "Kimi K2.5",
+    "len_A": 1736,
+    "len_B": 1880,
+    "verdict": {
+      "criteria": {
+        "content_quality": {
+          "score_A": 7,
+          "score_B": 8,
+          "winner": "B",
+          "rationale": "Both are pre-generation summaries. B provides more precise NATO-specific parameters (classification ceiling, SLA tiers, command chain) while A captures tooling detail well but is less rigorous on severity/SLA structure."
+        },
+        "contextual_adaptation": {
+          "score_A": 7,
+          "score_B": 9,
+          "winner": "B",
+          "rationale": "B demonstrates deeper NATO context with explicit references to HQ MND-SE, ACO/SHAPE, CYOC Riga, NMN, and kinetic-adjacent SLAs. A captures the dual-reporting and enclave structure but lacks the multinational command granularity."
+        },
+        "evidence_citation": {
+          "score_A": 6,
+          "score_B": 8,
+          "winner": "B",
+          "rationale": "B cites specific instruments (C-M(2002)49, NATO SOFA 1951, ANSPDCP for GDPR). A references ISO 27001 and POL-008 template but cites no NATO directives by identifier."
+        },
+        "implementability": {
+          "score_A": 8,
+          "score_B": 7,
+          "winner": "A",
+          "rationale": "A's explicit tool inventory (Splunk, CrowdStrike, EnCase) and clear A/R for NCIA vs J6 makes operational procedures more directly implementable. B is stronger on governance but vaguer on actual IR toolchain."
+        },
+        "regulatory_alignment": {
+          "score_A": 7,
+          "score_B": 9,
+          "winner": "B",
+          "rationale": "B explicitly names GDPR 72h notification to ANSPDCP, Romanian cybercrime statutes, SOFA, and NATO InfoSec policy. A mentions GDPR and CERT-RO but with less regulatory specificity."
+        },
+        "source_attribution": {
+          "score_A": 6,
+          "score_B": 8,
+          "winner": "B",
+          "rationale": "B attributes to identifiable NATO documents and Romanian authorities by name. A references a template (POL-008) and ISO 27001 generically without specific NATO directive attribution."
+        },
+        "resource_consideration": {
+          "score_A": 8,
+          "score_B": 6,
+          "winner": "A",
+          "rationale": "A quantifies staffing (12 IT/cyber, 1 COMSEC) and lists actual tooling, enabling resource planning. B notes personnel count and 'developing' maturity but omits the cyber staff breakdown and tool inventory."
+        }
+      },
+      "overall": {
+        "winner": "B",
+        "rationale": "B wins on five of seven criteria, primarily due to stronger NATO-specific regulatory citations, multinational command chain articulation, and explicit severity/SLA modeling appropriate to a kinetic-adjacent forward presence. A is superior on operational tooling and resource granularity, which matters for implementability, but B's regulatory and contextual depth better fits the NATO classified IR scenario."
+      }
+    }
+  },
+  {
+    "id": "ctx-M_accesscontrol",
+    "policy_type": "Access Control Policy",
+    "model_A": "GLM-5.1",
+    "model_B": "Kimi K2.5",
+    "len_A": 800,
+    "len_B": 1707,
+    "verdict": {
+      "criteria": {
+        "content_quality": {
+          "score_A": 6,
+          "score_B": 8,
+          "winner": "B",
+          "rationale": "Policy A is a single clarifying question of modest depth; Policy B is a comprehensive consolidation of inputs structured for policy generation."
+        },
+        "contextual_adaptation": {
+          "score_A": 7,
+          "score_B": 9,
+          "winner": "B",
+          "rationale": "Both reflect NATO context, but B explicitly captures multinational RBAC, classification levels, hybrid governance, and detachment-specific scope."
+        },
+        "evidence_citation": {
+          "score_A": 4,
+          "score_B": 5,
+          "winner": "B",
+          "rationale": "Neither cites specific NATO directives (e.g., AC/35-D/2004) or clauses; B at least references NATO Information Security Policy and ISO 27001 template baselines."
+        },
+        "implementability": {
+          "score_A": 5,
+          "score_B": 8,
+          "winner": "B",
+          "rationale": "A defers action pending more input; B is ready to produce an actionable policy artefact with defined scope and structure."
+        },
+        "regulatory_alignment": {
+          "score_A": 5,
+          "score_B": 8,
+          "winner": "B",
+          "rationale": "B explicitly aligns to NATO Information Security Policy and ISO 27001; A only implicitly touches need-to-know enforcement."
+        },
+        "source_attribution": {
+          "score_A": 3,
+          "score_B": 5,
+          "winner": "B",
+          "rationale": "Neither attributes specific source documents; B names framework baselines (NATO ISP, ISO 27001) whereas A names none."
+        },
+        "resource_consideration": {
+          "score_A": 6,
+          "score_B": 7,
+          "winner": "B",
+          "rationale": "A probes approval authority differences for rotating personnel (a real resource concern); B captures personnel strength, rotation, and contracted support more holistically."
+        }
+      },
+      "overall": {
+        "winner": "B",
+        "rationale": "Policy B delivers a structured, implementation-ready synthesis aligned to NATO ISP and ISO 27001, capturing scope, governance, and authentication context for an Access Control Policy. Policy A is merely an interim elicitation question \u2014 useful but not yet a deliverable. B wins decisively on completeness, implementability, and regulatory framing."
+      }
+    }
+  }
+]
