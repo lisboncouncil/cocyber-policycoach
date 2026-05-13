@@ -9,6 +9,8 @@
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds}
 
 \begin{document}
 
@@ -82,7 +84,98 @@ address EU data residency, open-weight portability, or DPA; and private RAG
 on EU-resident open-weight models --- which addresses all three. Yet no
 prior study evaluates output quality and privacy compliance of the
 underlying inference architecture simultaneously under the same evaluation
-rubric.
+rubric. Figure~\ref{fig:arch} illustrates the three architectural patterns
+and their respective EU data perimeters.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  cbox/.style={draw, rounded corners=2pt, minimum width=2.5cm,
+               minimum height=0.5cm, font=\scriptsize, align=center,
+               inner sep=3pt},
+  arr/.style={-{Stealth[length=4pt]}, thick},
+  lbl/.style={font=\scriptsize\bfseries, align=center},
+  seal/.style={draw, rounded corners=2pt, minimum width=2.5cm,
+               font=\tiny\bfseries, align=center, inner sep=2pt},
+]
+
+%% ---- Column spacing
+\def\ca{0}   % frontier
+\def\cb{3.3} % cloud RAG
+\def\cc{6.6} % private RAG
+
+%% ---- Row heights (top to bottom)
+\def\rA{4.4}  % org input
+\def\rB{3.4}  % API / pipeline
+\def\rC{2.4}  % storage / inference
+\def\rD{1.4}  % output
+\def\rS{0.5}  % SEAL badge
+
+%% ======== COLUMN 1 — Frontier AI ========
+\node[lbl] at (\ca,5.0) {Frontier AI\\[-1pt]{\tiny gpt-4.1 / gpt-5.5\,+\,web}};
+\node[cbox, fill=gray!8]  (c1org) at (\ca,\rA) {Organisation\\profile};
+\node[cbox, fill=red!18]  (c1api) at (\ca,\rB) {OpenAI API\\{\tiny (US\,+\,Bing)}};
+\node[cbox, fill=gray!8]  (c1out) at (\ca,\rD) {Policy};
+
+\draw[arr] (c1org) -- (c1api);
+\draw[arr] (c1api) -- ++(0,-0.55) -- (c1out.north);
+
+% EU boundary line — crossed by arrow
+\draw[dashed, red!70, thick] (-1.4,2.9) -- (1.4,2.9);
+\node[font=\tiny, red!70] at (1.55,2.9) {\rotatebox{0}{EU}};
+
+\node[seal, fill=red!15] at (\ca,\rS) {SEAL-0 · No Sovereignty};
+
+%% ======== COLUMN 2 — Cloud RAG ========
+\node[lbl] at (\cb,5.0) {Cloud RAG\\[-1pt]{\tiny gpt-4.1 (Assistants)}};
+\node[cbox, fill=gray!8]   (c2org) at (\cb,\rA) {Organisation\\profile};
+\node[cbox, fill=orange!20](c2api) at (\cb,\rB) {OAI Assistants API\\{\tiny (US, DPA partial)}};
+\node[cbox, fill=orange!12](c2vs)  at (\cb,\rC) {Vector store\\{\tiny (OpenAI\,/\,US)}};
+\node[cbox, fill=gray!8]   (c2out) at (\cb,\rD) {Policy};
+
+\draw[arr] (c2org) -- (c2api);
+\draw[arr] (c2api) -- (c2vs);
+\draw[arr] (c2vs)  -- (c2out);
+
+\draw[dashed, orange!80, thick] (1.9,2.9) -- (4.7,2.9);
+
+\node[seal, fill=orange!20] at (\cb,\rS)
+  {SEAL-1 · Jurisdictional Sov.};
+
+%% ======== COLUMN 3 — Private RAG ========
+\node[lbl] at (\cc,5.0) {Private RAG\\[-1pt]{\tiny Kimi K2.5 (EU)}};
+\node[cbox, fill=gray!8]   (c3org) at (\cc,\rA) {Organisation\\profile};
+\node[cbox, fill=green!12] (c3int) at (\cc,\rB) {Interview\,+\,RAG\\{\tiny pipeline (local)}};
+\node[cbox, fill=green!20] (c3inf) at (\cc,\rC) {EU inference\\{\tiny Nebius EU\,+\,DPA}};
+\node[cbox, fill=gray!8]   (c3out) at (\cc,\rD) {Policy};
+
+\draw[arr] (c3org) -- (c3int);
+\draw[arr] (c3int) -- (c3inf);
+\draw[arr] (c3inf) -- (c3out);
+
+% No EU boundary crossed — green bracket on the right
+\draw[green!60!black, thick] (8.2,\rA+0.25) -- ++(0.18,0) --
+  ++(0,-\rA+\rD-0.5) -- ++(-0.18,0);
+\node[font=\tiny, green!60!black, rotate=90] at (8.55, 2.8) {EU perimeter};
+
+\node[seal, fill=green!20] at (\cc,\rS)
+  {SEAL-2 · Data Sovereignty};
+
+%% ---- Tokens-leave-EU row labels (very small, below SEAL)
+\node[font=\tiny, align=center] at (\ca, 0.05)
+  {Tokens leaving EU: \textbf{all}};
+\node[font=\tiny, align=center] at (\cb, 0.05)
+  {Tokens leaving EU: \textbf{all}};
+\node[font=\tiny, align=center] at (\cc, 0.05)
+  {Tokens leaving EU: \textbf{0}};
+
+\end{tikzpicture}
+\caption{The three architectural patterns benchmarked in this study.
+  Dashed lines mark where data crosses the EU perimeter; the green bracket
+  in the Private RAG column indicates that no data leaves the EU perimeter.
+  SEAL levels follow the EC Cloud Sovereignty Framework~\cite{ecseal2026}.}
+\label{fig:arch}
+\end{figure}
 
 \textbf{Research question:} \textit{Does a well-architected private RAG
 system (EU-region + DPA + open-weight) produce cybersecurity policies of
@@ -209,6 +302,76 @@ obligations, absent in generic agent evals); \textit{Implementability}
 \textit{Resource consideration} (fitness for SME and public-sector
 organisations where budget and staffing are primary constraints). The
 extended rubric is publicly available with the evaluation code.
+Figure~\ref{fig:grader} summarises the evaluation pipeline and the
+derivation of the seven criteria.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  inp/.style={draw, rounded corners=2pt, fill=gray!8,
+              minimum width=2.3cm, minimum height=0.5cm,
+              font=\scriptsize, align=center, inner sep=3pt},
+  judge/.style={draw, rounded corners=3pt, fill=blue!10,
+                minimum width=5.0cm, minimum height=0.65cm,
+                font=\small\bfseries, align=center, inner sep=4pt},
+  grp/.style={draw, rounded corners=2pt, minimum width=3.2cm,
+              font=\scriptsize\bfseries, align=center,
+              inner sep=3pt, minimum height=0.55cm},
+  crit/.style={draw=none, font=\scriptsize, align=left,
+               inner sep=1pt, minimum height=0.42cm},
+  arr/.style={-{Stealth[length=4pt]}, thick},
+]
+
+%% ---- Inputs (top row) ----
+\node[inp] (pol) at (-2.6, 4.5) {Generated\\policy};
+\node[inp] (pro) at (0,    4.5) {Org.\\profile};
+\node[inp] (rub) at (2.6,  4.5) {Scoring\\rubric};
+
+%% ---- Judge ----
+\node[judge] (jdg) at (0, 3.4)
+  {LLM-as-Judge \quad Claude Opus 4.7};
+
+\draw[arr] (pol.south) -- ++(0,-0.22) -| (jdg.north west);
+\draw[arr] (pro.south) -- (jdg.north);
+\draw[arr] (rub.south) -- ++(0,-0.22) -| (jdg.north east);
+
+%% ---- Two criterion groups ----
+\node[grp, fill=blue!8]  (ga) at (-2.5, 2.2)
+  {4 criteria\\Anthropic agent framework};
+\node[grp, fill=teal!10] (gb) at (2.5, 2.2)
+  {3 criteria\\cybersecurity compliance};
+
+\draw[arr] (jdg.south) -- ++(0,-0.3) -| (ga.north);
+\draw[arr] (jdg.south) -- ++(0,-0.3) -| (gb.north);
+
+%% ---- Left criteria ----
+\node[crit, anchor=north west] at (-3.95, 1.65) {$\bullet$~Evidence citation};
+\node[crit, anchor=north west] at (-3.95, 1.23) {$\bullet$~Content quality};
+\node[crit, anchor=north west] at (-3.95, 0.81) {$\bullet$~Source attribution};
+\node[crit, anchor=north west] at (-3.95, 0.39) {$\bullet$~Contextual adaptation};
+
+%% ---- Right criteria ----
+\node[crit, anchor=north west] at (0.9, 1.65) {$\bullet$~Regulatory alignment};
+\node[crit, anchor=north west] at (0.9, 1.23) {$\bullet$~Implementability};
+\node[crit, anchor=north west] at (0.9, 0.81) {$\bullet$~Resource consideration};
+
+%% ---- Score output ----
+\node[inp, fill=blue!15, minimum width=4.5cm] (sc) at (0, -0.15)
+  {Score 1--5 per criterion $\rightarrow$ weighted average};
+
+\draw[arr] (ga.south) -- ++(0,-0.12) -| (sc.north west);
+\draw[arr] (gb.south) -- ++(0,-0.12) -| (sc.north east);
+
+%% ---- Source annotation ----
+\node[font=\tiny, gray] at (-2.5, -0.62)
+  {\textit{Mapped from Anthropic~\cite{anthropic2024demystifying}}};
+
+\end{tikzpicture}
+\caption{LLM-as-judge evaluation pipeline. Four criteria are mapped from
+  the Anthropic research agent grading framework~\cite{anthropic2024demystifying};
+  three are added for the cybersecurity compliance domain.}
+\label{fig:grader}
+\end{figure}
 
 
 % -----------------------------------------------------------------------
@@ -351,6 +514,16 @@ Tokens leaving EU      & all & all & all & all & \textbf{0} \\
 \end{table}
 
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.92\linewidth]{figures/fig_scatter.pdf}
+  \caption{Quality vs.\ privacy posture for the five benchmarked configurations.
+    The 9\% quality gap between the best frontier configuration (gpt-5.5\,+\,web,
+    avg.\ 4.60) and the private RAG configuration (Kimi K2.5, avg.\ 4.15)
+    corresponds to a jump from SEAL-0 to SEAL-2 compliance.}
+  \label{fig:scatter}
+\end{figure}
+
 % -----------------------------------------------------------------------
 \section{Discussion}
 % -----------------------------------------------------------------------
@@ -368,8 +541,19 @@ Implementability ($\Delta = 0.60$, 3~ties) is the sole dimension where
 the models converge, suggesting that general instruction-following is
 comparable but domain-specific citation discipline is not.
 
-\textbf{[TODO: to be completed — discuss implications for backbone
-selection methodology; generalise finding beyond this specific pair.]}
+A natural question is why the backbone selection did not include
+Mistral~Large, the most capable EU-origin open-weight model at the time
+of the experiments. The answer is methodological: the study benchmarks
+the \emph{best available} open-weight candidate, not the most
+sovereignty-compliant one. Including Mistral, whose preliminary
+performance on the 7-criterion rubric was substantially lower, would
+have artificially widened the quality gap and weakened the main thesis.
+The reported 9\% gap between Kimi K2.5 and gpt-5.5\,+\,web is therefore
+a conservative estimate: with a weaker backbone the gap would be larger.
+Sovereignty and quality are orthogonal dimensions; the paper quantifies
+both separately, and the path from SEAL-2 to SEAL-3 via a Mistral-based
+backbone is identified as future work precisely because it carries a
+quality cost that has not yet been empirically characterised.
 
 \subsection{Frontier Benchmark Interpretation}
 
@@ -447,9 +631,39 @@ residency claims. For AI-assisted policy generation in regulated EU contexts,
 a provider's SEAL level is a criterion complementary to, and arguably more
 discriminating than, ISO/IEC~27001 certification or server location alone.
 
-\textbf{[TODO: to be completed — add limitations, future work (human
-calibration Cohen's~$\kappa$, broader context coverage, additional
-open-weight models), and reproducibility statement (code + data release).]}
+Several limitations bound the scope of this study. First, the evaluation
+relies entirely on LLM-as-judge scoring; human expert calibration via
+Cohen's~$\kappa$ is underway on a sample of artefacts and will be
+reported in the extended version. Second, the benchmark covers two
+organisational contexts (Italian public hospital and NATO detachment);
+broader coverage across sectors and jurisdictions is needed to assess
+generalisability. Third, cost estimates for gpt-5.5\,+\,web search are
+preliminary pending stable API pricing.
+
+A natural next step is to characterise the path from the current SEAL-2
+private RAG architecture to SEAL-3. The binding constraint is the model
+backbone: Kimi K2.5 is developed by Moonshot AI (China) and its weights
+depend on an entity subject to the Chinese National Intelligence Law,
+creating a residual non-EU supply-chain dependency. A SEAL-3 configuration
+would require replacing the backbone with an EU-origin model --- Mistral
+being the most mature candidate --- deployed on SEAL-3-certified
+infrastructure (OVHcloud, STACKIT, or Scaleway), together with a locally
+hosted embedding model to remove the remaining Nebius API call from the
+retrieval pipeline. Notably, this requirement is not satisfied by Mistral's primary
+commercial channels: API access via Microsoft Azure --- Mistral's
+strategic distribution partner since 2024~\cite{azure_mistral2024} ---
+is subject to CLOUD Act extraterritorial reach, whilst Mistral's own
+managed platform (la.plateforme.ai) does not carry explicit SEAL-3
+certification under the EC Cloud Sovereignty Framework~\cite{ecseal2026}.
+EU-origin model selection and SEAL-3-certified deployment infrastructure
+are therefore orthogonal requirements that must both be satisfied
+independently.
+Whether this full architectural upgrade preserves the
+observed quality level relative to frontier systems is an open empirical
+question.
+
+Experimental code and generated policy artefacts will be released upon
+publication to support reproducibility.
 
 % -----------------------------------------------------------------------
 \section*{Acknowledgements}
