@@ -186,14 +186,37 @@ Generation: Benchmarking Private RAG Against Frontier AI Models}
 \maketitle
 
 \begin{abstract}
-% TODO: write abstract last
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-est laborum.
+The NIS\,2 Directive and GDPR impose on regulated EU organisations a
+growing policy compliance gap: the obligation to produce context-specific
+cybersecurity policy artefacts has outpaced internal capacity to create
+them. Large language models offer scalable assistance, but effective policy
+generation requires routing sensitive organisational data through an
+inference pipeline. Under GDPR Arts.\,28, 32, and 44--49, this creates a
+structural tension: the data required to generate a useful policy is
+precisely the data that cannot be processed without adequate legal
+safeguards.
+
+We present a controlled empirical benchmark comparing six AI configurations
+spanning the design space from unaugmented frontier chat to privacy-by-design
+private RAG. Sixty policy artefacts were generated across two regulated
+contexts --- a fictitious Italian public hospital and a fictitious NATO
+detachment, constructed as representative synthetic profiles with no
+connection to real entities --- and five policy types, then evaluated by an
+LLM-as-judge pipeline using a seven-criterion rubric derived from the
+Anthropic agent evaluation framework and extended with three cybersecurity
+compliance dimensions.
+
+The best frontier configuration (gpt-5.5\,+\,web search) achieves a mean
+score of 4.60/5; the private RAG configuration (Kimi K2.5 on EU-resident
+infrastructure under a DPA) scores 4.15/5 --- a 9\,\% gap. The OpenAI
+Assistants RAG configuration falls below the no-RAG baseline (3.70
+vs.\ 3.83), suggesting that cloud-hosted RAG does not automatically improve
+output quality. A backbone ablation (10/0 pairwise comparisons, Kimi K2.5
+over DeepSeek V3.2) isolates normative citation discipline as the decisive
+differentiator. Under the EC Cloud Sovereignty Framework, the private RAG
+architecture classifies at SEAL-2; frontier configurations qualify at
+SEAL-0. The 9\,\% quality gap is identified as the operational cost of
+regulatory-grade data sovereignty.
 \end{abstract}
 
 \keywords{cybersecurity policy generation \and large language models \and
@@ -561,7 +584,8 @@ to operate under GDPR Art.~28 (DPA), Art.~32 (security measures), and
 Art.~44--49 (third-country transfers) as assessed from available
 provider documentation. $\dagger$~OpenAI Assistants API provides a DPA
 for API customers but does not guarantee EU data residency; data may be
-processed under SCCs outside the EU.}
+processed under SCCs outside the EU.
+$\ddagger$~SEAL-2 per-objective assessment: Table~\ref{tab:sov}.}
 \label{tab:configs}
 \small
 \begin{tabular}{l c c l c}
@@ -572,7 +596,7 @@ gpt-4.1                          & --           & --           & OpenAI consumer
 gpt-4.1 + web search             & --           & \checkmark   & OpenAI + Bing      & $\times$ \\
 gpt-5.5 + web search             & --           & \checkmark   & OpenAI + Bing      & $\times$ \\
 gpt-4.1 (OpenAI Assistants RAG)  & \checkmark   & --           & OpenAI Assistants  & partial$^\dagger$ \\
-Kimi K2.5 (private RAG)          & \checkmark   & --           & Nebius EU + DPA    & \checkmark \\
+Kimi K2.5 (private RAG)          & \checkmark   & --           & Nebius EU + DPA    & \checkmark$^{\ddagger}$ \\
 DeepSeek V3.2 (private RAG)      & \checkmark   & --           & Nebius EU + DPA    & \checkmark \\
 \bottomrule
 \end{tabular}
@@ -598,7 +622,10 @@ Each configuration was tested across two regulated contexts:
 \textbf{ctx-H} (a small Italian public hospital, $\approx$200~staff,
 subject to Italian healthcare regulations, NIS2, and GDPR) and
 \textbf{ctx-M} (a NATO detachment in Romania, subject to NATO information
-security policy). Five policy types were generated per context: Password
+security policy). Both are \emph{fictitious} organisational profiles
+constructed to be representative of their respective sectors; no data from
+real entities was used at any stage of the study.
+Five policy types were generated per context: Password
 Policy, Data Protection Policy, Access Control Policy, Incident Response
 Policy, and General Cybersecurity Policy, yielding 60~artefacts in total.
 
@@ -800,6 +827,53 @@ distinguishing verifiable legal sovereignty from superficial geographic
 residency claims. For AI-assisted policy generation in regulated EU contexts,
 a provider's SEAL level is a criterion complementary to, and arguably more
 discriminating than, ISO/IEC~27001 certification or server location alone.
+Table~\ref{tab:sov} disaggregates this claim by sovereignty objective,
+providing per-dimension evidence for the SEAL-2 classification of the private
+RAG configuration evaluated in this paper.
+
+\begin{table}[t]
+\caption{Per-objective sovereignty assessment for the private RAG
+  configuration (Kimi K2.5 on Nebius EU). Objectives and SEAL levels follow
+  the EC Cloud Sovereignty Framework v1.2.1~\cite{ecseal2026}.}
+\label{tab:sov}
+\footnotesize
+\begin{tabularx}{\linewidth}{@{} l l X c @{}}
+\toprule
+SOV & Dimension & Assessment & SEAL \\
+\midrule
+SOV-1 & Strategic        & EU-based AI infrastructure (NL), NASDAQ-listed;
+                           partial EU ecosystem anchoring
+                         & SEAL-2 \\
+SOV-2 & Legal/Juris.\    & EU-incorporated provider; no CLOUD Act exposure;
+                           Moonshot~AI (CN) raises Chinese Cybersecurity Law
+                           question at model layer
+                         & SEAL-2 \\
+SOV-3 & Data \& AI       & Data confined to EU; open-weight model auditable;
+                           training origin outside EU (Moonshot~AI)
+                         & SEAL-2 \\
+SOV-4 & Operational      & Open-weight portability enables EU-operated
+                           self-hosting; residual Nebius API dependency
+                         & SEAL-2/3 \\
+SOV-5 & Supply Chain     & NVIDIA hardware (US); Kimi K2.5 weights (CN);
+                           material non-EU supply chain
+                         & SEAL-1/2 \\
+SOV-6 & Technology       & Open-weight licence; auditable weights;
+                           standard APIs
+                         & SEAL-2/3 \\
+SOV-7 & Security         & GDPR Art.~28 DPA; NIS2-aligned;
+                           EU certification status of Nebius unverified
+                         & SEAL-2 \\
+SOV-8 & Environmental    & Out of scope for this study                      & --- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Across assessed dimensions, the configuration scores SEAL-2 consistently,
+in line with the framework definition: \textit{EU law applicable and
+enforceable, with material non-EU dependencies remaining}~\cite{ecseal2026}.
+The principal non-EU dependencies are the model supply chain (Moonshot~AI,
+CN) and hardware (NVIDIA, US); both qualify as material rather than marginal,
+precluding SEAL-3 under the current architecture.
 
 Several limitations bound the scope of this study. First, the evaluation
 relies entirely on LLM-as-judge scoring; human expert calibration via
