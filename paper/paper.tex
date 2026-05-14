@@ -309,31 +309,32 @@ derivation of the seven criteria.
 \centering
 \begin{tikzpicture}[
   inp/.style={draw, rounded corners=2pt, fill=gray!8,
-              minimum width=2.3cm, minimum height=0.5cm,
+              minimum width=1.9cm, minimum height=0.5cm,
               font=\scriptsize, align=center, inner sep=3pt},
   judge/.style={draw, rounded corners=3pt, fill=blue!10,
-                minimum width=5.0cm, minimum height=0.65cm,
+                minimum width=5.5cm, minimum height=0.85cm,
                 font=\small\bfseries, align=center, inner sep=4pt},
   grp/.style={draw, rounded corners=2pt, minimum width=3.2cm,
               font=\scriptsize\bfseries, align=center,
               inner sep=3pt, minimum height=0.55cm},
   crit/.style={draw=none, font=\scriptsize, align=left,
-               inner sep=1pt, minimum height=0.42cm},
+               inner sep=3pt, minimum height=0.44cm},
   arr/.style={-{Stealth[length=4pt]}, thick},
 ]
 
-%% ---- Inputs (top row) ----
-\node[inp] (pol) at (-2.6, 4.5) {Generated\\policy};
+%% ---- Inputs (top row) — spaced so boxes don't touch ----
+\node[inp] (pol) at (-2.2, 4.5) {Generated\\policy};
 \node[inp] (pro) at (0,    4.5) {Org.\\profile};
-\node[inp] (rub) at (2.6,  4.5) {Scoring\\rubric};
+\node[inp] (rub) at (2.2,  4.5) {Scoring\\rubric};
 
-%% ---- Judge ----
+%% ---- Judge — two-line label ----
 \node[judge] (jdg) at (0, 3.4)
-  {LLM-as-Judge \quad Claude Opus 4.7};
+  {LLM-as-Judge\\[1pt]{\mdseries\itshape Claude\,Opus\,4.7}};
 
-\draw[arr] (pol.south) -- ++(0,-0.22) -| (jdg.north west);
+%% Arrows connect vertically to judge top edge (no corner routing)
+\draw[arr] (pol.south) -- (pol.south |- jdg.north);
 \draw[arr] (pro.south) -- (jdg.north);
-\draw[arr] (rub.south) -- ++(0,-0.22) -| (jdg.north east);
+\draw[arr] (rub.south) -- (rub.south |- jdg.north);
 
 %% ---- Two criterion groups ----
 \node[grp, fill=blue!8]  (ga) at (-2.5, 2.2)
@@ -345,26 +346,25 @@ derivation of the seven criteria.
 \draw[arr] (jdg.south) -- ++(0,-0.3) -| (gb.north);
 
 %% ---- Left criteria ----
-\node[crit, anchor=north west] at (-3.95, 1.65) {$\bullet$~Evidence citation};
-\node[crit, anchor=north west] at (-3.95, 1.23) {$\bullet$~Content quality};
-\node[crit, anchor=north west] at (-3.95, 0.81) {$\bullet$~Source attribution};
-\node[crit, anchor=north west] at (-3.95, 0.39) {$\bullet$~Contextual adaptation};
+\node[crit, anchor=north west] at (-3.95, 1.70) {$\bullet$~Evidence citation};
+\node[crit, anchor=north west] at (-3.95, 1.20) {$\bullet$~Content quality};
+\node[crit, anchor=north west] at (-3.95, 0.70) {$\bullet$~Source attribution};
+\node[crit, anchor=north west] at (-3.95, 0.20) {$\bullet$~Contextual adaptation};
 
 %% ---- Right criteria ----
-\node[crit, anchor=north west] at (0.9, 1.65) {$\bullet$~Regulatory alignment};
-\node[crit, anchor=north west] at (0.9, 1.23) {$\bullet$~Implementability};
-\node[crit, anchor=north west] at (0.9, 0.81) {$\bullet$~Resource consideration};
+\node[crit, anchor=north west] at (0.9, 1.70) {$\bullet$~Regulatory alignment};
+\node[crit, anchor=north west] at (0.9, 1.20) {$\bullet$~Implementability};
+\node[crit, anchor=north west] at (0.9, 0.70) {$\bullet$~Resource consideration};
 
 %% ---- Score output ----
-\node[inp, fill=blue!15, minimum width=4.5cm] (sc) at (0, -0.15)
+\node[inp, fill=blue!15, minimum width=4.5cm] (sc) at (0, -0.75)
   {Score 1--5 per criterion $\rightarrow$ weighted average};
 
-\draw[arr] (ga.south) -- ++(0,-0.12) -| (sc.north west);
-\draw[arr] (gb.south) -- ++(0,-0.12) -| (sc.north east);
-
-%% ---- Source annotation ----
-\node[font=\tiny, gray] at (-2.5, -0.62)
-  {\textit{Mapped from Anthropic~\cite{anthropic2024demystifying}}};
+%% Arrows route through centre (x=0) between the two criteria columns
+\coordinate (jct) at (0, 1.80);
+\draw (ga.south) -- (ga.south |- jct) -- (jct);
+\draw (gb.south) -- (gb.south |- jct) -- (jct);
+\draw[arr] (jct) -- (sc.north);
 
 \end{tikzpicture}
 \caption{LLM-as-judge evaluation pipeline. Four criteria are mapped from

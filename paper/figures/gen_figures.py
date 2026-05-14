@@ -8,6 +8,7 @@ import matplotlib
 matplotlib.use("pdf")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.lines import Line2D
 import numpy as np
 from pathlib import Path
 
@@ -97,19 +98,23 @@ for c in configs:
         color=c["color"],
     )
 
-# 9% gap annotation
+# 9% gap annotation — placed in white band above SEAL-2 shading (y>2.45) for clarity
 ax.annotate(
     "",
-    xy=(4.15, 0.06), xytext=(4.60, 0.06),
+    xy=(4.15, 2.65), xytext=(4.60, 2.65),
     arrowprops=dict(arrowstyle="<->", color="#888888", lw=1.2),
 )
-ax.text(4.375, 0.14, "9% quality gap", ha="center", va="bottom",
+ax.text(4.375, 2.73, "9% quality gap\n(quality score only)", ha="center", va="bottom",
         fontsize=7, color="#555555", style="italic")
 
 # Shaded region: SEAL levels benchmarked in this study
 ax.axhspan(-0.45, 2.45, alpha=0.04, color="#2ca02c", zorder=0)
 ax.text(4.87, 1.0, "benchmarked\nrange", ha="right", va="center",
-        fontsize=6.5, color="#2ca02c", alpha=0.7, style="italic")
+        fontsize=8, color="#1e7a1e", alpha=0.9, style="italic")
+
+# SEAL-3/4 target zone annotation
+ax.text(4.87, 3.5, "SEAL-3/4\ntarget zone\n(future work)", ha="right", va="center",
+        fontsize=7, color="#888888", alpha=0.75, style="italic")
 
 # Axes — full SEAL scale
 ax.set_xlabel("Average quality score (1–7 scale)", fontsize=9)
@@ -124,11 +129,14 @@ ax.xaxis.set_tick_params(labelsize=8)
 for y in range(5):
     ax.axhline(y, color="#dddddd", lw=0.7, zorder=0)
 
-# Legend
+# Legend — colour + representative marker per category
 legend_items = [
-    mpatches.Patch(color="#d62728", label="Frontier AI (SEAL-0)"),
-    mpatches.Patch(color="#ff7f0e", label="Cloud RAG (SEAL-1, partial)"),
-    mpatches.Patch(color="#2ca02c", label="Private RAG (SEAL-2)"),
+    Line2D([0], [0], marker="o", color="w", markerfacecolor="#d62728",
+           markersize=8, label="Frontier AI (SEAL-0)"),
+    Line2D([0], [0], marker="D", color="w", markerfacecolor="#ff7f0e",
+           markersize=8, label="Cloud RAG (SEAL-1, partial)"),
+    Line2D([0], [0], marker="P", color="w", markerfacecolor="#2ca02c",
+           markersize=9, label="Private RAG (SEAL-2)"),
 ]
 ax.legend(handles=legend_items, fontsize=7.5, loc="upper left",
           framealpha=0.9, edgecolor="#cccccc")
