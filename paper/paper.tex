@@ -269,7 +269,7 @@ and their respective EU data perimeters.
 \node[faorg, below=.45cm of s1] (org1)
   {\raisebox{-2pt}{\fabuildingicon}\hspace{.45cm}Organisation\\profile};
 \node[faredblock, below=.55cm of org1] (api1) {
-  \raisebox{-4pt}{\Large $\bigcirc$}\hspace{.35cm}
+  {\Large $\bigcirc$}\hspace{.35cm}
   {\bfseries\large OpenAI API}\\{\large (US + Bing)}};
 \node[fapolicy, below=2.35cm of api1] (pol1)
   {\raisebox{-3pt}{\fadocicon}\hspace{.55cm}Policy};
@@ -278,7 +278,7 @@ and their respective EU data perimeters.
 \node[faorg, below=.45cm of s2] (org2)
   {\raisebox{-2pt}{\fabuildingicon}\hspace{.45cm}Organisation\\profile};
 \node[faorangeblock, below=.55cm of org2] (api2) {
-  \raisebox{-3pt}{\Large $\alpha$}\hspace{.35cm}
+  {\Large $\alpha$}\hspace{.35cm}
   {\bfseries\large OAI Assistants API}\\{\large (US, DPA partial)}};
 \node[faorangeblock, below=.55cm of api2] (vec2) {
   \raisebox{-3pt}{\fadbicon}\hspace{.55cm}
@@ -308,12 +308,6 @@ and their respective EU data perimeters.
 \draw[faarrow] (rag3) -- (inf3);
 \draw[faarrow] (inf3) -- (pol3);
 
-% EU perimeter dashed lines
-\draw[faeuLine, faRedText]    ($(api1.east)+(-2.35cm,-.25cm)$) -- ($(vec2.west)+(-.25cm,.92cm)$);
-\node[text=faRedText, fill=white, inner sep=2pt, font=\sffamily\large]
-  at ($(api1.east)!.47!(vec2.west)+(0,-.18cm)$) {EU};
-\draw[faeuLine, faOrangeText] ($(vec2.west)+(-.35cm,.92cm)$) -- ($(inf3.west)+(-.95cm,.92cm)$);
-
 % Private RAG EU bracket
 \draw[decorate, decoration={brace, amplitude=7pt},
       faGreenText, line width=1.2pt]
@@ -327,19 +321,25 @@ and their respective EU data perimeters.
 \node[fasealGreen,  below=.75cm of pol3] (seal2) {SEAL-2 $\cdot$ Data Sovereignty};
 
 % Token row
-\node[fatoken, below=.55cm of seal0]
+\node[fatoken, below=.55cm of seal0] (tok0)
   {\faglobeicon\hspace{.22cm} Tokens leaving EU: \textcolor{faRedText}{\bfseries all}};
-\node[fatoken, below=.55cm of seal1]
+\node[fatoken, below=.55cm of seal1] (tok1)
   {\faglobeicon\hspace{.22cm} Tokens leaving EU: \textcolor{faRedText}{\bfseries all}};
-\node[fatoken, below=.55cm of seal2]
+\node[fatoken, below=.55cm of seal2] (tok2)
   {\faglobeicon\hspace{.22cm} Tokens leaving EU: \textcolor{faGreenText}{\bfseries 0}};
+
+% Column separators
+\draw[densely dotted, line width=.8pt, draw=faMuted!50]
+  ($(tok0.east)+(.45cm,.35cm)$) -- ($(tok0.east)+(.45cm,-.35cm)$);
+\draw[densely dotted, line width=.8pt, draw=faMuted!50]
+  ($(tok1.east)+(.45cm,.35cm)$) -- ($(tok1.east)+(.45cm,-.35cm)$);
 
 \end{tikzpicture}%
 }
 \caption{The three architectural patterns benchmarked in this study.
-  Dashed lines mark where data crosses the EU perimeter; the green bracket
-  in the Private RAG column indicates that no data leaves the EU perimeter.
-  SEAL levels follow the EC Cloud Sovereignty Framework~\cite{ecseal2026}.}
+  The green bracket in the Private RAG column indicates that no data leaves
+  the EU perimeter. SEAL levels follow the EC Cloud Sovereignty
+  Framework~\cite{ecseal2026}.}
 \label{fig:arch}
 \end{figure}
 
