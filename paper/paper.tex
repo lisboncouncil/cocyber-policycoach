@@ -1,6 +1,7 @@
 \documentclass[runningheads]{llncs}
 
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{url}
@@ -10,7 +11,166 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds,calc,matrix,decorations.pathreplacing}
+\usepackage{xcolor}
+
+% --- Fig 1 palette & styles ---
+\definecolor{faInk}{HTML}{111827}
+\definecolor{faMuted}{HTML}{4B5563}
+\definecolor{faLine}{HTML}{111827}
+\definecolor{faBlueBorder}{HTML}{315C96}
+\definecolor{faBlueBg}{HTML}{EEF5FF}
+\definecolor{faBlueIcon}{HTML}{D7E5F8}
+\definecolor{faRedBorder}{HTML}{D95F5F}
+\definecolor{faRedBg}{HTML}{FFF0F0}
+\definecolor{faRedText}{HTML}{E53935}
+\definecolor{faOrangeBorder}{HTML}{E28A35}
+\definecolor{faOrangeBg}{HTML}{FFF3E4}
+\definecolor{faOrangeText}{HTML}{E86A2D}
+\definecolor{faGreenBorder}{HTML}{2D9B5F}
+\definecolor{faGreenBg}{HTML}{EAF8EE}
+\definecolor{faGreenText}{HTML}{0A8A3A}
+\definecolor{faGreyBorder}{HTML}{777777}
+\definecolor{faGreyBg}{HTML}{F4F4F4}
+
+\tikzset{
+  fablock/.style={
+    rounded corners=5pt, line width=.85pt,
+    minimum width=4.8cm, minimum height=1.35cm,
+    align=center, text=faInk, inner xsep=8pt, inner ysep=7pt},
+  faorg/.style={
+    fablock, draw=faBlueBorder, fill=faBlueBg,
+    minimum height=1.45cm, font=\sffamily\bfseries\large},
+  faredblock/.style={
+    fablock, draw=faRedBorder, fill=faRedBg, minimum height=1.45cm},
+  faorangeblock/.style={
+    fablock, draw=faOrangeBorder, fill=faOrangeBg, minimum height=1.45cm},
+  fagreenblock/.style={
+    fablock, draw=faGreenBorder, fill=faGreenBg, minimum height=1.45cm},
+  fapolicy/.style={
+    fablock, draw=faGreyBorder, fill=faGreyBg,
+    minimum height=1.25cm, font=\sffamily\bfseries\large},
+  fasealRed/.style={
+    rounded corners=4pt, draw=faRedBorder, fill=faRedBg,
+    minimum width=5.65cm, minimum height=.62cm,
+    align=center, font=\sffamily\bfseries\large, text=faInk},
+  fasealOrange/.style={
+    rounded corners=4pt, draw=faOrangeBorder, fill=faOrangeBg,
+    minimum width=5.65cm, minimum height=.62cm,
+    align=center, font=\sffamily\bfseries\large, text=faInk},
+  fasealGreen/.style={
+    rounded corners=4pt, draw=faGreenBorder, fill=faGreenBg,
+    minimum width=5.65cm, minimum height=.62cm,
+    align=center, font=\sffamily\bfseries\large, text=faInk},
+  faarrow/.style={
+    -{Latex[length=2.8mm,width=2mm]}, line width=1pt,
+    draw=faLine, shorten >=2pt, shorten <=2pt},
+  faeuLine/.style={dashed, line width=.9pt, dash pattern=on 5pt off 5pt},
+  fasmall/.style={font=\sffamily\small, text=faInk, align=center},
+  fatoken/.style={font=\sffamily\large, text=faInk, align=center},
+  fatitle/.style={align=center, text=faInk, font=\sffamily\bfseries\Large},
+  fasubtitle/.style={align=center, text=faInk, font=\sffamily\large}
+}
+
+\newcommand{\fabuildingicon}{%
+\begin{tikzpicture}[scale=.18, line width=1.2pt, baseline=-2pt]
+  \draw (0,0) rectangle (4,6);
+  \draw (-.7,0) -- (4.7,0);
+  \draw (1.1,0) rectangle (2.9,2);
+  \foreach \x in {.8,2,3.2}{\foreach \y in {3,4.4}{\draw (\x,\y) rectangle +(0.45,0.45);}}
+  \draw (0,6) -- (2,7.2) -- (4,6);
+\end{tikzpicture}}
+
+\newcommand{\fadocicon}{%
+\begin{tikzpicture}[scale=.20, line width=1.1pt, baseline=-2pt]
+  \draw (0,0) rectangle (4,5.6);
+  \draw (4,5.6) -- (2.7,5.6) -- (2.7,4.3) -- (4,4.3);
+  \foreach \y in {3.4,2.4,1.4}{\draw (.7,\y) -- (2.6,\y);}
+  \draw (4.6,.2) circle (.8);
+  \draw (4.25,.2) -- (4.5,-.15) -- (5,.45);
+\end{tikzpicture}}
+
+\newcommand{\fadbicon}{%
+\begin{tikzpicture}[scale=.20, line width=1.1pt, baseline=-2pt]
+  \draw (0,4) ellipse (2 and .7);
+  \draw (-2,1) -- (-2,4);
+  \draw (2,1) -- (2,4);
+  \draw (0,1) ellipse (2 and .7);
+  \draw (-2,2.5) arc[start angle=180,end angle=360,x radius=2,y radius=.7];
+\end{tikzpicture}}
+
+\newcommand{\fachaticon}{%
+\begin{tikzpicture}[scale=.20, line width=1.1pt, baseline=-2pt]
+  \draw[rounded corners=5pt] (0,1) rectangle (4,3.8);
+  \draw (1,1) -- (.5,0) -- (1.8,1);
+  \draw (.8,2.9) -- (3.2,2.9);
+  \draw (.8,2.1) -- (2.7,2.1);
+\end{tikzpicture}}
+
+\newcommand{\fashieldicon}{%
+\begin{tikzpicture}[scale=.20, line width=1.1pt, baseline=-2pt]
+  \draw (2,0) .. controls (.5,1) and (.5,3.8) .. (2,4.8)
+        .. controls (3.5,3.8) and (3.5,1) .. (2,0);
+  \draw (1.25,2.35) -- (1.85,1.65) -- (2.85,3);
+\end{tikzpicture}}
+
+\newcommand{\faglobeicon}{%
+\begin{tikzpicture}[scale=.23, line width=1.0pt, baseline=-3pt]
+  \draw (0,0) circle (1.1);
+  \draw (-1.1,0) -- (1.1,0);
+  \draw (0,-1.1) -- (0,1.1);
+  \draw (-.55,-.95) .. controls (-.2,-.35) and (-.2,.35) .. (-.55,.95);
+  \draw (.55,-.95) .. controls (.2,-.35) and (.2,.35) .. (.55,.95);
+\end{tikzpicture}}
+
+% --- Fig 2 palette ---
+\definecolor{primary}{HTML}{8E5FBF}
+\definecolor{primaryLight}{HTML}{F1EAF8}
+\definecolor{blueAccent}{HTML}{4C6FFF}
+\definecolor{blueLight}{HTML}{EEF1FF}
+\definecolor{greenAccent}{HTML}{2E9B7F}
+\definecolor{greenLight}{HTML}{EAF7F3}
+\definecolor{orangeLight}{HTML}{FFF3E8}
+\definecolor{orangeBorder}{HTML}{E9A35F}
+\definecolor{neutral}{HTML}{F5F5F5}
+\definecolor{textDark}{HTML}{222222}
+\definecolor{lineGrey}{HTML}{8A8A8A}
+
+\tikzset{
+  inputbox/.style={
+    draw=orangeBorder, fill=orangeLight, rounded corners=5pt, line width=0.8pt,
+    minimum width=2.6cm, minimum height=0.95cm,
+    align=center, text=textDark, font=\sffamily\small},
+  judgebox/.style={
+    draw=primary, fill=primary, rounded corners=7pt, line width=0.9pt,
+    minimum width=7.8cm, minimum height=1.45cm,
+    align=center, text=white, font=\sffamily\bfseries\large},
+  panelTitleBlue/.style={
+    draw=blueAccent, fill=blueLight, rounded corners=5pt, line width=0.85pt,
+    minimum width=5.5cm, minimum height=0.95cm,
+    align=center, text=blueAccent, font=\sffamily\bfseries\small},
+  panelTitleGreen/.style={
+    draw=greenAccent, fill=greenLight, rounded corners=5pt, line width=0.85pt,
+    minimum width=5.5cm, minimum height=0.95cm,
+    align=center, text=greenAccent, font=\sffamily\bfseries\small},
+  criteriaPanel/.style={
+    draw=none, fill=neutral, rounded corners=8pt,
+    minimum width=5.8cm, minimum height=3.2cm},
+  badgeBlue/.style={
+    circle, draw=none, fill=blueAccent, text=white,
+    minimum size=16pt, inner sep=0pt, font=\sffamily\bfseries\scriptsize},
+  badgeGreen/.style={
+    circle, draw=none, fill=greenAccent, text=white,
+    minimum size=16pt, inner sep=0pt, font=\sffamily\bfseries\scriptsize},
+  scorebox/.style={
+    draw=primary, fill=primary, rounded corners=7pt, line width=0.9pt,
+    minimum width=7.0cm, minimum height=0.95cm,
+    align=center, text=white, font=\sffamily\bfseries\small},
+  connector/.style={
+    -{Latex[length=2.4mm,width=1.6mm]}, line width=0.9pt, draw=lineGrey,
+    rounded corners=3pt, shorten >=2pt, shorten <=2pt},
+  bus/.style={line width=0.9pt, draw=lineGrey, rounded corners=3pt}
+}
 
 \begin{document}
 
@@ -89,87 +249,93 @@ and their respective EU data perimeters.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[
-  cbox/.style={draw, rounded corners=2pt, minimum width=2.5cm,
-               minimum height=0.5cm, font=\scriptsize, align=center,
-               inner sep=3pt},
-  arr/.style={-{Stealth[length=4pt]}, thick},
-  lbl/.style={font=\scriptsize\bfseries, align=center},
-  seal/.style={draw, rounded corners=2pt, minimum width=2.5cm,
-               font=\tiny\bfseries, align=center, inner sep=2pt},
-]
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[font=\sffamily, node distance=.75cm and 1.35cm]
 
-%% ---- Column spacing
-\def\ca{0}   % frontier
-\def\cb{3.3} % cloud RAG
-\def\cc{6.6} % private RAG
+% Column anchors
+\coordinate (c1) at (0,0);
+\coordinate (c2) at (6.2,0);
+\coordinate (c3) at (12.4,0);
 
-%% ---- Row heights (top to bottom)
-\def\rA{4.4}  % org input
-\def\rB{3.4}  % API / pipeline
-\def\rC{2.4}  % storage / inference
-\def\rD{1.4}  % output
-\def\rS{0.5}  % SEAL badge
+% Titles
+\node[fatitle]    (t1) at (c1) {Frontier AI};
+\node[fasubtitle, below=.12cm of t1] (s1) {gpt-4.1 / gpt-5.5 + web};
+\node[fatitle]    (t2) at (c2) {Cloud RAG};
+\node[fasubtitle, below=.12cm of t2] (s2) {gpt-4.1 (Assistants)};
+\node[fatitle]    (t3) at (c3) {Private RAG};
+\node[fasubtitle, below=.12cm of t3] (s3) {Kimi K2.5 (EU)};
 
-%% ======== COLUMN 1 — Frontier AI ========
-\node[lbl] at (\ca,5.0) {Frontier AI\\[-1pt]{\tiny gpt-4.1 / gpt-5.5\,+\,web}};
-\node[cbox, fill=gray!8]  (c1org) at (\ca,\rA) {Organisation\\profile};
-\node[cbox, fill=red!18]  (c1api) at (\ca,\rB) {OpenAI API\\{\tiny (US\,+\,Bing)}};
-\node[cbox, fill=gray!8]  (c1out) at (\ca,\rD) {Policy};
+% Column 1 — Frontier AI
+\node[faorg, below=.45cm of s1] (org1)
+  {\raisebox{-2pt}{\fabuildingicon}\hspace{.45cm}Organisation\\profile};
+\node[faredblock, below=.55cm of org1] (api1) {
+  \raisebox{-4pt}{\Large $\bigcirc$}\hspace{.35cm}
+  {\bfseries\large OpenAI API}\\{\large (US + Bing)}};
+\node[fapolicy, below=2.35cm of api1] (pol1)
+  {\raisebox{-3pt}{\fadocicon}\hspace{.55cm}Policy};
 
-\draw[arr] (c1org) -- (c1api);
-\draw[arr] (c1api) -- ++(0,-0.55) -- (c1out.north);
+% Column 2 — Cloud RAG
+\node[faorg, below=.45cm of s2] (org2)
+  {\raisebox{-2pt}{\fabuildingicon}\hspace{.45cm}Organisation\\profile};
+\node[faorangeblock, below=.55cm of org2] (api2) {
+  \raisebox{-3pt}{\Large $\alpha$}\hspace{.35cm}
+  {\bfseries\large OAI Assistants API}\\{\large (US, DPA partial)}};
+\node[faorangeblock, below=.55cm of api2] (vec2) {
+  \raisebox{-3pt}{\fadbicon}\hspace{.55cm}
+  {\bfseries\large Vector store}\\{\large (OpenAI / US)}};
+\node[fapolicy, below=.55cm of vec2] (pol2)
+  {\raisebox{-3pt}{\fadocicon}\hspace{.55cm}Policy};
 
-% EU boundary line — crossed by arrow
-\draw[dashed, red!70, thick] (-1.4,2.9) -- (1.4,2.9);
-\node[font=\tiny, red!70] at (1.55,2.9) {\rotatebox{0}{EU}};
+% Column 3 — Private RAG
+\node[faorg, below=.45cm of s3] (org3)
+  {\raisebox{-2pt}{\fabuildingicon}\hspace{.45cm}Organisation\\profile};
+\node[fagreenblock, below=.55cm of org3] (rag3) {
+  \raisebox{-3pt}{\fachaticon}\hspace{.55cm}
+  {\bfseries\large Interview + RAG}\\{\large pipeline (local)}};
+\node[fagreenblock, below=.55cm of rag3] (inf3) {
+  \raisebox{-3pt}{\fashieldicon}\hspace{.55cm}
+  {\bfseries\large EU inference}\\{\large Nebius EU + DPA}};
+\node[fapolicy, below=.55cm of inf3] (pol3)
+  {\raisebox{-3pt}{\fadocicon}\hspace{.55cm}Policy};
 
-\node[seal, fill=red!15] at (\ca,\rS) {SEAL-0 · No Sovereignty};
+% Arrows
+\draw[faarrow] (org1) -- (api1);
+\draw[faarrow] (api1) -- (pol1);
+\draw[faarrow] (org2) -- (api2);
+\draw[faarrow] (api2) -- (vec2);
+\draw[faarrow] (vec2) -- (pol2);
+\draw[faarrow] (org3) -- (rag3);
+\draw[faarrow] (rag3) -- (inf3);
+\draw[faarrow] (inf3) -- (pol3);
 
-%% ======== COLUMN 2 — Cloud RAG ========
-\node[lbl] at (\cb,5.0) {Cloud RAG\\[-1pt]{\tiny gpt-4.1 (Assistants)}};
-\node[cbox, fill=gray!8]   (c2org) at (\cb,\rA) {Organisation\\profile};
-\node[cbox, fill=orange!20](c2api) at (\cb,\rB) {OAI Assistants API\\{\tiny (US, DPA partial)}};
-\node[cbox, fill=orange!12](c2vs)  at (\cb,\rC) {Vector store\\{\tiny (OpenAI\,/\,US)}};
-\node[cbox, fill=gray!8]   (c2out) at (\cb,\rD) {Policy};
+% EU perimeter dashed lines
+\draw[faeuLine, faRedText]    ($(api1.east)+(-2.35cm,-.25cm)$) -- ($(vec2.west)+(-.25cm,.92cm)$);
+\node[text=faRedText, fill=white, inner sep=2pt, font=\sffamily\large]
+  at ($(api1.east)!.47!(vec2.west)+(0,-.18cm)$) {EU};
+\draw[faeuLine, faOrangeText] ($(vec2.west)+(-.35cm,.92cm)$) -- ($(inf3.west)+(-.95cm,.92cm)$);
 
-\draw[arr] (c2org) -- (c2api);
-\draw[arr] (c2api) -- (c2vs);
-\draw[arr] (c2vs)  -- (c2out);
+% Private RAG EU bracket
+\draw[decorate, decoration={brace, amplitude=7pt},
+      faGreenText, line width=1.2pt]
+  ($(org3.east)+(1.02cm,.20cm)$) -- ($(pol3.east)+(1.02cm,-.20cm)$)
+  node[midway, right=.35cm, rotate=90,
+       font=\sffamily\bfseries\large, text=faGreenText] {EU perimeter};
 
-\draw[dashed, orange!80, thick] (1.9,2.9) -- (4.7,2.9);
+% SEAL row
+\node[fasealRed,    below=.75cm of pol1] (seal0) {SEAL-0 $\cdot$ No Sovereignty};
+\node[fasealOrange, below=.75cm of pol2] (seal1) {SEAL-1 $\cdot$ Jurisdictional Sov.};
+\node[fasealGreen,  below=.75cm of pol3] (seal2) {SEAL-2 $\cdot$ Data Sovereignty};
 
-\node[seal, fill=orange!20] at (\cb,\rS)
-  {SEAL-1 · Jurisdictional Sov.};
+% Token row
+\node[fatoken, below=.55cm of seal0]
+  {\faglobeicon\hspace{.22cm} Tokens leaving EU: \textcolor{faRedText}{\bfseries all}};
+\node[fatoken, below=.55cm of seal1]
+  {\faglobeicon\hspace{.22cm} Tokens leaving EU: \textcolor{faRedText}{\bfseries all}};
+\node[fatoken, below=.55cm of seal2]
+  {\faglobeicon\hspace{.22cm} Tokens leaving EU: \textcolor{faGreenText}{\bfseries 0}};
 
-%% ======== COLUMN 3 — Private RAG ========
-\node[lbl] at (\cc,5.0) {Private RAG\\[-1pt]{\tiny Kimi K2.5 (EU)}};
-\node[cbox, fill=gray!8]   (c3org) at (\cc,\rA) {Organisation\\profile};
-\node[cbox, fill=green!12] (c3int) at (\cc,\rB) {Interview\,+\,RAG\\{\tiny pipeline (local)}};
-\node[cbox, fill=green!20] (c3inf) at (\cc,\rC) {EU inference\\{\tiny Nebius EU\,+\,DPA}};
-\node[cbox, fill=gray!8]   (c3out) at (\cc,\rD) {Policy};
-
-\draw[arr] (c3org) -- (c3int);
-\draw[arr] (c3int) -- (c3inf);
-\draw[arr] (c3inf) -- (c3out);
-
-% No EU boundary crossed — green bracket on the right
-\draw[green!60!black, thick] (8.2,\rA+0.25) -- ++(0.18,0) --
-  ++(0,-\rA+\rD-0.5) -- ++(-0.18,0);
-\node[font=\tiny, green!60!black, rotate=90] at (8.55, 2.8) {EU perimeter};
-
-\node[seal, fill=green!20] at (\cc,\rS)
-  {SEAL-2 · Data Sovereignty};
-
-%% ---- Tokens-leave-EU row labels (very small, below SEAL)
-\node[font=\tiny, align=center] at (\ca, 0.05)
-  {Tokens leaving EU: \textbf{all}};
-\node[font=\tiny, align=center] at (\cb, 0.05)
-  {Tokens leaving EU: \textbf{all}};
-\node[font=\tiny, align=center] at (\cc, 0.05)
-  {Tokens leaving EU: \textbf{0}};
-
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \caption{The three architectural patterns benchmarked in this study.
   Dashed lines mark where data crosses the EU perimeter; the green bracket
   in the Private RAG column indicates that no data leaves the EU perimeter.
@@ -307,64 +473,68 @@ derivation of the seven criteria.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[
-  inp/.style={draw, rounded corners=2pt, fill=gray!8,
-              minimum width=1.9cm, minimum height=0.5cm,
-              font=\scriptsize, align=center, inner sep=3pt},
-  judge/.style={draw, rounded corners=3pt, fill=blue!10,
-                minimum width=5.5cm, minimum height=0.85cm,
-                font=\small\bfseries, align=center, inner sep=4pt},
-  grp/.style={draw, rounded corners=2pt, minimum width=3.2cm,
-              font=\scriptsize\bfseries, align=center,
-              inner sep=3pt, minimum height=0.55cm},
-  crit/.style={draw=none, font=\scriptsize, align=left,
-               inner sep=3pt, minimum height=0.44cm},
-  arr/.style={-{Stealth[length=4pt]}, thick},
-]
+\begin{tikzpicture}[font=\sffamily, node distance=1.05cm and 1.2cm]
 
-%% ---- Inputs (top row) — spaced so boxes don't touch ----
-\node[inp] (pol) at (-2.2, 4.5) {Generated\\policy};
-\node[inp] (pro) at (0,    4.5) {Org.\\profile};
-\node[inp] (rub) at (2.2,  4.5) {Scoring\\rubric};
+% Inputs
+\node[inputbox] (generated) {Generated\\policy};
+\node[inputbox, right=0.65cm of generated] (org) {Org.\\profile};
+\node[inputbox, right=0.65cm of org]       (rubric) {Scoring\\rubric};
 
-%% ---- Judge — two-line label ----
-\node[judge] (jdg) at (0, 3.4)
-  {LLM-as-Judge\\[1pt]{\mdseries\itshape Claude\,Opus\,4.7}};
+% Judge
+\node[judgebox, below=1.0cm of org] (judge) {
+  LLM-as-Judge\\[-1pt]
+  {\normalfont\itshape\normalsize Claude Opus 4.7}
+};
 
-%% Arrows connect vertically to judge top edge (no corner routing)
-\draw[arr] (pol.south) -- (pol.south |- jdg.north);
-\draw[arr] (pro.south) -- (jdg.north);
-\draw[arr] (rub.south) -- (rub.south |- jdg.north);
-
-%% ---- Two criterion groups ----
-\node[grp, fill=blue!8]  (ga) at (-2.5, 2.2)
+% Criteria title boxes
+\node[panelTitleBlue,  below left=1.2cm and 0.25cm of judge.south] (leftTitle)
   {4 criteria\\Anthropic agent framework};
-\node[grp, fill=teal!10] (gb) at (2.5, 2.2)
+\node[panelTitleGreen, below right=1.2cm and 0.25cm of judge.south] (rightTitle)
   {3 criteria\\cybersecurity compliance};
 
-\draw[arr] (jdg.south) -- ++(0,-0.3) -| (ga.north);
-\draw[arr] (jdg.south) -- ++(0,-0.3) -| (gb.north);
+% Criteria panels
+\node[criteriaPanel, below=0.16cm of leftTitle]  (leftPanel)  {};
+\node[criteriaPanel, below=0.16cm of rightTitle] (rightPanel) {};
 
-%% ---- Left criteria ----
-\node[crit, anchor=north west] at (-3.95, 1.70) {$\bullet$~Evidence citation};
-\node[crit, anchor=north west] at (-3.95, 1.20) {$\bullet$~Content quality};
-\node[crit, anchor=north west] at (-3.95, 0.70) {$\bullet$~Source attribution};
-\node[crit, anchor=north west] at (-3.95, 0.20) {$\bullet$~Contextual adaptation};
+% Left criteria list
+\node[badgeBlue, anchor=west] (l1b) at ($(leftPanel.north west)+(0.32cm,-0.52cm)$) {1};
+\node[anchor=west, font=\sffamily\small, text=textDark] at ($(l1b.east)+(0.28cm,0)$) {Evidence citation};
+\node[badgeBlue, below=0.32cm of l1b] (l2b) {2};
+\node[anchor=west, font=\sffamily\small, text=textDark] at ($(l2b.east)+(0.28cm,0)$) {Content quality};
+\node[badgeBlue, below=0.32cm of l2b] (l3b) {3};
+\node[anchor=west, font=\sffamily\small, text=textDark] at ($(l3b.east)+(0.28cm,0)$) {Source attribution};
+\node[badgeBlue, below=0.32cm of l3b] (l4b) {4};
+\node[anchor=west, font=\sffamily\small, text=textDark] at ($(l4b.east)+(0.28cm,0)$) {Contextual adaptation};
 
-%% ---- Right criteria ----
-\node[crit, anchor=north west] at (0.9, 1.70) {$\bullet$~Regulatory alignment};
-\node[crit, anchor=north west] at (0.9, 1.20) {$\bullet$~Implementability};
-\node[crit, anchor=north west] at (0.9, 0.70) {$\bullet$~Resource consideration};
+% Right criteria list
+\node[badgeGreen, anchor=west] (r1b) at ($(rightPanel.north west)+(0.32cm,-0.65cm)$) {1};
+\node[anchor=west, font=\sffamily\small, text=textDark] at ($(r1b.east)+(0.28cm,0)$) {Regulatory alignment};
+\node[badgeGreen, below=0.44cm of r1b] (r2b) {2};
+\node[anchor=west, font=\sffamily\small, text=textDark] at ($(r2b.east)+(0.28cm,0)$) {Implementability};
+\node[badgeGreen, below=0.44cm of r2b] (r3b) {3};
+\node[anchor=west, font=\sffamily\small, text=textDark] at ($(r3b.east)+(0.28cm,0)$) {Resource consideration};
 
-%% ---- Score output ----
-\node[inp, fill=blue!15, minimum width=4.5cm] (sc) at (0, -0.75)
+% Score
+\coordinate (panelsBottom) at ($(leftPanel.south)!0.5!(rightPanel.south)$);
+\node[scorebox, below=1.05cm of panelsBottom] (score)
   {Score 1--5 per criterion $\rightarrow$ weighted average};
 
-%% Arrows route through centre (x=0) between the two criteria columns
-\coordinate (jct) at (0, 1.80);
-\draw (ga.south) -- (ga.south |- jct) -- (jct);
-\draw (gb.south) -- (gb.south |- jct) -- (jct);
-\draw[arr] (jct) -- (sc.north);
+% Connections
+\begin{pgfonlayer}{background}
+  \coordinate (inputBus) at ($(judge.north)+(0,0.52cm)$);
+  \draw[bus]       (generated.south) -- ++(0,-0.30cm) -| (inputBus);
+  \draw[bus]       (rubric.south)    -- ++(0,-0.30cm) -| (inputBus);
+  \draw[connector] (org.south)       -- (judge.north);
+  \draw[connector] (inputBus)        -- (judge.north);
+  \coordinate (split) at ($(judge.south)+(0,-0.42cm)$);
+  \draw[bus]       (judge.south)  -- (split);
+  \draw[connector] (split) -| (leftTitle.north);
+  \draw[connector] (split) -| (rightTitle.north);
+  \coordinate (merge) at ($(score.north)+(0,0.44cm)$);
+  \draw[bus]       (leftPanel.south)  -- ++(0,-0.40cm) -| (merge);
+  \draw[bus]       (rightPanel.south) -- ++(0,-0.40cm) -| (merge);
+  \draw[connector] (merge) -- (score.north);
+\end{pgfonlayer}
 
 \end{tikzpicture}
 \caption{LLM-as-judge evaluation pipeline. Four criteria are mapped from
