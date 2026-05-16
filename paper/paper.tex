@@ -472,9 +472,21 @@ The rubric combines objective checks — for example, presence of specific
 regulatory citations or mandatory policy clauses — with holistic LLM-scored
 assessments of coherence and contextual fit. This two-layer structure
 reduces sensitivity to surface variation while preserving sensitivity to
-substantive quality differences. Human calibration of the rubric against
-subject-matter expert judgement (Cohen's~$\kappa$) is underway on a sample
-of 6~artefacts and will be reported in the final version.
+substantive quality differences.
+To validate the rubric, a blind human calibration exercise was conducted
+by experts with ISO/IEC~27001 knowledge.
+Password Policy artefacts representing opposite ends of the quality
+spectrum — one high-scoring (judge mean 4.71/5) and one low-scoring
+(2.43/5) — were scored independently on all seven criteria, yielding
+Cohen's weighted~$\kappa_w = 0.65$ across the criterion--artefact pairs
+(\textit{substantial agreement}, Landis and Koch~\cite{landiskoch1977}).
+Rank ordering was fully preserved: human raters correctly identified the
+superior artefact on every dimension, with a mean quality gap of
+1.86~points versus 2.28 for the judge. The principal source of divergence
+was a criterion-conflation tendency between \textit{contextual
+adaptation}~(C2) and \textit{implementability}~(C4), suggesting that rubric
+anchors benefit from explicit discriminating non-examples for dimensions
+addressing related but distinct aspects of policy quality.
 
 \paragraph{Rubric design rationale.}
 The seven dimensions were derived in two steps. First, we mapped the
@@ -875,10 +887,11 @@ The principal non-EU dependencies are the model supply chain (Moonshot~AI,
 CN) and hardware (NVIDIA, US); both qualify as material rather than marginal,
 precluding SEAL-3 under the current architecture.
 
-Several limitations bound the scope of this study. First, the evaluation
-relies entirely on LLM-as-judge scoring; human expert calibration via
-Cohen's~$\kappa$ is underway on a sample of artefacts and will be
-reported in the extended version. Second, the benchmark covers two
+Several limitations bound the scope of this study. First, the current
+human calibration relies on the paper's co-author team; extending the
+rater board to a broader panel of external practitioners with diverse
+sectoral competencies would further strengthen the reliability estimates
+beyond the current~$\kappa_w = 0.65$. Second, the benchmark covers two
 organisational contexts (Italian public hospital and NATO detachment);
 broader coverage across sectors and jurisdictions is needed to assess
 generalisability. Third, cost estimates for gpt-5.5\,+\,web search are
