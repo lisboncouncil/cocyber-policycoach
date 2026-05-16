@@ -1,0 +1,268 @@
+{
+  "config": "C1",
+  "context_id": "ctx-H",
+  "policy_id": "P3",
+  "policy_short": "accesscontrol",
+  "code_based": {
+    "context_id": "ctx-H",
+    "metrics": {
+      "char_count": 13826,
+      "word_count": 1918,
+      "section_headers_found": 45,
+      "section_headers_sample": [
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "3.1 executive administrative director / data protection officer (dpo)",
+        "3.2 it/ict manager (internal/outsourced)",
+        "3.3 department heads (wards/units)",
+        "3.4 all users (staff, temporary, contractors)",
+        "4. policy principles",
+        "4.1 least privilege",
+        "4.2 need-to-know",
+        "4.3 segregation of duties",
+        "4.4 accountability and traceability"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": true,
+        "effective_date": true,
+        "policy_owner": true,
+        "review_cycle": true
+      },
+      "header_block_score": 1.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 4,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 2,
+        "ISO_27001": 12,
+        "ISO_27002": 0,
+        "GDPR": 10,
+        "NIS2": 9,
+        "AI_Act": 0,
+        "AGID": 10,
+        "Codice_Privacy": 3,
+        "NATO_IS_Policy": 0,
+        "AC_35_D_1015": 0,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 0,
+        "Romanian_CSL": 0,
+        "SOFA": 0
+      },
+      "distinct_frameworks": 6,
+      "clause_level_citation_count": 39,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "breach_notification_72h": 1,
+        "dpia": 0,
+        "special_category_data": 3,
+        "data_retention": 0,
+        "access_logs": 2,
+        "patient_safety": 0,
+        "nis2_essential_entity": 10
+      },
+      "obligations_present": 4,
+      "obligations_total": 7,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": true,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 1.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 0.571,
+      "length_ok": 1.0
+    },
+    "checks_passed": 12,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 3,
+        "justification": "All standard sections are present (purpose, scope, roles, principles, requirements, monitoring, training, incident response, exceptions, references) and the policy is largely coherent. However, there are technical inaccuracies in the ISO 27001:2022 control mappings (e.g. A.9.1.2, A.6.2.2, A.8.2.x are 2013-era references, not 2022 Annex A; A.5.17 is 'Authentication information' but A.8.2.2 doesn't exist in 2022) and a misattribution of NIST CSF (ID.AM-3 is not least-privilege; PR.AC-4 is the correct one). Minor inconsistency: 5.1 mentions password complexity and 180-day rotation while also requiring 2FA 'where technically feasible', which is acceptable but rotation conflicts with current NIST/AGID guidance discouraging periodic forced changes absent compromise.",
+        "evidence_quotes": [
+          "Access rights are allocated to grant the minimum necessary permissions for users to perform assigned duties, reducing the risk of accidental or intentional data breach (ISO 27001:2022, A.9.1.2; NIST CSF ID.AM-3).",
+          "Enforce password strength: minimum 10 characters, mix of letters, numbers, and symbols; prohibit reuse for 12 months.",
+          "ISO/IEC 27001:2022: A.5.17, A.5.18, A.6.2.1, A.6.2.2, A.8.2.1\u2013A.8.2.4, A.12.4.1"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 7468,
+        "output_tokens": 558,
+        "stop_reason": "end_turn",
+        "latency_s": 12.474,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 4,
+        "justification": "The policy is clearly tailored to a small Italian public hospital: it references SPID/CIE federation, FSE/EHR, PACS/RIS, LIS, ADT, the MSP outsourcing model, legacy Windows kiosks, AGID Misure Minime, D.Lgs. 196/2003, and Garante Privacy provisions. It also addresses break-glass for clinical emergencies and procurement-bound legacy replacement, reflecting operational constraints. It falls short of 5 because some sections (training, enforcement, exceptions) remain fairly generic and bed count, ward-specific workflows, RTO targets, or 24/7 clinical patient-safety constraints are not explicitly woven into controls.",
+        "evidence_quotes": [
+          "Core clinical applications: EHR/FSE, PACS/RIS, LIS, ADT, Pharmacy",
+          "Restrict access to legacy clinical kiosks (legacy Windows) to essential staff, minimize data footprint, and monitor anomalous activity.",
+          "\"Break-glass\" accounts (generic/override credentials) are restricted; usage logged and justified in medical emergencies only."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 7514,
+        "output_tokens": 437,
+        "stop_reason": "end_turn",
+        "latency_s": 8.838,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 3,
+        "justification": "Citations are pervasive and reference real frameworks (GDPR articles, ISO 27001:2022 Annex A controls, NIS2 articles, AGID), but several are inaccurate or outdated: NIST CSF subcategories cited (ID.AM-3, PR.AC-4) are CSF 1.1 identifiers not aligned with CSF 2.0 as claimed; ISO 27001:2022 numbering is partially wrong (e.g., A.9.1.2, A.6.2.2, A.8.2.x belong to the 2013 version, not 2022's restructured Annex A); 'NIS2 Recital 79' citation is dubious. Some real and verifiable references (GDPR Art. 32, 33\u201334; ISO A.5.17) coexist with these inaccuracies, warranting a middle score.",
+        "evidence_quotes": [
+          "reducing the risk of accidental or intentional data breach (ISO 27001:2022, A.9.1.2; NIST CSF ID.AM-3).",
+          "Reference: ISO 27001 A.8.2.4; GDPR Art. 32; NIST CSF PR.AC-4.",
+          "All access must be attributable to a unique user. Actions are logged for audit purposes to ensure traceability (NIS2 Recital 79; GDPR Art. 5(1)(f); ISO 27001 A.12.4.1)."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 7498,
+        "output_tokens": 508,
+        "stop_reason": "end_turn",
+        "latency_s": 10.029,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 4,
+        "justification": "Most controls fit the resource envelope: leveraging existing AD/SPID/CIE federation, MSP for log review, annual reviews, 2-hour training matching budget, and explicit compensating controls for legacy kiosks and break-glass access for clinical continuity. However, monthly log review across all systems handling health data, 1-hour account-disable SLA 24/7, and MFA/MDM expectations may be optimistic for 1.5 IT FTE without a SIEM or confirmed MDM, making a few requirements somewhat overreaching.",
+        "evidence_quotes": [
+          "Apply compensating controls: restrict software install, deploy AV, regular monitoring.",
+          "Logs reviewed by IT in collaboration with MSP monthly; suspicious access patterns escalated to DPO.",
+          "IT disables affected accounts within 1 hour."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 7472,
+        "output_tokens": 328,
+        "stop_reason": "end_turn",
+        "latency_s": 7.563,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy systematically references all major applicable frameworks (GDPR, D.Lgs. 196/2003 as amended by 101/2018, NIS2, AGID Linee Guida and Misure Minime, regional FSE rules, ISO 27001:2022, NIST CSF) with specific articles/controls mapped to access control requirements. However, some mandatory obligations are underspecified: GDPR breach notification timing (72h) is not explicitly stated, NIS2 24h early-warning timeline is not cited, DPIA triggers are absent, and Provvedimenti Garante in sanit\u00e0 (e.g., dossier sanitario log retention of 24 months) are listed but not operationalised \u2014 log retention is set at 12 months which may conflict with Garante guidance.",
+        "evidence_quotes": [
+          "compliance with GDPR (Regulation EU 2016/679), NIS2 Directive (EU 2022/2555), Italian data protection law (D.Lgs. 196/2003, as amended), AGID cybersecurity requirements for Italian public administration, and referencing ISO/IEC 27001:2022 and NIST CSF 2.0 best practices.",
+          "DPO notifies authorities/data subjects as required by GDPR/NIS2 if breach is confirmed.",
+          "Retain access logs for minimum 12 months, or as required by law/regulation."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 7512,
+        "output_tokens": 499,
+        "stop_reason": "end_turn",
+        "latency_s": 8.531,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Nearly every substantive control section ends with a 'Reference' line citing specific clauses across multiple frameworks (e.g., ISO 27001 A.5.17, GDPR Art. 32(1)(b), AGID Misure minime \u00a74.2.3), and principles are individually tagged. However, some references lump multiple controls together (e.g., 'A.8.2.x') and the legacy systems section cites only AGID generically, falling short of full per-control auditable mapping.",
+        "evidence_quotes": [
+          "Reference: ISO 27001 A.5.17, A.8.2.2; AGID \"Misure minime\", \u00a74.1; GDPR Art. 32(1)(b).",
+          "Access rights are allocated to grant the minimum necessary permissions for users to perform assigned duties, reducing the risk of accidental or intentional data breach (ISO 27001:2022, A.9.1.2; NIST CSF ID.AM-3).",
+          "Reference: AGID \"Misure minime\" \u00a74.2.3; ISO 27001 A.8.2.1, A.12.4.1."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 7484,
+        "output_tokens": 407,
+        "stop_reason": "end_turn",
+        "latency_s": 8.185,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy shows minimal acknowledgement of the resource envelope: it references MSP reliance, hedges MFA with 'where technically feasible', notes MDM 'if available', and mentions phased legacy replacement under procurement constraints. However, there is no explicit reasoning tied to the 70k EUR budget or 1.5 FTE staffing, no phased roadmap, and no transparent trade-offs (e.g. monthly log review is stated as the standard, not as a compensating choice).",
+        "evidence_quotes": [
+          "Require second-factor authentication (2FA) for all remote access and privileged accounts where technically feasible.",
+          "Technical: VPN, device encryption, MDM (if available).",
+          "Plan for phased replacement as per procurement constraints."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 7508,
+        "output_tokens": 300,
+        "stop_reason": "end_turn",
+        "latency_s": 6.961,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 3.429,
+    "code_checks_passed": 12,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778088448
+}

@@ -1,0 +1,268 @@
+{
+  "config": "C0_5+web",
+  "context_id": "ctx-H",
+  "policy_id": "P2",
+  "policy_short": "dataprot",
+  "code_based": {
+    "context_id": "ctx-H",
+    "metrics": {
+      "char_count": 39465,
+      "word_count": 5776,
+      "section_headers_found": 40,
+      "section_headers_sample": [
+        "data protection policy",
+        "1. header block",
+        "2. purpose",
+        "3. scope",
+        "3.1 in scope",
+        "3.2 out of scope",
+        "4. definitions",
+        "5. roles and responsibilities",
+        "5.1 hospital management / direzione strategica",
+        "5.2 dpo/rpd",
+        "5.3 it responsible",
+        "5.4 msp"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": false,
+        "effective_date": false,
+        "policy_owner": false,
+        "review_cycle": false
+      },
+      "header_block_score": 0.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 33,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 4,
+        "ISO_27001": 4,
+        "ISO_27002": 30,
+        "GDPR": 49,
+        "NIS2": 30,
+        "AI_Act": 0,
+        "AGID": 16,
+        "Codice_Privacy": 2,
+        "NATO_IS_Policy": 0,
+        "AC_35_D_1015": 0,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 0,
+        "Romanian_CSL": 0,
+        "SOFA": 0
+      },
+      "distinct_frameworks": 7,
+      "clause_level_citation_count": 45,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "breach_notification_72h": 3,
+        "dpia": 4,
+        "special_category_data": 12,
+        "data_retention": 2,
+        "access_logs": 5,
+        "patient_safety": 8,
+        "nis2_essential_entity": 29
+      },
+      "obligations_present": 7,
+      "obligations_total": 7,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": false,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 0.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 1.0,
+      "length_ok": 1.0
+    },
+    "checks_passed": 11,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 5,
+        "justification": "All standard policy sections are present (header, purpose, scope, definitions, roles, principles, 20 detailed control requirements, exceptions, monitoring, non-compliance, references) with technically accurate citations to GDPR Art. 32/33, NIS2 Art. 21/23, and Garante FSE rules. Controls are internally consistent \u2014 e.g. MFA requirements (DP-07) are explicitly reconciled with legacy kiosk compensating controls (DP-06), and break-glass (DP-08) is coherently tied to logging (DP-09) and emergency exception handling (Section 8). Technical claims (72-hour breach notification, NIS2 risk-management measures, FSE oscuramento and access logs) are correctly stated and reinforced across sections.",
+        "evidence_quotes": [
+          "GDPR supervisory authority notification shall be assessed without undue delay and, where required, made within 72 hours of awareness.",
+          "Where MFA is not technically feasible for legacy clinical kiosks, the Hospital shall apply compensating controls: kiosk lockdown, local physical supervision, no internet browsing except allow-listed clinical sites, network restrictions, session timeout where clinically safe, and audit logging.",
+          "At least one backup copy shall be protected from ransomware through offline, immutable, or otherwise isolated storage."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 17157,
+        "output_tokens": 491,
+        "stop_reason": "end_turn",
+        "latency_s": 8.089,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 5,
+        "justification": "The policy is densely tailored to this specific organisation: it references the small Italian public hospital context, ASL governance, 24/7 clinical operation, specific clinical systems (FSE, PACS/RIS, LIS, ADT, pharmacy), the 35 legacy Windows kiosks, MSP outsourcing, MEPA/CONSIP procurement, the 18-month-old DR test, 4h/1h RTOs, and Italian-specific regulators (Garante, AGID). Generic boilerplate is largely absent, and even training duration (2h/year) and high clinical turnover are recognised.",
+        "evidence_quotes": [
+          "The policy is designed for a small 24/7 public hospital with limited internal IT capacity and a managed services provider.",
+          "Given the last DR test was 18 months ago, the next test shall be scheduled within 90 days of this policy's effective date.",
+          "Legacy Windows clinical kiosks shall be isolated as far as technically possible, restricted to required clinical destinations, blocked from email and general browsing where possible, and prioritised in the replacement plan."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 17203,
+        "output_tokens": 412,
+        "stop_reason": "end_turn",
+        "latency_s": 6.386,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 5,
+        "justification": "Citations are pervasive and precise: every control section has an 'Audit references' block mapping to specific GDPR articles, NIS2 article clauses, NIST CSF 2.0 subcategories, and ISO/IEC 27002:2022 control numbers. The references are accurate and verifiable against real artefacts (e.g., GDPR Art. 30, NIS2 Art. 21(2)(d), ISO 27002 control 5.19, NIST CSF PR.AA-03), and a consolidated References section provides URLs to source documents including Garante, AGID, NIST CSF 2.0, and EUR-Lex.",
+        "evidence_quotes": [
+          "Audit references: GDPR Art. 30; GDPR Arts. 5(2), 24; NIST CSF GV.OC, ID.AM; ISO/IEC 27002:2022 controls 5.9, 5.12, 5.34.",
+          "Audit references: GDPR Art. 32; NIS2 Art. 21(2)(i), (j); NIST CSF PR.AA; ISO/IEC 27002:2022 controls 5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5.",
+          "The Garante states that FSE can be accessed in emergency by healthcare personnel for strictly necessary care, except for obscured data/documents, and only for the time necessary to provide emergency care."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 17187,
+        "output_tokens": 513,
+        "stop_reason": "end_turn",
+        "latency_s": 6.598,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 4,
+        "justification": "Controls are largely tailored to the stated envelope: no SIEM/SOC is assumed (manual log review cadences), MFA carve-outs for legacy kiosks with compensating controls, training capped at the actual 2h/year, and reliance on existing AD/UTM/MSP. A few items are mildly ambitious for 1.5 FTE plus 70k EUR budget (quarterly access reviews across 6+ systems, immutable/offline backup tier procurement, monthly clinical access log sampling without SIEM tooling), but none are catastrophic and exceptions/procurement constraints are explicitly acknowledged.",
+        "evidence_quotes": [
+          "Where MFA is not technically feasible for legacy clinical kiosks, the Hospital shall apply compensating controls: kiosk lockdown, local physical supervision, no internet browsing except allow-listed clinical sites, network restrictions, session timeout where clinically safe, and audit logging.",
+          "Given the absence of a SIEM/SOC, the following pragmatic monitoring model shall apply",
+          "All workforce members shall complete at least two hours per year of combined privacy and cybersecurity training."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 17161,
+        "output_tokens": 431,
+        "stop_reason": "end_turn",
+        "latency_s": 6.673,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 5,
+        "justification": "The policy systematically addresses all applicable frameworks declared in the organisation profile: GDPR (with specific articles including 5, 6, 9, 30, 32, 33, 35), Italian Data Protection Code, Garante guidance on FSE and dossier sanitario, NIS2 (Articles 21 and 23 explicitly), AGID minimum measures and procurement guidance, and regional FSE rules, plus the recommended NIST CSF 2.0 and ISO/IEC 27001/27002:2022. Mandatory obligations such as the 72-hour breach notification, DPIA triggers, RoPA, FSE-specific obscuring/access-log rights, and NIS2 early warning/incident/final report sequence are explicitly addressed, and conflicts (patient safety vs privacy controls) are acknowledged.",
+        "evidence_quotes": [
+          "This policy supports compliance with GDPR, the Italian Data Protection Code, health-sector measures issued by the Garante, AGID minimum ICT security measures for public administrations, NIS2 obligations for the health sector, and recognised references including NIST CSF 2.0 and ISO/IEC 27001:2022 / ISO/IEC 27002:2022.",
+          "GDPR supervisory authority notification shall be assessed without undue delay and, where required, made within 72 hours of awareness. NIS2 significant-incident reporting shall follow the applicable national CSIRT/authority process, using the NIS2 sequence of early warning, incident notification, and final report where applicable.",
+          "Where there is a conflict, emergency patient safety takes priority, but privacy and security controls must be restored and documented as soon as clinically safe."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 17201,
+        "output_tokens": 610,
+        "stop_reason": "end_turn",
+        "latency_s": 8.022,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Every substantive control (DP-01 to DP-20) carries an 'Audit references' block mapping it to specific GDPR articles, NIS2 article subsections, NIST CSF function/category codes, and ISO/IEC 27002:2022 control numbers, distinguishing between frameworks rather than lumping them. Attribution is granular and largely verifiable at control-clause level, though some references are still grouped (e.g., 'GDPR Art. 32' broadly, or ISO control lists) rather than tied to the exact sub-clause that each requirement implements, preventing a full 5.",
+        "evidence_quotes": [
+          "Audit references: GDPR Art. 32; NIS2 Art. 21(2)(i), (j); NIST CSF PR.AA; ISO/IEC 27002:2022 controls 5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5.",
+          "Audit references: GDPR Art. 32(1)(a); NIS2 Art. 21(2)(h); NIST CSF PR.DS; ISO/IEC 27002:2022 controls 8.24, 8.12, 7.10, 5.14.",
+          "Audit references: GDPR Arts. 33, 34; NIS2 Art. 23; NIS2 Art. 21(2)(b); NIST CSF RS.MA, RS.AN, RS.CO, RS.MI, RC.CO; ISO/IEC 27002:2022 controls 5.24, 5.25, 5.26, 5.27, 5.28."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 17173,
+        "output_tokens": 564,
+        "stop_reason": "end_turn",
+        "latency_s": 7.158,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 4,
+        "justification": "The policy explicitly acknowledges the resource envelope (limited IT capacity, MSP reliance, no SIEM/SOC, 2h training) and visibly reasons within it: pragmatic monitoring substitutes for a SIEM, training is prioritised to top risks given the 2h cap, and compensating controls are defined for legacy kiosks. Trade-offs are transparent and tied to existing platforms, though budget figures are not directly cited and phasing beyond a few items (DR test in 90 days, kiosk replacement priority) is not fully structured.",
+        "evidence_quotes": [
+          "Controls are therefore risk-based, auditable, and implementable using existing platforms wherever possible: on-premises Active Directory, regional SPID/CIE federation, the UTM firewall/VPN, AV management console, existing backup media, MSP support, and low-cost governance measures.",
+          "Given the absence of a SIEM/SOC, the following pragmatic monitoring model shall apply",
+          "All workforce members shall complete at least two hours per year of combined privacy and cybersecurity training. Given limited training time, training shall focus on the highest risks"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 17197,
+        "output_tokens": 427,
+        "stop_reason": "end_turn",
+        "latency_s": 7.064,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 4.571,
+    "code_checks_passed": 11,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778504709
+}

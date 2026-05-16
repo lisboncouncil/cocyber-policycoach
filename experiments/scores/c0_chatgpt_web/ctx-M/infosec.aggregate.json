@@ -1,0 +1,269 @@
+{
+  "config": "C0+web",
+  "context_id": "ctx-M",
+  "policy_id": "P5",
+  "policy_short": "infosec",
+  "code_based": {
+    "context_id": "ctx-M",
+    "metrics": {
+      "char_count": 8912,
+      "word_count": 1332,
+      "section_headers_found": 18,
+      "section_headers_sample": [
+        "general cybersecurity policy",
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "4. principles",
+        "5. requirements and controls",
+        "5.1 access control",
+        "5.2 asset and configuration management",
+        "5.3 physical and environmental security",
+        "5.4 communications security (comsec)",
+        "5.5 monitoring, detection, and response",
+        "5.6 supply chain security"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": true,
+        "effective_date": true,
+        "policy_owner": true,
+        "review_cycle": true
+      },
+      "header_block_score": 1.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 19,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 1,
+        "ISO_27001": 22,
+        "ISO_27002": 5,
+        "GDPR": 9,
+        "NIS2": 0,
+        "AI_Act": 0,
+        "AGID": 0,
+        "Codice_Privacy": 0,
+        "NATO_IS_Policy": 8,
+        "AC_35_D_1015": 5,
+        "AC_35_D_1029": 3,
+        "AJP_3_20": 3,
+        "Romanian_CSL": 3,
+        "SOFA": 3
+      },
+      "distinct_frameworks": 10,
+      "clause_level_citation_count": 44,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "classification_handling": 7,
+        "need_to_know": 2,
+        "comsec": 4,
+        "dual_key": 2,
+        "ncirc_reporting": 4,
+        "spillage": 1,
+        "tempest": 2,
+        "host_nation": 12
+      },
+      "obligations_present": 8,
+      "obligations_total": 8,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": true,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 1.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 1.0,
+      "length_ok": 1.0
+    },
+    "checks_passed": 12,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 4,
+        "justification": "All standard sections are present (purpose, scope, roles, principles, requirements, exceptions, monitoring, references) with broadly accurate technical claims and no internal contradictions across domain separation, authentication, COMSEC, and monitoring. Minor issues: some ISO/IEC 27001:2022 Annex A control numbers are cited using the legacy 2013 numbering (e.g. A.9.4.2, A.8.2.3, A.6.1, A.6.3), and NIST CSF 2.0 references mix in legacy 1.1 subcategories (e.g. PR.PT-1, PR.IP-1, PR.IP-10, ID.RA-7) that no longer exist in CSF 2.0, which are technical inaccuracies preventing a 5.",
+        "evidence_quotes": [
+          "**Authentication:** PKI-based smart-card (CAC-equivalent) authentication for all users per domain; no cross-domain federation.  \n  *[AC/322-D(2017)0009, NIST CSF PR.AC-1, ISO/IEC 27001:2022 A.9.4.2]*",
+          "*[NIST CSF PR.IP-10, ISO/IEC 27001:2022 A.8.23]*",
+          "**Account Management:** Joiners, movers, leavers process enforced; accounts disabled within 1 hour of separation.  \n  *[ISO/IEC 27001:2022 A.8.2.3, NIST CSF PR.AC-1]*"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6414,
+        "output_tokens": 541,
+        "stop_reason": "end_turn",
+        "latency_s": 9.594,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 5,
+        "justification": "The policy is heavily tailored to the specific organisation: it names the NATO Multinational Detachment in Romania under SHAPE, references the four exact classification domains (NU/NR/NS/MISSION SECRET), invokes NATO-specific instruments (C-M(2002)49, AC/35-D/1015, AC/35-D/1029, AC/322-D(2017)0009, AJP-3.20, NCIRC), and integrates host-nation specifics (Romanian Law 58/2019, GDPR, SOFA). Operational constraints such as TEMPEST/SCIF, two-person COMSEC integrity, the 25-FTE security staff, 40 hours training, and 6 exercises/2 red-teams per year mirror the input context precisely.",
+        "evidence_quotes": [
+          "NATO Multinational Military Detachment (Romania, SHAPE Operational Control)",
+          "No unauthorised data, user, or network flow across NU, NR, NS, and MISSION SECRET domains. Cross-domain transfers only via accredited NATO CDS.",
+          "Two-person integrity for high-grade COMSEC and keying material; auditable logs for all secure area access."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6460,
+        "output_tokens": 442,
+        "stop_reason": "end_turn",
+        "latency_s": 8.805,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 4,
+        "justification": "Citations are pervasive and span NATO directives, NIST CSF, ISO/IEC 27001/27002, GDPR, and Romanian law, with a consolidated reference list. However, accuracy is mixed: several ISO 27001:2022 Annex A references use the old 2013 numbering (e.g., A.9.4.2, A.8.2.3, A.7.4, A.6.1, A.6.3, A.8.25 do not match the 2022 control set), and some NIST CSF subcategory IDs (e.g., ID.RA-7, PR.PT-1) are CSF 1.1 rather than CSF 2.0 as cited. One unsupported statement is appropriately flagged.",
+        "evidence_quotes": [
+          "[C-M(2002)49, AC/322-D(2017)0009 s.3.2, NIST CSF PR.AC-5, ISO/IEC 27002:2022 8.3.2]",
+          "[ISO/IEC 27001:2022 A.8.2.3, NIST CSF PR.AC-1]",
+          "*[Unsupported: operational best practice]*"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6444,
+        "output_tokens": 414,
+        "stop_reason": "end_turn",
+        "latency_s": 7.843,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 5,
+        "justification": "The proposed controls map directly onto the resources and constraints in the org profile: 24/7 SOC, 25 FTE security staff, 40h/year training, 6 exercises and 2 red-team engagements per year, two-person integrity for COMSEC, and PKI per domain are all already provisioned. No control assumes resources beyond the stated envelope, and operational constraints (classification separation, dual-key COMSEC, host-nation/SOFA, GDPR) are explicitly respected.",
+        "evidence_quotes": [
+          "SOC Operations: 24/7 monitoring at theatre level; all domain boundaries instrumented with NATO-approved sensors.",
+          "Annual Training: Minimum 40 hours/year per staff; includes classification handling, incident response, insider threat, and GDPR.",
+          "Cryptographic Key Management: Dual-key procedures for high-grade material; chain of custody and audit logs enforced."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6418,
+        "output_tokens": 353,
+        "stop_reason": "end_turn",
+        "latency_s": 6.078,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy systematically references the major applicable frameworks (NATO C-M(2002)49, AC/35-D/1015, AC/35-D/1029, AC/322-D(2017)0009, AJP-3.20, Cyber Defence Pledge, GDPR, Romanian Law 58/2019, SOFA, NIST CSF, ISO/IEC 27001/27002) with control-level citations. However, NIS2 transposition is not explicitly addressed despite being in the org profile, GDPR breach notification timelines (72h to DPA) and DPIA triggers are only superficially mentioned, and conflicts between regimes (e.g. GDPR vs NATO classified processing, SOFA vs host-nation legal reach) are listed but not substantively reconciled.",
+        "evidence_quotes": [
+          "GDPR Compliance: All civilian/contractor personal data processed per GDPR and Romanian CSL; Data Protection Impact Assessments (DPIA) for new systems.",
+          "Host Nation Liaison | Coordination on legal/regulatory matters (GDPR, Romanian CSL), interface with host-nation CERT/NCSC. [SOFA, GDPR Art. 4]",
+          "Legal Compliance: Adherence to all applicable NATO, host-nation, and EU legal and regulatory requirements, including GDPR for personal data."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6458,
+        "output_tokens": 504,
+        "stop_reason": "end_turn",
+        "latency_s": 8.146,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Nearly every substantive control carries inline bracketed attributions to specific clauses (e.g., ISO/IEC 27001:2022 A.5.10, NIST CSF PR.AC-4, AC/322-D(2017)0009 s.3.2, GDPR Art. 32), and multiple frameworks are distinguished rather than lumped. However, several attributions remain at sub-category or section level (e.g., 'NIST CSF DE.CM', 'NIST CSF RS', 'ISO/IEC 27002:2022 sec. 8'), and a few items use generic references ('NATO TEMPEST Policy', 'NATO Security Handbook, Art. 25') without precise clauses, falling short of fully audit-ready control-level granularity.",
+        "evidence_quotes": [
+          "Separation of domains: ... [C-M(2002)49, AC/322-D(2017)0009 s.3.2, NIST CSF PR.AC-5, ISO/IEC 27002:2022 8.3.2]",
+          "GDPR Compliance: ... [GDPR Art. 5, Art. 32, Law 58/2019]",
+          "SOC Operations: 24/7 monitoring ... [NIST CSF DE.CM, ISO/IEC 27001:2022 A.8.16]"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6430,
+        "output_tokens": 478,
+        "stop_reason": "end_turn",
+        "latency_s": 8.154,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy mirrors the stated resource envelope (25 FTE security staff, 40 hours training, 6 exercises, 2 red-team engagements) by encoding these figures as minimum requirements, which shows alignment with the budget/staff envelope. However, there is no explicit reasoning, phasing, or trade-off discussion that calibrates ambition to constraints \u2014 the numbers appear as targets rather than as outputs of a resource-aware deliberation.",
+        "evidence_quotes": [
+          "Security Staff (25 FTE) | Day-to-day security operations, incident response, training delivery, monitoring, auditing.",
+          "Annual Training: Minimum 40 hours/year per staff",
+          "Exercise and Red Teaming: Minimum 6 cyber exercises and 2 red-team engagements per year."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6454,
+        "output_tokens": 316,
+        "stop_reason": "end_turn",
+        "latency_s": 6.252,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 4.0,
+    "code_checks_passed": 12,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778088281
+}

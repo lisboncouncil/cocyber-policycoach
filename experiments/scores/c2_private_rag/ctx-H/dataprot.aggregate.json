@@ -1,0 +1,268 @@
+{
+  "config": "C2",
+  "context_id": "ctx-H",
+  "policy_id": "P2",
+  "policy_short": "dataprot",
+  "code_based": {
+    "context_id": "ctx-H",
+    "metrics": {
+      "char_count": 17135,
+      "word_count": 2370,
+      "section_headers_found": 36,
+      "section_headers_sample": [
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "3.1 data protection officer (dpo)",
+        "3.2 it manager (acting as information security officer)",
+        "3.3 managed service provider (msp) \u2014 data processor",
+        "3.4 department heads (clinical and administrative)",
+        "3.5 all employees and contractors",
+        "4. policy principles",
+        "4.1 lawfulness, fairness, and transparency",
+        "4.2 purpose limitation",
+        "4.3 data minimization"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": false,
+        "effective_date": false,
+        "policy_owner": false,
+        "review_cycle": false
+      },
+      "header_block_score": 0.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 3,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 2,
+        "ISO_27001": 9,
+        "ISO_27002": 0,
+        "GDPR": 29,
+        "NIS2": 16,
+        "AI_Act": 0,
+        "AGID": 4,
+        "Codice_Privacy": 4,
+        "NATO_IS_Policy": 0,
+        "AC_35_D_1015": 0,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 0,
+        "Romanian_CSL": 0,
+        "SOFA": 0
+      },
+      "distinct_frameworks": 6,
+      "clause_level_citation_count": 39,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "breach_notification_72h": 2,
+        "dpia": 2,
+        "special_category_data": 18,
+        "data_retention": 2,
+        "access_logs": 1,
+        "patient_safety": 3,
+        "nis2_essential_entity": 10
+      },
+      "obligations_present": 7,
+      "obligations_total": 7,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": false,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 0.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 1.0,
+      "length_ok": 1.0
+    },
+    "checks_passed": 11,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 4,
+        "justification": "All standard sections of a data protection policy are present (purpose, scope, roles, principles, requirements, exceptions, monitoring, training, enforcement, references, definitions, revision, approval), and technical claims (AES-256, TLS 1.2+, DIN 66399, NIST SP 800-88, GDPR/NIS2 article citations) are largely accurate and consistent. Minor issues prevent a 5: NIS2 early-warning is 24h with 72h incident notification (correctly stated) but the MSP '4 hours' breach reporting is an internal SLA presented alongside regulatory timelines without clear distinction; lawful basis text says 'based on legal grounds under Article 9 GDPR (healthcare provision)' which slightly conflates Art. 9(2)(h) with Art. 6; TLS 1.2 'or higher' is acceptable but lags current best practice (TLS 1.3). No major contradictions across sections.",
+        "evidence_quotes": [
+          "Processing is based on legal grounds under Article 9 GDPR (healthcare provision) and Article 6 (public interest/official authority).",
+          "All remote access to clinical systems via VPN using TLS 1.2 or higher",
+          "report to CSIRT Italia within 24 hours (early warning) and 72 hours (full notification)"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8744,
+        "output_tokens": 480,
+        "stop_reason": "end_turn",
+        "latency_s": 10.323,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 5,
+        "justification": "The policy is densely tailored to this specific organisation: it names the exact clinical systems (CCE/FSE, PACS/RIS, LIS, ADT), staff counts (130/50/20), device counts (220 workstations, 35 legacy kiosks, 60 mobile POC), Italian regulatory regime (D.Lgs 196/2003, Garante, AGID Misure Minime, SPID/CIE), NIS2 essential-entity status, and operational constraints like 24/7 patient safety and break-glass for unconscious ER patients. Boilerplate phrasing is minimal; nearly every section reflects the hospital context.",
+        "evidence_quotes": [
+          "All systems processing personal data: CCE/FSE, PACS, RIS, LIS, ADT, Pharmacy management, 220 workstations (including 35 legacy clinical kiosks), and 60 mobile point-of-care devices",
+          "Integration with regional SPID/CIE federation for patient-facing services; internal Active Directory for staff",
+          "Emergency accounts for patient safety situations (e.g., unconscious patient in ER) available with automatic logging and post-event review"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8790,
+        "output_tokens": 433,
+        "stop_reason": "end_turn",
+        "latency_s": 8.804,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 4,
+        "justification": "Citations are pervasive and largely accurate, with specific GDPR articles (5, 9, 16, 28, 32, 33, 34, 37), NIS2 articles (21, 23), ISO 27001 Annex A controls (5.9, 5.16-5.18, 5.11-5.12), D.Lgs 196/2003 articles, and NIST CSF subcategories cited inline next to relevant requirements. Minor weaknesses prevent a 5: some citations are slightly imprecise (e.g., 'AGID Misure Minime \u2014 Technical Measure 4' is not a standard reference label; NIST CSF 2.0 uses category codes like PR.DS-01 rather than PR.DS-1), and unsupported statements (e.g., the 4-hour MSP breach reporting tied to NIS2 Art 23, which actually mandates 24h early warning) are not flagged as such.",
+        "evidence_quotes": [
+          "Mobile point-of-care devices (60 units) encrypted via device-level encryption (BitLocker or equivalent) to mitigate theft risk *NIST CSF 2.0 \u2014 PR.DS-1*",
+          "Supervisory Authority (Garante): Within 72 hours if likely to result in risk *GDPR (EU) 2016/679 \u2014 Article 33*",
+          "An up-to-date inventory of data assets (systems, databases, file shares) containing personal data is maintained by IT and reviewed every 6 months *ISO/IEC 27001:2022 \u2014 Annex A 5.9, 5.10*"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8774,
+        "output_tokens": 558,
+        "stop_reason": "end_turn",
+        "latency_s": 10.649,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 2,
+        "justification": "Several controls strain the stated 1.5 FTE / 70k EUR envelope and existing posture: a 4-hour MSP breach notification, monthly encryption verification across all servers/mobile, 6-monthly access reviews across CCE/PACS/LIS, annual supply-chain risk assessments, DPO quarterly spot checks, and pseudonymisation of research datasets \u2014 all without compensating staffing or budget acknowledgement. The policy assumes encryption at rest on databases and on 35 legacy Windows kiosks that the org profile flags as constrained, and references a Cyber Incident Response Plan (POL-008) although the profile states IR is ad-hoc with no runbook. Compensating controls are mentioned for legacy kiosks and exceptions, but the broader monitoring/audit cadence is unrealistic for the resource envelope.",
+        "evidence_quotes": [
+          "Encryption status verified monthly by MSP for all servers and mobile devices",
+          "Report suspected personal data breaches to [Organisation] within 4 hours of detection",
+          "Legacy Windows kiosks (35 units) restricted to read-only access where possible, with compensating network isolation controls"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8748,
+        "output_tokens": 437,
+        "stop_reason": "end_turn",
+        "latency_s": 9.521,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy systematically addresses GDPR, the Italian Privacy Code (D.Lgs 196/2003 and 101/2018), NIS2, AGID Misure Minime, and aligns with ISO 27001 and NIST CSF, covering mandatory obligations such as 72-hour Garante notification, NIS2 24/72-hour CSIRT reporting, Art 28 DPAs, and retention rules for FSE. However, it does not explicitly address regional FSE regulations or Provvedimenti Garante in sanit\u00e0 as distinct sources, and acknowledges no conflicts/overlaps between regimes (e.g., GDPR erasure vs medical retention is mentioned only briefly).",
+        "evidence_quotes": [
+          "compliance with the General Data Protection Regulation (GDPR (EU) 2016/679), the Italian Privacy Code (D.Lgs 196/2003 as amended by D.Lgs 101/2018), and the NIS2 Directive (EU) 2022/2555",
+          "NIS2 Reporting: For significant incidents affecting service provision, report to CSIRT Italia within 24 hours (early warning) and 72 hours (full notification)",
+          "Erasure (Art 17): Limited application for health data (overridden by medical retention laws)"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8788,
+        "output_tokens": 475,
+        "stop_reason": "end_turn",
+        "latency_s": 8.701,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "The policy provides per-control attribution for the majority of substantive controls, with inline references to specific clauses (e.g., GDPR Articles, ISO 27001 Annex A controls, NIS2 Articles, AGID Misure Minime, NIST CSF subcategories). However, attribution is uneven: some controls (e.g., RBAC, retention periods, physical security, monitoring cadence, password specifics) lack inline source tags, and a few citations are framework-level rather than clause-level (e.g., 'NIST CSF 2.0 \u2014 PR.AC' without subcategory). Not fully audit-ready end-to-end but well above section-level.",
+        "evidence_quotes": [
+          "Mobile point-of-care devices (60 units) encrypted via device-level encryption (BitLocker or equivalent) to mitigate theft risk *NIST CSF 2.0 \u2014 PR.DS-1*",
+          "Access reviews conducted every 6 months by Department Heads with IT verification *ISO/IEC 27001:2022 \u2014 Annex A 5.18*",
+          "Supply chain risk assessments conducted annually for critical vendors (MSP, PACS vendor) per NIS2 Article 21(2)(d) *Directive (EU) 2022/2555 \u2014 Article 21*"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8760,
+        "output_tokens": 469,
+        "stop_reason": "end_turn",
+        "latency_s": 9.244,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy implicitly aligns with some envelope constraints (2 hours/year training matching budgeted figure, reliance on MSP for technical measures, compensating controls for legacy kiosks) but never explicitly references the 70k EUR budget, the 1.5 FTE IT envelope, or the absence of a CISO/SOC as drivers of design choices. Trade-offs are present in passing (exceptions register, compensating network isolation for legacy kiosks) but no phasing or explicit reasoning within the resource envelope is articulated.",
+        "evidence_quotes": [
+          "Legacy Windows kiosks (35 units) restricted to read-only access where possible, with compensating network isolation controls",
+          "Exceptions to encryption or access control requirements (e.g., legacy medical devices unable to support encryption) require: Written risk assessment by IT Manager and DPO; Compensating controls (network isolation, enhanced monitoring, physical security)",
+          "All staff complete 2 hours annual data protection training"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8784,
+        "output_tokens": 380,
+        "stop_reason": "end_turn",
+        "latency_s": 6.777,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 3.571,
+    "code_checks_passed": 11,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778089099
+}

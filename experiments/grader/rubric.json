@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0",
+  "title": "PolicyCoach IWAPS 2026 — 7-criterion grading rubric",
+  "description": "Structured rubric for the model-based (LLM-as-judge) grader. Each generated cybersecurity policy is scored on a 1-5 Likert scale per criterion, dimension-by-dimension, against the organisational context that prompted it. The judge MUST return 'insufficient_evidence' rather than guess when the policy provides no observable signal for a criterion (Anthropic 'escape valve' principle).",
+  "judge": {
+    "model": "claude-opus-4-7",
+    "temperature": 0.0,
+    "scoring_strategy": "dimension_by_dimension",
+    "self_preference_mitigation": "Judge model is independent of all four configurations under test (C0, C0+web, C1, C2)."
+  },
+  "scale": {
+    "type": "likert_1_5",
+    "anchors": {
+      "1": "Severely deficient on this dimension; policy fails the criterion outright.",
+      "2": "Below adequate; major gaps; would not survive an audit on this dimension.",
+      "3": "Adequate baseline; meets minimum expectations but unremarkable.",
+      "4": "Strong; clearly above baseline with concrete and well-grounded content.",
+      "5": "Exemplary; the kind of artefact a senior practitioner would sign off without revision on this dimension."
+    },
+    "insufficient_evidence_value": null,
+    "insufficient_evidence_rule": "If the policy contains no observable text that would let an experienced auditor judge this dimension, return null and explain in justification. Do not guess."
+  },
+  "criteria": [
+    {
+      "id": "C1_content_quality",
+      "name": "Content quality",
+      "definition": "Completeness of the policy with respect to the policy type requested, technical accuracy of statements, and internal consistency across sections (no contradictions, no mutually exclusive controls).",
+      "what_to_look_for": [
+        "All standard sections of the requested policy type are present (header, purpose, scope, roles, principles, requirements, exceptions, monitoring, references).",
+        "Technical claims about controls, protocols, and standards are correct.",
+        "Sections do not contradict each other (e.g. password policy in one section vs MFA-only in another)."
+      ],
+      "anchors": {
+        "1": "Major sections missing AND technical errors AND/OR internal contradictions.",
+        "3": "All standard sections present; few technical inaccuracies; no major contradictions.",
+        "5": "Comprehensive coverage, technically tight throughout, internally coherent and reinforcing across sections."
+      }
+    },
+    {
+      "id": "C2_contextual_adaptation",
+      "name": "Contextual adaptation",
+      "definition": "How well the policy is tailored to the size, sector, jurisdiction, and other contextual features of the organisation described in the prompt — as opposed to generic boilerplate that would apply to any organisation.",
+      "what_to_look_for": [
+        "Specific references to the organisation's size band, sector (e.g. healthcare, military), geography (e.g. Italy, Romania).",
+        "Recognition of sector-specific systems (e.g. EHR, PACS, NATO classified networks) and constraints (e.g. 24/7 clinical operation, classification spillage).",
+        "Absence of generic phrases that could apply to any company in any sector."
+      ],
+      "anchors": {
+        "1": "Pure boilerplate; no recognisable feature of the target organisation.",
+        "3": "Mentions the sector and size; partial alignment to the context.",
+        "5": "Reads as if drafted for this exact organisation — sector, size, jurisdiction, and operational constraints are visible throughout."
+      }
+    },
+    {
+      "id": "C3_evidence_citation",
+      "name": "Evidence citation",
+      "definition": "Presence and accuracy of citations to normative sources (standards, regulations, guidance) supporting the proposed controls. Distinct from C6: this is about *whether* the policy cites at all and whether the citations are accurate.",
+      "what_to_look_for": [
+        "In-text or end-of-section references to clauses, articles, controls, or named documents.",
+        "Citations match real, identifiable artefacts (NIST CSF subcategories, ISO 27001 Annex A controls, GDPR articles, ENISA documents, etc.).",
+        "Refusal to fabricate citations when uncertain (the policy should mark unsupported statements rather than invent references)."
+      ],
+      "anchors": {
+        "1": "No citations OR fabricated citations.",
+        "3": "Some real citations present; not systematic; occasional vague references.",
+        "5": "Citations are pervasive, precise, and verifiable; statements without citation are clearly flagged as unsupported."
+      }
+    },
+    {
+      "id": "C4_implementability",
+      "name": "Implementability",
+      "definition": "Realism of the proposed controls under the resource envelope and operational constraints stated in the organisation profile (budget, staff, business continuity, classification handling, etc.).",
+      "what_to_look_for": [
+        "Controls do not assume staff or budget the organisation does not have (e.g. a 24/7 SOC for an organisation with 1 IT FTE).",
+        "Operational constraints are respected (e.g. patient safety priority, dual-key COMSEC procedures).",
+        "Where a strong control is unaffordable, a defensible compensating control is offered."
+      ],
+      "anchors": {
+        "1": "Proposed controls are clearly unaffordable or operationally incompatible.",
+        "3": "Most controls are realistic; a few are overreaching but not catastrophic.",
+        "5": "Every proposed control is implementable within the stated envelope; compensating controls are offered where appropriate."
+      }
+    },
+    {
+      "id": "C5_regulatory_alignment",
+      "name": "Regulatory alignment",
+      "definition": "Coverage of the regulatory and framework obligations applicable to this organisation (e.g. GDPR, NIS2, NATO IS Policy, AGID, sectoral regimes), as declared in the organisation profile and as objectively applicable.",
+      "what_to_look_for": [
+        "Each applicable framework is addressed somewhere in the policy.",
+        "Mandatory obligations (e.g. breach notification timelines, DPIA triggers, classification handling) are not omitted.",
+        "Conflicts between regimes (e.g. host-nation law vs SOFA, GDPR vs national security exemptions) are at least acknowledged where relevant."
+      ],
+      "anchors": {
+        "1": "Multiple applicable frameworks ignored, or mandatory obligations missing.",
+        "3": "Major frameworks addressed; some secondary obligations missing.",
+        "5": "All applicable frameworks systematically covered; conflicts and overlaps acknowledged."
+      }
+    },
+    {
+      "id": "C6_source_attribution",
+      "name": "Source attribution",
+      "definition": "Traceability of *each substantive control* to a specific clause, control identifier, or reference document — finer-grained than C3 (which checks presence/accuracy of citations in general).",
+      "what_to_look_for": [
+        "Controls explicitly tagged with the standard or regulation they implement (e.g. 'aligns with ISO 27001 A.5.10', 'satisfies GDPR Art. 32(1)(b)').",
+        "Where multiple frameworks are cited, attribution distinguishes between them rather than lumping.",
+        "Mapping of the policy to a control catalogue is auditable end-to-end."
+      ],
+      "anchors": {
+        "1": "Controls have no per-control attribution.",
+        "3": "Some controls attributed; mostly section-level rather than control-level.",
+        "5": "Every substantive control is individually attributed to a verifiable source clause; the policy is audit-ready on this dimension."
+      }
+    },
+    {
+      "id": "C7_resource_consideration",
+      "name": "Resource consideration",
+      "definition": "Explicit calibration of the policy's ambition to the organisation's stated budget and staff envelope. Distinct from C4 (which judges whether controls are implementable): this judges whether the policy *acknowledges* the envelope and *visibly reasons* within it.",
+      "what_to_look_for": [
+        "Statements that explicitly reference the budget or staff envelope when justifying control choices.",
+        "Phased implementation where full coverage is not feasible immediately.",
+        "Trade-offs made transparent (e.g. 'in absence of a dedicated SOC, we rely on managed detection plus monthly log review')."
+      ],
+      "anchors": {
+        "1": "No acknowledgement of the resource envelope; policy reads as if budget and staff were unlimited.",
+        "3": "Resource envelope acknowledged in passing; some trade-offs discussed.",
+        "5": "Resource envelope is a structural input to the policy; trade-offs and phasing are explicit and defensible."
+      }
+    }
+  ],
+  "judge_output_schema": {
+    "type": "object",
+    "description": "Strict JSON object the judge must return. One entry per criterion plus a final aggregate.",
+    "properties": {
+      "scores": {
+        "type": "object",
+        "description": "Map of criterion id to score object.",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "oneOf": [
+                {"type": "integer", "minimum": 1, "maximum": 5},
+                {"type": "null"}
+              ],
+              "description": "1-5 Likert; null if insufficient_evidence."
+            },
+            "justification": {
+              "type": "string",
+              "description": "1-3 sentences explaining the score."
+            },
+            "evidence_quotes": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Up to 3 short verbatim quotes from the policy supporting the score; empty if score is null."
+            }
+          },
+          "required": ["score", "justification", "evidence_quotes"]
+        }
+      },
+      "overall_comment": {
+        "type": "string",
+        "description": "Up to 4 sentences. Strengths and weaknesses across all criteria."
+      }
+    },
+    "required": ["scores", "overall_comment"]
+  }
+}

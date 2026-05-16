@@ -1,0 +1,268 @@
+{
+  "config": "C0+web",
+  "context_id": "ctx-H",
+  "policy_id": "P2",
+  "policy_short": "dataprot",
+  "code_based": {
+    "context_id": "ctx-H",
+    "metrics": {
+      "char_count": 8310,
+      "word_count": 1211,
+      "section_headers_found": 18,
+      "section_headers_sample": [
+        "data protection policy",
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "4. principles",
+        "5. requirements and controls",
+        "5.1. legal basis and data subject rights",
+        "5.2. data classification and handling",
+        "5.3. access control and identity management",
+        "5.4. technical security measures",
+        "5.5. data storage, retention, and backup",
+        "5.6. data breach and incident management"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": true,
+        "effective_date": true,
+        "policy_owner": true,
+        "review_cycle": true
+      },
+      "header_block_score": 1.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 4,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 2,
+        "ISO_27001": 15,
+        "ISO_27002": 0,
+        "GDPR": 22,
+        "NIS2": 10,
+        "AI_Act": 0,
+        "AGID": 10,
+        "Codice_Privacy": 4,
+        "NATO_IS_Policy": 0,
+        "AC_35_D_1015": 0,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 0,
+        "Romanian_CSL": 0,
+        "SOFA": 0
+      },
+      "distinct_frameworks": 6,
+      "clause_level_citation_count": 41,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "breach_notification_72h": 3,
+        "dpia": 0,
+        "special_category_data": 7,
+        "data_retention": 0,
+        "access_logs": 0,
+        "patient_safety": 0,
+        "nis2_essential_entity": 10
+      },
+      "obligations_present": 3,
+      "obligations_total": 7,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": true,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 1.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 0.429,
+      "length_ok": 1.0
+    },
+    "checks_passed": 12,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 4,
+        "justification": "All standard policy sections are present (purpose, scope, roles, principles, requirements, exceptions, monitoring, references) with technically accurate references to GDPR, NIS2, ISO 27001:2022 and AGID controls, and no internal contradictions. Minor weaknesses: the DR test cadence stated as 'at least every 18 months' is weak and effectively codifies the current lapsed state rather than a tighter target, and backup encryption is asserted as a requirement without aligning to the stated current backup posture; these are minor technical/consistency gaps rather than errors.",
+        "evidence_quotes": [
+          "Disaster recovery tests to be conducted at least every 18 months, with documented results (ISO/IEC 27001:2022 A.5.30).",
+          "Nightly on-premises backups and weekly off-site tape backups must be maintained; backups must be encrypted (AGID Misure Minime 2.0 Area 6; NIST CSF PR.IP-4).",
+          "All users must authenticate via unique credentials (Active Directory, SPID/CIE federation) (ISO/IEC 27001:2022 A.5.18; NIS2 Art. 21(2)(d))."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5285,
+        "output_tokens": 438,
+        "stop_reason": "end_turn",
+        "latency_s": 6.601,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 4,
+        "justification": "The policy is clearly tailored to an Italian public hospital: it cites Italian/EU regulations (D.Lgs. 196/2003, Garante Privacy, AGID, FSE), references the actual technical estate (AD + SPID/CIE, PACS island, clinical/admin VLANs, nightly NAS + weekly off-site tape, MSP outsourcing), and reflects organisational facts like the 2h/year training budget. It falls short of a 5 because it does not explicitly address sector-specific operational constraints such as 24/7 clinical continuity, RTO targets, the 35 legacy Windows kiosks, paediatric/minors' workflows, or the absence of a CISO/SIEM beyond generic mentions.",
+        "evidence_quotes": [
+          "All users must authenticate via unique credentials (Active Directory, SPID/CIE federation)",
+          "Network segmentation between clinical and administrative VLANs must be maintained; PACS restricted as an \"island\"",
+          "Nightly on-premises backups and weekly off-site tape backups must be maintained"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5331,
+        "output_tokens": 407,
+        "stop_reason": "end_turn",
+        "latency_s": 7.214,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 4,
+        "justification": "Citations are pervasive and largely accurate, referencing real GDPR articles, ISO/IEC 27001:2022 Annex A controls, NIS2 articles, and AGID guidance throughout each section. Minor issues prevent a 5: NIST CSF reference 'PR.AC-5' is from CSF 1.1 rather than 2.0 (which uses PR.AA), 'PR.IP-4' is also legacy CSF 1.1, and unsupported statements are not explicitly flagged as such.",
+        "evidence_quotes": [
+          "Network segmentation between clinical and administrative VLANs must be maintained; PACS restricted as an \u201cisland\u201d (ISO/IEC 27001:2022 A.8.20; NIST CSF PR.AC-5).",
+          "Data breaches must be notified to Garante Privacy within 72 hours, and to data subjects when required (GDPR Art. 33, 34).",
+          "All users must authenticate via unique credentials (Active Directory, SPID/CIE federation) (ISO/IEC 27001:2022 A.5.18; NIS2 Art. 21(2)(d))."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5315,
+        "output_tokens": 422,
+        "stop_reason": "end_turn",
+        "latency_s": 6.511,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 4,
+        "justification": "Most controls align with the stated resource envelope: training matches the 2h/year budget, backups match existing nightly NAS / weekly tape practice, and access control leverages existing AD/SPID. However, some controls overreach without compensating measures: backup encryption is mandated despite no key management infrastructure, an incident response runbook is required (currently ad-hoc), and the DR test interval of 18 months merely matches the current lapsed test rather than improving it. No SIEM/SOC is demanded, which is realistic given 1.5 FTE and \u20ac70k budget.",
+        "evidence_quotes": [
+          "Nightly on-premises backups and weekly off-site tape backups must be maintained; backups must be encrypted",
+          "All staff must receive at least 2 hours of data protection and cybersecurity training per year",
+          "Disaster recovery tests to be conducted at least every 18 months, with documented results"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5289,
+        "output_tokens": 337,
+        "stop_reason": "end_turn",
+        "latency_s": 6.162,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy systematically references all major applicable frameworks (GDPR, D.Lgs. 196/2003, NIS2, AGID Linee Guida and Misure Minime, Garante Privacy, regional FSE) and covers key mandatory obligations including 72-hour breach notification, legal basis for special category data, and DPO duties. However, DPIA triggers (GDPR Art. 35) are not explicitly addressed, FSE regional obligations are only listed by reference without substantive controls, and potential conflicts/overlaps between regimes (e.g. NIS2 incident reporting to ACN vs GDPR notification to Garante) are not acknowledged.",
+        "evidence_quotes": [
+          "in compliance with the General Data Protection Regulation (GDPR, Regulation EU 2016/679), relevant Italian law (D.Lgs. 196/2003 as amended), NIS2 Directive (EU 2022/2555), applicable regional health regulations, and the Linee Guida AGID for public administration",
+          "Data breaches must be notified to Garante Privacy within 72 hours, and to data subjects when required (GDPR Art. 33, 34).",
+          "MSPs and vendors must be contractually bound to GDPR and NIS2 compliance, including reporting obligations (GDPR Art. 28; NIS2 Art. 21(2)(e))."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5329,
+        "output_tokens": 502,
+        "stop_reason": "end_turn",
+        "latency_s": 7.941,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Nearly every substantive control is individually attributed to a specific clause or control identifier (e.g., GDPR articles, ISO 27001:2022 Annex A controls, NIS2 articles, AGID Misure Minime areas), with multiple frameworks distinguished rather than lumped. Attribution falls short of a perfect 5 because some references are coarse (e.g., 'AGID Misure Minime 2.0 Area 5', 'NIST CSF PR.AC-5' alongside ISO without clear delineation of which framework drives the requirement) and a few controls cite broad areas rather than precise sub-clauses.",
+        "evidence_quotes": [
+          "Access is granted based on least privilege and role-based access (GDPR Art. 32(1)(b); AGID Misure Minime 2.0 Area 4).",
+          "Network segmentation between clinical and administrative VLANs must be maintained; PACS restricted as an \u201cisland\u201d (ISO/IEC 27001:2022 A.8.20; NIST CSF PR.AC-5).",
+          "An incident response runbook is to be developed and reviewed annually (NIS2 Art. 21(2)(f); ISO/IEC 27001:2022 A.5.25)."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5301,
+        "output_tokens": 451,
+        "stop_reason": "end_turn",
+        "latency_s": 7.126,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy makes a single passing acknowledgement of operating 'within the hospital's resource and operational constraints' and aligns the 2-hour training requirement with the stated envelope, but it does not visibly reason about the 70k EUR budget, 1.5 FTE IT staff, or absence of CISO/SOC/SIEM. Trade-offs (e.g., why no SIEM, reliance on MSP, DR test cadence of 18 months matching current state) are codified but not explained as resource-driven choices, and no phasing is presented.",
+        "evidence_quotes": [
+          "within the hospital's resource and operational constraints",
+          "All staff must receive at least 2 hours of data protection and cybersecurity training per year",
+          "Disaster recovery tests to be conducted at least every 18 months, with documented results"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5325,
+        "output_tokens": 312,
+        "stop_reason": "end_turn",
+        "latency_s": 6.188,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 3.714,
+    "code_checks_passed": 12,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778087978
+}

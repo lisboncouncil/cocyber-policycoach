@@ -1,0 +1,269 @@
+{
+  "config": "C1",
+  "context_id": "ctx-M",
+  "policy_id": "P4",
+  "policy_short": "ir",
+  "code_based": {
+    "context_id": "ctx-M",
+    "metrics": {
+      "char_count": 16057,
+      "word_count": 2094,
+      "section_headers_found": 51,
+      "section_headers_sample": [
+        "policy header block",
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "3.1 issm (information systems security manager)",
+        "3.2 security operations center (soc) staff",
+        "3.3 command leadership (detachment / j6)",
+        "3.4 information owners/system administrators",
+        "3.5 all users (military, civilian, contractor)",
+        "4. policy principles",
+        "4.1 rapid detection and containment",
+        "4.2 defence in depth"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": true,
+        "effective_date": true,
+        "policy_owner": true,
+        "review_cycle": true
+      },
+      "header_block_score": 1.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 7,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 2,
+        "ISO_27001": 10,
+        "ISO_27002": 0,
+        "GDPR": 8,
+        "NIS2": 3,
+        "AI_Act": 0,
+        "AGID": 0,
+        "Codice_Privacy": 0,
+        "NATO_IS_Policy": 9,
+        "AC_35_D_1015": 3,
+        "AC_35_D_1029": 3,
+        "AJP_3_20": 7,
+        "Romanian_CSL": 7,
+        "SOFA": 2
+      },
+      "distinct_frameworks": 10,
+      "clause_level_citation_count": 16,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "classification_handling": 5,
+        "need_to_know": 1,
+        "comsec": 1,
+        "dual_key": 2,
+        "ncirc_reporting": 8,
+        "spillage": 3,
+        "tempest": 0,
+        "host_nation": 17
+      },
+      "obligations_present": 7,
+      "obligations_total": 8,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": true,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 1.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 0.875,
+      "length_ok": 1.0
+    },
+    "checks_passed": 12,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 4,
+        "justification": "All standard policy sections are present (header, purpose, scope, roles, principles, requirements, monitoring, training, compliance, enforcement, exceptions, appendices, references) with technically accurate references to NATO, ISO 27001:2022, NIST CSF 2.0, GDPR, and Romanian law. Minor issues prevent a 5: the Monitoring section states 'Annual tabletop exercises (minimum 6/year...)' which is internally inconsistent (annual vs 6/year), and the org context specifies 40 hours/year training while the policy mentions 'Annual refresher (minimum 4 hours)' as a subset\u2014acceptable but loosely worded. Also, NIST CSF 2.0 functions are slightly mis-cited (omits Govern) and RS.CO-2 is referenced for containment though it pertains to communication/coordination.",
+        "evidence_quotes": [
+          "Annual tabletop exercises (minimum 6/year for mission-set validation)",
+          "NIST CSF 2.0: Identification, Protection, Detection, Response, Recovery functions",
+          "Use of accredited CDS for cross-domain incident mitigation"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8560,
+        "output_tokens": 429,
+        "stop_reason": "end_turn",
+        "latency_s": 7.801,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 5,
+        "justification": "The policy is densely tailored to this specific NATO detachment in Romania: it names the ISSM/J6 chain, NU/NR/NS/MISSION SECRET domains, CDS, SCIFs, NCIRC/NCSC reporting, SOFA, host-nation Law 58/2019, GDPR for civilian/contractor PII, and counterintelligence/insider concerns. Sector-specific constructs (two-person integrity at NR/NS, ORCON, classification spillage, AJP-3.20, AC/35-D/1015 & 1029) recur throughout, leaving little generic boilerplate.",
+        "evidence_quotes": [
+          "Classification Integrity ... Incident handling rigorously maintains separation and non-spillage between NU/NR/NS/SECRET domains, enforcing need-to-know and ORCON principles at all response stages.",
+          "Two-person integrity for systems at NR/NS/MISSION SECRET levels",
+          "Insider incidents (espionage, unauthorized disclosure) require parallel counterintelligence response with all NATO/host-nation security entities engaged."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8606,
+        "output_tokens": 419,
+        "stop_reason": "end_turn",
+        "latency_s": 9.455,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 4,
+        "justification": "Citations are pervasive and largely accurate, with specific clause/article-level references (ISO 27001 A.5.24-A.5.36, NIST CSF subcategories like DE.AE-1, RS.AN-1, RS.IM-1, GDPR Arts. 33/34, C-M(2002)49, AC/35-D/1015, AC/35-D/1029, AJP-3.20). Most map to real artefacts, though a few are slightly imprecise (e.g., 'NIST CSF RS.CO-2' is a legitimate subcategory but loosely tied to containment; 'Romanian Law 58/2019 Art 18-19' is not independently verifiable as cited; 'NATO C-M(2002)49 Annex C' for insider threat is specific but unverified). No clear flagging of unsupported statements, preventing a 5.",
+        "evidence_quotes": [
+          "Reference: ISO 27001 A.5.24, NIST CSF DE.AE-1, C-M(2002)49, AJP-3.20",
+          "Civilian/contractor PII breach notifications per GDPR Arts. 33/34 (within 72 hours of knowledge of breach).",
+          "Reference: AC/35-D/1029, NATO C-M(2002)49 Annex C"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8590,
+        "output_tokens": 471,
+        "stop_reason": "end_turn",
+        "latency_s": 8.623,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 4,
+        "justification": "The policy aligns well with the stated resource envelope: 24/7 SOC, 25 FTE security staff, ISSM in J6, two-person integrity for COMSEC/classified systems, and 40-hour training curriculum are all explicitly available per the org profile. One minor inconsistency: the policy states 'minimum 6/year' tabletop exercises under 'Annual tabletop exercises,' which conflates exercise cadences but matches the organisation's 6 exercises/year envelope. Overall realistic with appropriate compensating controls (e.g., supervisor reporting if technical means unavailable, break-glass procedures).",
+        "evidence_quotes": [
+          "24/7 first-line monitoring, triage, containment, and escalation of detected incidents",
+          "Two-person integrity for systems at NR/NS/MISSION SECRET levels",
+          "Targeted exercises as part of the 40-hour per year training curriculum"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8564,
+        "output_tokens": 352,
+        "stop_reason": "end_turn",
+        "latency_s": 7.452,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy systematically addresses NATO frameworks (C-M(2002)49, AJP-3.20, AC/35-D/1015, AC/35-D/1029, Cyber Defence Pledge), host-nation law (Romanian Law 58/2019/NIS2), GDPR with explicit 72-hour timeline, and civilian overlays (NIST CSF 2.0, ISO/IEC 27001:2022). However, it only briefly references SOFA without acknowledging conflicts between GDPR/host-nation law and NATO/SOFA constraints, and omits explicit mention of CTS handling and originator-control nuances at the regulatory-conflict level.",
+        "evidence_quotes": [
+          "comply with NATO Information Security Policy (C-M(2002)49), Romanian Cybersecurity Law (Law 58/2019/NIS2), GDPR (for civilian/contractor data), Allied Joint Doctrine for Cyberspace Operations (AJP-3.20), NIST CSF 2.0, and ISO/IEC 27001:2022 controls",
+          "Civilian/contractor PII breach notifications per GDPR Arts. 33/34 (within 72 hours of knowledge of breach)",
+          "Classified incident reporting is routed per NATO and SOFA procedures"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8604,
+        "output_tokens": 483,
+        "stop_reason": "end_turn",
+        "latency_s": 7.801,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Each substantive control section ends with a specific 'Reference' line citing named clauses/articles (e.g., ISO 27001 A.5.25, NIST CSF RS.AN-1, GDPR Arts. 33/34, AC/35-D/1029, Law 58/2019 Art 18-19), and multiple frameworks are listed distinctly rather than lumped. However, attribution is at the requirement-section level rather than tagging each individual sub-control (e.g., the controls bullets like 'Two-person integrity' or 'Notification checklists' are not individually mapped), keeping it short of fully audit-ready per-control traceability.",
+        "evidence_quotes": [
+          "**Reference:** ISO 27001 A.5.25, NIST CSF RS.AN-1, Romanian Law 58/2019 Art 18-19",
+          "**Reference:** C-M(2002)49, ISO 27001 A.5.26, NIST CSF RS.CO-2, AJP-3.20",
+          "**Reference:** AC/35-D/1029, NATO C-M(2002)49 Annex C"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8576,
+        "output_tokens": 410,
+        "stop_reason": "end_turn",
+        "latency_s": 7.889,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy references the existing resource envelope implicitly (24/7 SOC, 40-hour training curriculum, exercise cadence) and aligns its requirements to those allocations, but it does not explicitly reason about budget or staffing constraints, articulate trade-offs, or phase implementation. Resource calibration is incidental rather than a structural input.",
+        "evidence_quotes": [
+          "Targeted exercises as part of the 40-hour per year training curriculum",
+          "24/7 first-line monitoring, triage, containment, and escalation of detected incidents",
+          "Annual tabletop exercises (minimum 6/year for mission-set validation)"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8600,
+        "output_tokens": 260,
+        "stop_reason": "end_turn",
+        "latency_s": 5.502,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 3.857,
+    "code_checks_passed": 12,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778088917
+}

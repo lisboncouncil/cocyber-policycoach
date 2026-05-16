@@ -1,0 +1,98 @@
+# IWAPS 2026 — policy generation tasks (v2, post-fix 6 mag)
+#
+# Five tasks, drawn from the COcyber PolicyCoach scope. Four of them have a
+# matching template DOCX in the curated KB; "Data Protection Policy" has no
+# direct template and exercises the system's ability to lean on broader
+# normative sources (GDPR, ENISA, etc.) — methodologically interesting.
+#
+# The prompt template feeds the system a fully structured "interview output"
+# so the four configurations can produce the policy in a single response —
+# this invokes rule 1.a of the PolicyCoach system prompt ("rapid policy"
+# mode) for C1 and C2, and is neutral for C0 and C0+web (which have no
+# system prompt and already respond in one shot).
+
+template: |
+  You are asked to draft a cybersecurity policy document for the organisation
+  described below. The information has been gathered through a structured
+  interview already completed before this conversation starts; you do not
+  need to re-elicit it.
+
+  ## Elicited organisational information (interview output)
+
+  {context_narrative}
+
+  ## Requested policy
+
+  Draft a **{policy_name}** for the organisation above.
+
+  ## Output requirements
+
+  - Tailor the policy to the size, sector, jurisdiction, regulatory regime,
+    and resource envelope stated above. Avoid generic boilerplate.
+  - Align the policy with the regulatory frameworks declared in the profile,
+    plus widely-recognised international references (NIST CSF 2.0, ISO/IEC
+    27001:2022, GDPR) where applicable.
+  - Use a recognisable policy structure: header block (organisation,
+    effective date, owner, review cycle), purpose, scope, roles and
+    responsibilities, principles, requirements/controls, exceptions,
+    monitoring and review, references.
+  - Cite the sources you draw on. For each substantive control, indicate
+    the underlying clause, control identifier, or reference document so the
+    policy is auditable. If you cannot cite a precise source, mark the
+    statement as unsupported rather than fabricating a citation.
+  - Proposed controls must be implementable under the resource constraints
+    stated in the profile.
+  - Write the policy in English.
+
+  ## Mode of response
+
+  Generate the complete {policy_name} now in a single response. Do not ask
+  interview questions, request confirmation, or summarise the inputs back —
+  all the information needed is in the profile above. Return the full
+  policy document as your answer.
+
+# --- the five policy tasks ---
+policy_tasks:
+  - id: P1
+    name: "Password Policy"
+    short: "password"
+    description: |
+      Policy governing password creation, rotation, storage, and management
+      across the organisation's information systems. Aligns with the
+      `password_policy.docx` template in the knowledge base.
+
+  - id: P2
+    name: "Data Protection Policy"
+    short: "dataprot"
+    description: |
+      Policy governing the protection of personal and sensitive data
+      processed by the organisation. Addresses data classification, lawful
+      basis for processing, data subject rights, retention and deletion,
+      transfers, security measures, breach handling, DPIA where applicable.
+      No direct DOCX template — relies on GDPR text and ENISA/INCIBE
+      guidance in the knowledge base.
+
+  - id: P3
+    name: "Access Control Policy"
+    short: "accesscontrol"
+    description: |
+      Policy governing identity, authentication, authorisation, and access
+      lifecycle across the organisation's information systems. Aligns with
+      the `access_control_policy.docx` template.
+
+  - id: P4
+    name: "Incident Response Policy"
+    short: "ir"
+    description: |
+      Policy governing how the organisation prepares for, detects, contains,
+      eradicates, recovers from, and learns from cybersecurity incidents.
+      Aligns with the `cyber_incident_response_plan.docx` template.
+
+  - id: P5
+    name: "General Cybersecurity Policy"
+    short: "infosec"
+    description: |
+      Top-level cybersecurity policy that establishes the overall framework,
+      principles, and governance of cybersecurity in the organisation. Acts
+      as the umbrella under which the other policies sit. Aligns with the
+      `cybersecurity_policy_BASIC.docx` template.

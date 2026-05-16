@@ -1,0 +1,135 @@
+# Test context — medium-sized NATO military detachment
+# IWAPS 2026 — evaluation harness, ctx-M
+# Status: PROPOSAL v0.1 (6 mag 2026) — awaiting Davide's validation
+
+id: ctx-M
+short_name: nato_cyber_detachment
+long_name: "NATO Joint Cyber Defence Detachment — Eastern Flank deployment"
+synthetic: true
+note: |
+  Fictional but plausible profile representative of a medium-sized
+  multinational detachment under NATO command, deployed in an EU NATO host
+  nation along the Eastern flank (Romania assumed for jurisdictional anchors).
+  No real organisational data, no classified information, no actual mission data.
+
+# --- Organisational profile ---
+organisation:
+  type: multinational_military_detachment
+  command_authority: "NATO Allied Command Operations (SHAPE) — operational control"
+  host_nation: "Romania (EU and NATO member state)"
+  framework_nation: "rotational — currently a Western European ally"
+  size_band: medium
+  personnel_total: 2000
+  personnel_breakdown:
+    military_active: 1500           # multinational contingents
+    civilian_NATO_staff: 200        # international staff under NATO civilian regulations
+    contractors: 300                # cleared host-nation and international contractors
+  mission:
+    - "Cyber defence of NATO networks at the deployment"
+    - "CIS (Communications and Information Systems) operations"
+    - "Signals intelligence support to allied operations"
+    - "Multinational interoperability exercises"
+  command_structure:
+    - detachment_commander
+    - chief_of_staff
+    - "J2 (intelligence and security)"
+    - "J3 (current operations, including cyber operations cell)"
+    - "J6 (signals / CIS / cyber)"
+    - "J9 (civil-military / host-nation liaison)"
+
+# --- IT and security posture ---
+it_posture:
+  ciso_equivalent: "ISSM (Information Systems Security Manager), full-time, J6 chain"
+  security_staff_fte: 25         # cyber ops + ISSO/ISSM + COMSEC
+  network_domains:
+    - name: "NU (NATO UNCLASSIFIED)"
+      classification: "UNCLASSIFIED, marked NU"
+      use: "administrative, logistic, coalition coordination"
+    - name: "NR (NATO RESTRICTED)"
+      classification: "RESTRICTED"
+      use: "operational planning at restricted level"
+    - name: "NS (NATO SECRET)"
+      classification: "SECRET"
+      use: "operational planning, intel, command and control"
+    - name: "MISSION SECRET"
+      classification: "national/coalition SECRET"
+      use: "mission-specific coalition operations"
+  cross_domain_solutions: "accredited NATO CDS for unidirectional/bidirectional transfers"
+  comsec:
+    "NATO-approved COMSEC equipment, key management under national COMSEC authority,
+     two-person integrity for high-grade keying material"
+  identity:
+    "PKI per classification domain, smart-card auth (CAC-equivalent),
+     no cross-domain identity federation"
+  endpoint_estate:
+    workstations_classified: 1200
+    workstations_unclass: 800
+    tempest_zoned_areas: "SCIF rooms for NS and above"
+  detection: "24/7 SOC at theatre level, sensors at every domain boundary"
+  incident_response:
+    "documented IR plan aligned with NATO CIRC processes (NCIRC),
+     reporting chain to NCSC and host-nation CERT"
+  supply_chain:
+    "vetted vendors, NATO-approved equipment lists, host-nation contractors
+     subject to security screening"
+
+# --- Resource envelope ---
+resources:
+  cybersecurity_budget_band: "classified — significantly higher than typical civilian sector"
+  training_hours_per_staff_year: 40
+  exercises_per_year: 6           # technical + tabletop + live
+  red_team_engagements_per_year: 2
+
+# --- Regulatory regime ---
+regulatory:
+  applicable_frameworks_nato:
+    - "NATO Information Security Policy (C-M(2002)49 and successor)"
+    - "AC/35-D/1015 Security within NATO"
+    - "AC/35-D/1029 Personnel security"
+    - "AC/322-D(2017)0009 (NATO INFOSEC technical and implementation directive)"
+    - "NATO Cyber Defence Pledge 2016"
+    - "Allied Joint Doctrine for Cyberspace Operations (AJP-3.20)"
+  applicable_frameworks_host_nation:
+    - "Romanian Cybersecurity Law (Law 58/2019 transposing NIS, plus NIS2 transposition)"
+    - "GDPR (applicable to civilian/contractor personal data within EU jurisdiction)"
+    - "NATO Status of Forces Agreement (SOFA) limitations on host-nation legal reach"
+  applicable_frameworks_coalition:
+    - "Bilateral and multilateral information-sharing agreements"
+  recommended_frameworks_civilian_overlay:
+    - "NIST CSF 2.0 (used as common technical reference across allies)"
+    - "ISO/IEC 27001 / 27002 (used by some contributing nations)"
+  classification_regimes:
+    - "NATO classification: NU / NR / NS / NATO COSMIC TOP SECRET (CTS)"
+    - "Need-to-know enforcement"
+    - "Originator control (ORCON) for shared intel products"
+
+# --- Threat profile ---
+threats_top:
+  - "state-sponsored APT (Russia-aligned and China-aligned threat actors)"
+  - "insider threat with valid clearance (counterintelligence-priority adversary tactic)"
+  - "supply-chain compromise on COMSEC and CIS equipment"
+  - "physical TEMPEST emanations and physical site access"
+  - "HUMINT recruitment of cleared personnel and contractors"
+  - "spillage between classification domains (accidental and adversarial)"
+  - "kinetic-cyber convergence in regional contingency"
+
+# --- Operational constraints ---
+constraints:
+  classification_handling: "controls must enforce strict separation of classification domains"
+  need_to_know: "default-deny; access tied to mission role and clearance"
+  dual_key_procedures: "for high-grade COMSEC and for releasing certain operational orders"
+  chain_of_custody_comsec: "auditable end-to-end, two-person integrity"
+  host_nation_sovereignty: "civilian/contractor data subject to host-nation law (GDPR, host CSL); SOFA defines limits"
+  language: "English as NATO working language; host-nation language for civil-military liaison"
+  procurement: "NATO-approved vendor lists, national procurement law of framework nation"
+
+# --- Stakeholder roles relevant to policy targeting ---
+stakeholders:
+  - detachment_commander
+  - chief_of_staff
+  - J2_security_officer
+  - J6_ISSM
+  - "COMSEC Custodian"
+  - "NCIRC liaison officer"
+  - "host-nation cybersecurity liaison"
+  - "national security officers per contributing nation"

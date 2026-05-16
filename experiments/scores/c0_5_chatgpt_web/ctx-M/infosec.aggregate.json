@@ -1,0 +1,269 @@
+{
+  "config": "C0_5+web",
+  "context_id": "ctx-M",
+  "policy_id": "P5",
+  "policy_short": "infosec",
+  "code_based": {
+    "context_id": "ctx-M",
+    "metrics": {
+      "char_count": 51957,
+      "word_count": 7870,
+      "section_headers_found": 36,
+      "section_headers_sample": [
+        "general cybersecurity policy",
+        "1. purpose",
+        "2. scope",
+        "3. policy authority and compliance hierarchy",
+        "4. roles and responsibilities",
+        "4.1 detachment commander",
+        "4.2 issm \u2014 information systems security manager",
+        "4.3 chief j6 / cis operations",
+        "4.4 security officer / personnel security",
+        "4.5 comsec custodian",
+        "4.6 theatre soc / ncsc / ncirc interfaces",
+        "4.7 data protection / legal adviser"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": true,
+        "effective_date": true,
+        "policy_owner": false,
+        "review_cycle": true
+      },
+      "header_block_score": 0.75,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 2,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 78,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 2,
+      "framework_hits": {
+        "NIST_CSF_2_0": 72,
+        "ISO_27001": 10,
+        "ISO_27002": 64,
+        "GDPR": 17,
+        "NIS2": 18,
+        "AI_Act": 0,
+        "AGID": 0,
+        "Codice_Privacy": 0,
+        "NATO_IS_Policy": 4,
+        "AC_35_D_1015": 0,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 1,
+        "Romanian_CSL": 2,
+        "SOFA": 10
+      },
+      "distinct_frameworks": 9,
+      "clause_level_citation_count": 121,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "classification_handling": 39,
+        "need_to_know": 6,
+        "comsec": 41,
+        "dual_key": 4,
+        "ncirc_reporting": 13,
+        "spillage": 6,
+        "tempest": 4,
+        "host_nation": 27
+      },
+      "obligations_present": 8,
+      "obligations_total": 8,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": true,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 0.75,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 1.0,
+      "length_ok": 1.0
+    },
+    "checks_passed": 12,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 5,
+        "justification": "All standard policy sections are present (header, purpose, scope, authority/hierarchy, roles, principles, mandatory requirements across 13 domains, exceptions, monitoring, enforcement, records, references) and are technically tight and internally consistent \u2014 domain separation, PKI-per-domain, CDS use, COMSEC two-person integrity, and accreditation-led operation reinforce each other without contradiction. Technical claims about NATO directives, NIST CSF 2.0 functions, ISO/IEC 27001/27002:2022 control identifiers, GDPR Art. 32\u201334 and NIS2 Art. 21/23 are accurate, and the policy explicitly flags items lacking public citation rather than fabricating sources.",
+        "evidence_quotes": [
+          "Classification-domain separation: NU, NR, NS and MISSION SECRET are separate environments; no cross-domain identity federation, trust assumption or uncontrolled transfer is permitted.",
+          "Each classification domain maintains separate PKI trust, credentials and authentication services. Cross-domain identity federation is prohibited.",
+          "Two-person integrity for high-grade keying material is a local/national COMSEC authority requirement from the organisational profile; no public precise citation is provided in the source set, so the precise clause is marked unsupported in this policy."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23930,
+        "output_tokens": 482,
+        "stop_reason": "end_turn",
+        "latency_s": 12.803,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 5,
+        "justification": "The policy is deeply tailored to this exact organisation: it explicitly references the NATO multinational detachment in Romania, SHAPE operational control, the four specific domains (NU/NR/NS/MISSION SECRET), SCIF/TEMPEST zoning, COMSEC two-person integrity, NCIRC/NCSC reporting, SOFA constraints, and Romanian NIS2 transposition. Specific numbers from the profile (1,200 classified and 800 unclassified workstations, 40 hours training, 6 exercises, 2 red-team engagements) and threat-actor profile (Russia/China-aligned APT, HUMINT recruitment, kinetic-cyber convergence) appear throughout, with virtually no generic boilerplate.",
+        "evidence_quotes": [
+          "The policy is tailored to a multinational NATO military deployment conducting cyber defence, CIS operations, SIGINT support and interoperability exercises across NU, NR, NS and MISSION SECRET domains.",
+          "Inventory must cover 1,200 classified workstations, 800 unclassified workstations, servers, network devices, sensors, CDS components, COMSEC devices, PKI components, removable media and supplier-operated services.",
+          "Theatre SOC and ISSM shall incorporate NATO, national, host-nation, coalition and vendor threat intelligence, with priority for Russia-aligned, China-aligned, supply-chain, COMSEC, HUMINT-enabled and regional contingency threats."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23976,
+        "output_tokens": 553,
+        "stop_reason": "end_turn",
+        "latency_s": 14.298,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 5,
+        "justification": "Citations are pervasive, precise, and verifiable: nearly every control row includes specific NATO directive sections (e.g., AC/35-D/2004-REV3 \u00a77.21), NIST CSF 2.0 subcategory IDs, ISO/IEC 27002:2022 control numbers, GDPR articles, and NIS2 articles, with linked source URLs. Critically, the policy explicitly flags items it cannot precisely cite (e.g., two-person integrity, AJP-3.20, AC/322-D(2017)0009) as 'unsupported' rather than fabricating references, demonstrating disciplined citation hygiene.",
+        "evidence_quotes": [
+          "Two-person integrity for high-grade keying material is a local/national COMSEC authority requirement from the organisational profile; no public precise citation is provided in the source set, so the precise clause is marked unsupported in this policy.",
+          "Control basis: AC/35-D/2004-REV3 section 7.21; NIST CSF 2.0 RS.MA-01\u201305, RS.CO-02\u201303; ISO/IEC 27002:2022 controls 5.24\u20135.28; NIS2 Art. 21(2)(b).",
+          "AJP-3.20, Allied Joint Doctrine for Cyberspace Operations. Referenced as declared organisational framework. Public precise clause not cited in this policy; use controlled doctrine copy for audit where required."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23960,
+        "output_tokens": 520,
+        "stop_reason": "end_turn",
+        "latency_s": 10.362,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 5,
+        "justification": "The policy's controls align tightly with the stated resource envelope: 25 FTE security staff, 40h training, 6 exercises, 2 red teams, theatre-level 24/7 SOC, and accredited CDS \u2014 all of which appear in the org profile. Where strict controls might be infeasible (e.g., scanning disconnected systems, logging on disconnected domains), compensating procedures (offline scanning, manual inspection) are offered, and exception/waiver mechanisms with compensating controls are explicit.",
+        "evidence_quotes": [
+          "Continuous authenticated scanning where accreditation allows; disconnected or sensitive systems scanned through approved offline procedures",
+          "EDR/AV, allowlisting, removable-media controls, email/content filtering on applicable domains, and manual inspection procedures for disconnected domains are mandatory.",
+          "Exceptions require mission justification, risk assessment, compensating controls, expiry date not exceeding 180 days unless reapproved"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23934,
+        "output_tokens": 371,
+        "stop_reason": "end_turn",
+        "latency_s": 10.682,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 5,
+        "justification": "The policy systematically addresses all applicable frameworks declared in the organisation profile\u2014NATO Security Policy (C-M(2002)49, AC/35-D series), NATO Cyber Defence Pledge, AJP-3.20, NATO SOFA, GDPR, NIS2/Romanian transposition, NIST CSF 2.0, and ISO/IEC 27001/27002\u2014and explicitly addresses mandatory obligations such as GDPR breach notification, DPIA triggers, NIS2 24/72-hour reporting, classification handling, ORCON, and COMSEC. It also explicitly acknowledges conflicts via a compliance hierarchy and SOFA/host-nation coordination clauses.",
+        "evidence_quotes": [
+          "Compliance hierarchy: 1. NATO Security Policy, SHAPE direction, NATO CIS Security directives... 3. Host-nation legal obligations applicable under SOFA, Romanian law, EU law... 5. Civilian-overlay references: NIST CSF 2.0, ISO/IEC 27001:2022 / 27002:2022, GDPR and NIS2-aligned Romanian cybersecurity obligations, where applicable.",
+          "NIS2 Article 21 includes risk analysis, incident handling... Article 23 includes 24-hour early warning, 72-hour notification and final reporting for significant incidents.",
+          "Data sharing with host-nation CERT, law enforcement or regulators must be reviewed by Legal and command to preserve SOFA, classification, ORCON, national security and GDPR constraints."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23974,
+        "output_tokens": 580,
+        "stop_reason": "end_turn",
+        "latency_s": 10.783,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 5,
+        "justification": "Every substantive control across sections 4 and 6 carries a dedicated 'Control basis' line that distinguishes between NATO directives (with specific AC/35-D sections), NIST CSF 2.0 outcome IDs, ISO/IEC 27002:2022 control numbers, and GDPR/NIS2 articles, rather than lumping frameworks together. Where a precise public citation is unavailable (e.g. two-person integrity, national COMSEC clause), the policy explicitly flags it as 'unsupported,' which preserves end-to-end auditability of the mapping.",
+        "evidence_quotes": [
+          "**Control basis:** NIST CSF 2.0 GV.RR-01, GV.RR-03; ISO/IEC 27001:2022 clauses 5.1, 5.3, 6.1; NATO Cyber Defence Pledge paras. 5.II, 5.VI.",
+          "AC/35-D/2004-REV3 sections 7.6, 7.7, 7.12; NIST CSF 2.0 ID.RA-01\u201310; ISO/IEC 27001:2022 clause 6.1.2.",
+          "**Precise national COMSEC-account clause unavailable in public source set; marked unsupported for exact citation.**"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23946,
+        "output_tokens": 465,
+        "stop_reason": "end_turn",
+        "latency_s": 10.038,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy mirrors the resource envelope (40 hours training, 6 exercises, 2 red-team engagements, 25 FTE roles, 24/7 theatre SOC) but treats these as fixed inputs rather than visibly reasoning about trade-offs or phasing within a constrained budget. There is no explicit acknowledgement of budget/staff limits driving control choices, no phased implementation discussion, and no transparent trade-off statements; resourcing is mentioned only in passing (e.g., Commander accountable for 'resourcing').",
+        "evidence_quotes": [
+          "The Detachment Commander is accountable for cybersecurity risk acceptance within delegated authority, mission prioritisation, resourcing, enforcement of this policy",
+          "Provide at least 40 hours of cybersecurity/security training per staff member per year.",
+          "Tier 1 security logs should be retained for at least 12 months unless accreditation, storage or legal constraints require another period."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23970,
+        "output_tokens": 366,
+        "stop_reason": "end_turn",
+        "latency_s": 8.67,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 4.571,
+    "code_checks_passed": 12,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778159010
+}

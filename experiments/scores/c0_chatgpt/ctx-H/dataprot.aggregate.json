@@ -1,0 +1,268 @@
+{
+  "config": "C0",
+  "context_id": "ctx-H",
+  "policy_id": "P2",
+  "policy_short": "dataprot",
+  "code_based": {
+    "context_id": "ctx-H",
+    "metrics": {
+      "char_count": 11147,
+      "word_count": 1606,
+      "section_headers_found": 22,
+      "section_headers_sample": [
+        "data protection policy",
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "4. data protection principles",
+        "5. data protection requirements and controls",
+        "5.1. legal basis and records of processing",
+        "5.2. data subject rights",
+        "5.3. data protection by design and by default",
+        "5.4. access control and identity management",
+        "5.5. secure processing, transmission, and storage",
+        "5.6. backups and business continuity"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": false,
+        "effective_date": false,
+        "policy_owner": false,
+        "review_cycle": false
+      },
+      "header_block_score": 0.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 4,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 1,
+        "ISO_27001": 20,
+        "ISO_27002": 0,
+        "GDPR": 24,
+        "NIS2": 10,
+        "AI_Act": 0,
+        "AGID": 11,
+        "Codice_Privacy": 5,
+        "NATO_IS_Policy": 0,
+        "AC_35_D_1015": 0,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 0,
+        "Romanian_CSL": 0,
+        "SOFA": 0
+      },
+      "distinct_frameworks": 6,
+      "clause_level_citation_count": 41,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "breach_notification_72h": 2,
+        "dpia": 2,
+        "special_category_data": 7,
+        "data_retention": 2,
+        "access_logs": 1,
+        "patient_safety": 2,
+        "nis2_essential_entity": 10
+      },
+      "obligations_present": 7,
+      "obligations_total": 7,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": false,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 0.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 1.0,
+      "length_ok": 1.0
+    },
+    "checks_passed": 11,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 4,
+        "justification": "All standard policy sections are present (purpose, scope, roles, principles, requirements, exceptions, monitoring, references) with technically sound and internally consistent statements aligned to GDPR/NIS2/ISO/AGID. Minor inaccuracies exist: ISO 27001:2022 references use legacy 2013-style controls (e.g., A.7.2.2, A.9.2.5, A.10.1.1, A.16.1.5, A.17.1.3) that don't match the 2022 Annex A structure, and NIST CSF 2.0 ID.AM-1 is cited for data minimisation (a stretch). No major contradictions between sections.",
+        "evidence_quotes": [
+          "_Source: ISO 27001:2022 A.7.2.2, NIS2 Art. 21_",
+          "_Source: ISO 27001:2022 A.9.2.5_",
+          "_Source: GDPR Art. 5(1)(c); NIST CSF ID.AM-1_"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6469,
+        "output_tokens": 371,
+        "stop_reason": "end_turn",
+        "latency_s": 7.06,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 4,
+        "justification": "The policy is clearly tailored to a small Italian public hospital under SSN/ASL governance, referencing sector-specific systems (EHR, PACS, ADT, FSE), Italian/EU regulatory regime (GDPR, Codice Privacy, AGID, Garante, NIS2, regional FSE), and operational constraints (RTO 4h EHR / 1h ADT, MSP escalation, no SIEM, 2h/year training, clinical workflow priority). It falls short of 5 because some sections remain generic (physical security, retention, principles) and constraints like 35 legacy Windows kiosks, MEPA/CONSIP procurement, single-vendor UTM, or Italian as working language are not directly addressed in controls.",
+        "evidence_quotes": [
+          "Ensure that RTO targets for EHR (4h) and ADT/PS (1h) are met.",
+          "Given resource constraints, monitoring is focused on AV console alerts and MSP reports; SIEM not in place.",
+          "Enforce strong authentication for all users accessing clinical and administrative systems (prefer SPID/CIE federation where available)."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6515,
+        "output_tokens": 425,
+        "stop_reason": "end_turn",
+        "latency_s": 9.197,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 4,
+        "justification": "Citations are pervasive and largely accurate, with GDPR articles correctly mapped (Art. 5, 6, 28, 30, 33-34, 35) and AGID/NIS2/Garante references throughout. However, several ISO 27001:2022 Annex A references are inaccurate: the 2022 revision uses a restructured Annex A with different numbering (e.g., A.5.7 is Threat Intelligence, not privacy by design; A.9, A.13, A.16, A.17, A.18 numbering is from the 2013 version; A.7.2.2, A.8.1.1, A.8.1.2, A.8.3.2, A.9.2.5, A.10.1.1, A.11, A.12.4.1 do not exist in the 2022 standard). NIST CSF reference 'ID.AM-1' is real but loosely tied to data minimisation. No unsupported statements are flagged as such.",
+        "evidence_quotes": [
+          "_Source: GDPR Art. 5(1)(f); ISO 27001:2022 A.8, A.13; NIS2 Art. 21_",
+          "_Source: ISO 27001:2022 A.9; AGID Misure Minime; NIS2 Art. 21_",
+          "_Source: GDPR Art. 25; ISO 27001:2022 A.5.7; AGID_"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6499,
+        "output_tokens": 489,
+        "stop_reason": "end_turn",
+        "latency_s": 8.164,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 4,
+        "justification": "Most controls are realistic for a 1.5 FTE + MSP setup with a \u20ac70k budget: training matches the 2h/year envelope, SIEM is explicitly deferred with a compensating control (AV console + MSP reports), and encryption at rest is qualified as 'where technically feasible' acknowledging legacy kiosks. However, quarterly access reviews across EHR/PACS/etc., annual backup restoration tests (last DR test was 18 months ago), annual supplier reviews, and maintaining a documented IR procedure with breach logs are ambitious for the staffing level and would strain the envelope without explicit resourcing.",
+        "evidence_quotes": [
+          "Given resource constraints, monitoring is focused on AV console alerts and MSP reports; SIEM not in place.",
+          "Sensitive data at rest on servers and backups must be protected through logical access controls; encryption to be implemented where technically feasible.",
+          "All controls below are to be implemented with due regard for the operational and resource constraints of the organisation, and in a manner that does not impede emergency clinical workflows."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6473,
+        "output_tokens": 402,
+        "stop_reason": "end_turn",
+        "latency_s": 8.766,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy explicitly enumerates and references all major applicable frameworks (GDPR, Codice Privacy, NIS2, AGID guidelines and Misure Minime, Garante provisions, regional FSE rules) and addresses key obligations (ROPA, DPIA, data subject rights, breach notification per Art. 33\u201334, retention). However, it omits some specifics: the 72-hour breach notification timeline is not stated, no explicit reference to NIS2 incident reporting timelines (24h early warning / 72h) to the national CSIRT, and no acknowledgement of conflicts/overlaps between regimes (e.g. GDPR vs NIS2 dual notification).",
+        "evidence_quotes": [
+          "Notify the Garante Privacy and affected data subjects of personal data breaches as required by GDPR Art. 33\u201334.",
+          "Conduct DPIAs for new projects or significant changes involving high-risk processing of health data",
+          "Apply data retention schedules in line with legal and regional requirements (e.g., health data: 10 years minimum)."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6513,
+        "output_tokens": 401,
+        "stop_reason": "end_turn",
+        "latency_s": 7.047,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Nearly every substantive control in Section 5 carries an explicit per-control attribution, often distinguishing between frameworks (e.g., GDPR article + ISO 27001:2022 Annex A control + AGID). However, attribution sometimes lands at Annex A section level (e.g., 'ISO 27001:2022 A.8, A.13', 'A.11', 'A.9') rather than the specific control identifier, and a few items lack source tags (e.g., supplier annual review, incident log, manual fallback procedures bullet partially), keeping it short of a fully audit-ready 5.",
+        "evidence_quotes": [
+          "_Source: GDPR Art. 5(1)(f); ISO 27001:2022 A.8, A.13; NIS2 Art. 21_",
+          "Conduct quarterly access reviews for EHR, PACS, and other critical systems.  \n  _Source: ISO 27001:2022 A.9.2.5_",
+          "Mobile devices containing personal data must use device encryption and PIN/password protection.  \n  _Source: Garante Provv. 2015, ISO 27001:2022 A.8.1.2_"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6485,
+        "output_tokens": 428,
+        "stop_reason": "end_turn",
+        "latency_s": 8.535,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy makes only limited acknowledgement of the resource envelope: one explicit trade-off about logging/monitoring (no SIEM, reliance on AV console and MSP) and a generic preamble about 'operational and resource constraints'. There is no phasing, no reference to the 70k budget or 1.5 FTE, and no structural calibration of ambition to envelope.",
+        "evidence_quotes": [
+          "All controls below are to be implemented with due regard for the operational and resource constraints of the organisation",
+          "Given resource constraints, monitoring is focused on AV console alerts and MSP reports; SIEM not in place.",
+          "encryption to be implemented where technically feasible"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6509,
+        "output_tokens": 271,
+        "stop_reason": "end_turn",
+        "latency_s": 5.987,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 3.714,
+    "code_checks_passed": 11,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778087431
+}

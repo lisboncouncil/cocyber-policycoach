@@ -1,0 +1,268 @@
+{
+  "config": "C0+web",
+  "context_id": "ctx-H",
+  "policy_id": "P4",
+  "policy_short": "ir",
+  "code_based": {
+    "context_id": "ctx-H",
+    "metrics": {
+      "char_count": 8836,
+      "word_count": 1247,
+      "section_headers_found": 16,
+      "section_headers_sample": [
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "4. principles",
+        "5. requirements and controls",
+        "5.1. incident definition and classification",
+        "5.2. reporting",
+        "5.3. initial response and triage",
+        "5.4. containment, eradication, and recovery",
+        "5.5. communication and notification",
+        "5.6. post-incident review and lessons learned",
+        "5.7. training and awareness"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": true,
+        "effective_date": true,
+        "policy_owner": true,
+        "review_cycle": true
+      },
+      "header_block_score": 1.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 11,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 1,
+        "ISO_27001": 21,
+        "ISO_27002": 0,
+        "GDPR": 10,
+        "NIS2": 11,
+        "AI_Act": 0,
+        "AGID": 7,
+        "Codice_Privacy": 2,
+        "NATO_IS_Policy": 0,
+        "AC_35_D_1015": 0,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 0,
+        "Romanian_CSL": 0,
+        "SOFA": 0
+      },
+      "distinct_frameworks": 6,
+      "clause_level_citation_count": 47,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "breach_notification_72h": 4,
+        "dpia": 0,
+        "special_category_data": 2,
+        "data_retention": 0,
+        "access_logs": 0,
+        "patient_safety": 3,
+        "nis2_essential_entity": 10
+      },
+      "obligations_present": 4,
+      "obligations_total": 7,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": true,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 1.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 0.571,
+      "length_ok": 1.0
+    },
+    "checks_passed": 12,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 4,
+        "justification": "All standard policy sections are present (purpose, scope, roles, principles, requirements, exceptions, monitoring, references) with internally consistent content and largely accurate regulatory references (GDPR Art. 33/34, NIS2 Art. 21/23). Minor technical inaccuracies reduce the score: CERT-PA was superseded by CSIRT Italia (ACN) and is the correct notification body for NIS2; ISO/IEC 27001:2022 Annex A no longer contains A.17.1 (continuity controls were consolidated into A.5.29/A.5.30), so that reference is incorrect; A.6.3 cited for induction is also misaligned (A.6.3 is Information security awareness, education and training).",
+        "evidence_quotes": [
+          "Recovery: Restore affected services and data in line with documented RTOs (EHR: 4h; ADT/PS: 1h) (ISO/IEC 27001:2022 A.17.1; NIST CSF RC.RP-1).",
+          "the hospital must notify the regional ASL, Garante Privacy, and/or CERT-PA of notifiable incidents within statutory timeframes (GDPR Art. 33: 72h; NIS2 Art. 23: \"without undue delay\").",
+          "Induction: New staff must receive incident response training as part of onboarding (ISO/IEC 27001:2022 A.6.3)."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5497,
+        "output_tokens": 507,
+        "stop_reason": "end_turn",
+        "latency_s": 7.653,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 4,
+        "justification": "The policy is clearly tailored to an Italian public hospital under ASL governance, citing sector-specific roles (Direzione Sanitaria, regional DPO, MSP), Italian regulators (Garante Privacy, CERT-PA, AGID Misure Minime), and operationally specific RTOs (EHR 4h, ADT/PS 1h). It reflects the small-hospital resource envelope (2h/year training, MSP-led response, 18-month DR test) and recognises clinical primacy. It falls short of 5 because sector-specific systems like PACS/RIS/LIS/FSE and constraints such as legacy clinical kiosks or medical-device incidents are not explicitly addressed in the response procedures.",
+        "evidence_quotes": [
+          "Organisation: Ospedale Provinciale Generale, ASL [REDACTED], Italy",
+          "Restore affected services and data in line with documented RTOs (EHR: 4h; ADT/PS: 1h)",
+          "the hospital must notify the regional ASL, Garante Privacy, and/or CERT-PA of notifiable incidents within statutory timeframes"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5543,
+        "output_tokens": 426,
+        "stop_reason": "end_turn",
+        "latency_s": 8.69,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 4,
+        "justification": "Citations are pervasive throughout the policy, attached to nearly every control, and most are accurate and verifiable (GDPR Art. 33-34, NIS2 Art. 21/23, ISO 27001:2022 Annex A controls like A.5.30, A.6.3, A.10.1, AGID Misure Minime sections). However, some citations are imprecise or questionable: ISO/IEC 27001:2022 has no A.17.1 (that was the 2013 numbering; in 2022 it maps to A.5.29/A.5.30), and NIST CSF 2.0 subcategory references like RS.CO-1/2/3 reflect CSF 1.1 numbering rather than 2.0. Unsupported statements are not explicitly flagged, preventing a 5.",
+        "evidence_quotes": [
+          "Recovery: Restore affected services and data in line with documented RTOs (EHR: 4h; ADT/PS: 1h) (ISO/IEC 27001:2022 A.17.1; NIST CSF RC.RP-1).",
+          "Escalation: High-impact incidents (e.g., ransomware, major data breach) must be escalated immediately to the IT Manager, Direzione Sanitaria, and MSP (NIST CSF RS.CO-2; ISO/IEC 27001:2022 A.5.30).",
+          "External Notification: Where required, the hospital must notify the regional ASL, Garante Privacy, and/or CERT-PA of notifiable incidents within statutory timeframes (GDPR Art. 33: 72h; NIS2 Art. 23: \"without undue delay\")."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5527,
+        "output_tokens": 586,
+        "stop_reason": "end_turn",
+        "latency_s": 8.938,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 4,
+        "justification": "The policy largely respects the resource envelope: it relies on 1.5 FTE IT plus MSP escalation rather than an in-house SOC, uses the existing 2h/year training budget, and aligns recovery targets with the stated RTOs. However, the DR test cadence of 18 months is weak given the last test was already 18 months ago, and tabletop exercises plus 10-day debriefs across IT/MSP/DPO/clinical leads are ambitious for a 1.5 FTE team without explicit budget allocation; no compensating control is offered for the absent SIEM/SOC and ad-hoc IR runbook beyond MSP reliance.",
+        "evidence_quotes": [
+          "Internal IT staff perform initial assessment and containment, with support from MSP as per contract",
+          "All staff must complete at least 2 hours/year of security awareness training",
+          "Disaster recovery plan must be tested at least every 18 months"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5501,
+        "output_tokens": 349,
+        "stop_reason": "end_turn",
+        "latency_s": 6.633,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy systematically references all major applicable frameworks (GDPR, NIS2, D.Lgs. 196/2003, AGID Misure Minime, regional FSE rules, Garante Privacy) and cites specific mandatory obligations such as the GDPR 72h breach notification and NIS2 Art. 23. However, secondary obligations are partially missing: NIS2 early warning (24h) and intermediate (72h) reporting timelines are collapsed into 'without undue delay', CERT-PA is referenced instead of the current ACN/CSIRT Italia, no explicit DPIA trigger handling, and no acknowledgement of conflicts/overlaps between regimes (e.g., GDPR vs NIS2 notification channels).",
+        "evidence_quotes": [
+          "All actions must comply with GDPR, NIS2, D.Lgs. 196/2003, AGID guidelines, and regional regulations (GDPR Art. 33-34; NIS2 Art. 23; AGID \"Misure minime\" 5.8).",
+          "the hospital must notify the regional ASL, Garante Privacy, and/or CERT-PA of notifiable incidents within statutory timeframes (GDPR Art. 33: 72h; NIS2 Art. 23: \"without undue delay\").",
+          "Patient/Third-Party Notification: Required if data breach poses high risk to rights/freedoms of individuals (GDPR Art. 34)."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5541,
+        "output_tokens": 531,
+        "stop_reason": "end_turn",
+        "latency_s": 8.517,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Nearly every substantive control in Section 5 carries an inline citation to a specific clause (e.g., ISO/IEC 27001:2022 A.5.30, NIST CSF RS.CO-2, GDPR Art. 33, AGID Misure Minime 5.8), and multiple frameworks are distinguished rather than lumped. However, attribution leans heavily on the generic ISO A.5.30 for many disparate controls (reporting, triage, containment, eradication, exercises), which is somewhat coarse, and a few items (e.g., monitoring/exceptions) have weaker or no per-control mapping, falling short of a fully audit-ready 5.",
+        "evidence_quotes": [
+          "Containment: Priority is to isolate affected systems (e.g., disconnect from network, lock user accounts) while minimising clinical disruption (NIST CSF RS.CO-3; ISO/IEC 27001:2022 A.5.30).",
+          "External Notification: ... within statutory timeframes (GDPR Art. 33: 72h; NIS2 Art. 23: \"without undue delay\").",
+          "Annual Training: All staff must complete at least 2 hours/year of security awareness training, including incident recognition and reporting (AGID Misure Minime 5.6; NIST CSF PR.AT-1)."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5513,
+        "output_tokens": 484,
+        "stop_reason": "end_turn",
+        "latency_s": 7.782,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy implicitly works within the resource envelope by relying heavily on the MSP for containment/eradication and by aligning training to the 2 hours/year envelope, but it never explicitly acknowledges budget or staffing constraints, nor does it make trade-offs (e.g., absence of SOC/SIEM) transparent or phase implementation accordingly. Resource considerations are visible only through role assignments rather than as a structural input.",
+        "evidence_quotes": [
+          "MSP (Managed Service Provider) | Supports incident containment, eradication, and recovery under contract and SLA.",
+          "All staff must complete at least 2 hours/year of security awareness training, including incident recognition and reporting",
+          "Internal IT staff perform initial assessment and containment, with support from MSP as per contract"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5537,
+        "output_tokens": 308,
+        "stop_reason": "end_turn",
+        "latency_s": 5.861,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 3.714,
+    "code_checks_passed": 12,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778088080
+}

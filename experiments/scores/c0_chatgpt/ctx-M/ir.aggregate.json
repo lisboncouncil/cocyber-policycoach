@@ -1,0 +1,269 @@
+{
+  "config": "C0",
+  "context_id": "ctx-M",
+  "policy_id": "P4",
+  "policy_short": "ir",
+  "code_based": {
+    "context_id": "ctx-M",
+    "metrics": {
+      "char_count": 8720,
+      "word_count": 1304,
+      "section_headers_found": 21,
+      "section_headers_sample": [
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "3.1 information systems security manager (issm), j6",
+        "3.2 security operations center (soc)",
+        "3.3 incident response team (irt)",
+        "3.4 chain of command (coc)",
+        "3.5 all staff",
+        "3.6 contractors and vendors",
+        "4. principles",
+        "5. requirements / controls",
+        "5.1 preparation"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": false,
+        "effective_date": true,
+        "policy_owner": false,
+        "review_cycle": true
+      },
+      "header_block_score": 0.5,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 17,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 1,
+        "ISO_27001": 8,
+        "ISO_27002": 1,
+        "GDPR": 4,
+        "NIS2": 1,
+        "AI_Act": 0,
+        "AGID": 0,
+        "Codice_Privacy": 0,
+        "NATO_IS_Policy": 8,
+        "AC_35_D_1015": 7,
+        "AC_35_D_1029": 1,
+        "AJP_3_20": 3,
+        "Romanian_CSL": 4,
+        "SOFA": 2
+      },
+      "distinct_frameworks": 11,
+      "clause_level_citation_count": 30,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "classification_handling": 4,
+        "need_to_know": 1,
+        "comsec": 10,
+        "dual_key": 3,
+        "ncirc_reporting": 3,
+        "spillage": 2,
+        "tempest": 0,
+        "host_nation": 8
+      },
+      "obligations_present": 7,
+      "obligations_total": 8,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": true,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 0.5,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 0.875,
+      "length_ok": 1.0
+    },
+    "checks_passed": 12,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 4,
+        "justification": "All standard IR policy sections are present (purpose, scope, roles, principles, requirements across the full lifecycle, exceptions, monitoring, references) and technical claims align with NATO, NIST CSF 2.0, and ISO 27001:2022 references. Minor inaccuracies exist: ISO/IEC 27001:2022 A.10.1 and A.15.1 are misreferenced (A.10 is cryptography in 27002:2022 numbering and 27001:2022 Annex A has no A.15.1; supplier relationships are A.5.19\u2013A.5.23), and the requirement of 'annual IR exercises (minimum 6 per year)' is internally awkward though not contradictory. No major contradictions across sections.",
+        "evidence_quotes": [
+          "Conduct annual IR exercises (minimum 6 per year), including cross-domain, red team, and major incident scenarios.",
+          "Supply chain incidents involving vendors/contractors are jointly managed with the Procurement Office and reported per contractual and security requirements.  _[ISO/IEC 27001:2022 A.15.1, NIST CSF ID.SC-4]_",
+          "IRP and related procedures are updated promptly to integrate lessons learned from exercises and real-world incidents.  _[NIST CSF RS.IM-2, ISO/IEC 27001:2022 A.10.1]_"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5999,
+        "output_tokens": 502,
+        "stop_reason": "end_turn",
+        "latency_s": 7.931,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 5,
+        "justification": "The policy is densely tailored to this specific organisation: it names the NATO Multinational Detachment in Romania, references the four classification domains (NU/NR/NS/MISSION SECRET), invokes NATO-specific frameworks (C-M(2002)49, AC/35-D/1015, AJP-3.20, NCIRC), host-nation Law 58/2019 and GDPR, and operationalises sector-specific constraints (COMSEC two-person integrity, spillage, ORCON, dual-key for NS+, CI/HUMINT escalation). Generic boilerplate is largely absent; cross-references map to the exact regulatory and operational reality described in the context.",
+        "evidence_quotes": [
+          "All military, civilian, and contractor personnel (hereafter \u201cstaff\u201d) assigned or attached to the Detachment",
+          "Compromised COMSEC material is quarantined and reported per national and NATO COMSEC directives; destruction follows two-person integrity.",
+          "All incidents are reported to the NCIRC per established timelines and procedures, with parallel notification to host-nation NCSC and, if involving personal data, the DPO for GDPR compliance."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6045,
+        "output_tokens": 433,
+        "stop_reason": "end_turn",
+        "latency_s": 7.185,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 4,
+        "justification": "Citations are pervasive and largely accurate, with most controls bracketed by references to specific NATO directives, NIST CSF subcategories, ISO 27001:2022 Annex A controls, and GDPR articles. The policy also flags one statement as 'unsupported (no open citation)', demonstrating refusal to fabricate. However, some citations are imprecise or questionable (e.g., ISO/IEC 27001:2022 A.10.1 and A.15.1 do not match the actual 2022 Annex A numbering; AC/322-D clause numbers are not independently verifiable), preventing a 5.",
+        "evidence_quotes": [
+          "_[Ref: NIST CSF RS.RP-1, AC/322-D(2017)0009 9.3.1]_",
+          "_[C-M(2002)49, Law 58/2019, GDPR Art. 33, NIST CSF RS.CO-5]_",
+          "_[NATO CI Policy, unsupported (no open citation)]_"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6029,
+        "output_tokens": 376,
+        "stop_reason": "end_turn",
+        "latency_s": 6.581,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 4,
+        "justification": "Controls align well with the stated resource envelope: 24/7 SOC, dual-key COMSEC procedures, NCIRC reporting, and 25 FTE security staff are all consistent with the profile. One minor inconsistency: the policy mandates 'minimum 6 [exercises] per year' under an 'annual' framing and only 4 hours/year of IR-specific training (within the 40-hour curriculum), which is realistic; however, classifying all six annual exercises as including 'cross-domain, red team, and major incident scenarios' is somewhat ambitious given only 2 red-team engagements/year are budgeted.",
+        "evidence_quotes": [
+          "Conduct annual IR exercises (minimum 6 per year), including cross-domain, red team, and major incident scenarios.",
+          "SOC must monitor all network and cross-domain boundaries 24/7 and maintain detection coverage for classified and unclassified domains.",
+          "dual-key/dual-control procedures are enforced for NS and above."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6003,
+        "output_tokens": 376,
+        "stop_reason": "end_turn",
+        "latency_s": 7.029,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy systematically references the major applicable frameworks (NATO C-M(2002)49, AC/35-D/1015, AC/322-D(2017)0009, AJP-3.20, NATO COMSEC, Romanian Law 58/2019 transposing NIS/NIS2, GDPR, NIST CSF 2.0, ISO/IEC 27001) and addresses key obligations like breach notification (GDPR Art. 33, NCIRC, host-nation NCSC) and ORCON. However, conflicts between regimes (notably SOFA limits on host-nation legal reach, GDPR vs. national security exemptions) are listed in references but not substantively acknowledged in the body, and the NATO Cyber Defence Pledge and AC/35-D/1029 appear in references without operational treatment.",
+        "evidence_quotes": [
+          "All incidents are reported to the NCIRC per established timelines and procedures, with parallel notification to host-nation NCSC and, if involving personal data, the DPO for GDPR compliance.  \n  _[C-M(2002)49, Law 58/2019, GDPR Art. 33, NIST CSF RS.CO-5]_",
+          "**Regulatory Alignment:** All IR activities comply with NATO, host-nation law (including GDPR for personal data), and coalition agreements.",
+          "Information sharing with coalition partners follows originator control and information-sharing agreements; dissemination outside NATO channels requires prior authorisation."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6043,
+        "output_tokens": 540,
+        "stop_reason": "end_turn",
+        "latency_s": 8.054,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Nearly every substantive control under Section 5 carries an inline attribution bracket citing specific clauses or control IDs (e.g., AC/322-D(2017)0009 9.5.3, NIST CSF RS.IM-1, ISO/IEC 27001:2022 A.5.25, GDPR Art. 33), and multiple frameworks are differentiated rather than lumped. Falls short of 5 because some attributions remain at document level without clause numbers (e.g., 'NATO COMSEC policy', 'AJP-3.20', 'NATO CI Policy, unsupported'), and a few citations appear loosely matched (e.g., ISO/IEC 27001:2022 A.10.1 and A.15.1 do not correspond to actual ISO 27001:2022 control IDs).",
+        "evidence_quotes": [
+          "_[Ref: NIST CSF RS.RP-1, AC/322-D(2017)0009 9.3.1]_",
+          "_[C-M(2002)49, Law 58/2019, GDPR Art. 33, NIST CSF RS.CO-5]_",
+          "_[NATO CI Policy, unsupported (no open citation)]_"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6015,
+        "output_tokens": 439,
+        "stop_reason": "end_turn",
+        "latency_s": 7.146,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy implicitly leverages the stated resource envelope (40-hour training curriculum, 24/7 SOC, 6 exercises/year) by allocating portions of it to IR activities, but it does not explicitly acknowledge budget/staff constraints, discuss trade-offs, or phase implementation. Resources appear assumed-available rather than reasoned-within.",
+        "evidence_quotes": [
+          "Conduct annual IR exercises (minimum 6 per year), including cross-domain, red team, and major incident scenarios.",
+          "Ensure all staff receive at least 4 hours/year of IR training as part of the 40-hour security curriculum.",
+          "SOC must monitor all network and cross-domain boundaries 24/7 and maintain detection coverage for classified and unclassified domains."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 6039,
+        "output_tokens": 310,
+        "stop_reason": "end_turn",
+        "latency_s": 6.149,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 3.857,
+    "code_checks_passed": 12,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778087824
+}

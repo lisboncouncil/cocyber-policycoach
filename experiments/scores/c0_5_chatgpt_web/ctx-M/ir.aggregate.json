@@ -1,0 +1,269 @@
+{
+  "config": "C0_5+web",
+  "context_id": "ctx-M",
+  "policy_id": "P4",
+  "policy_short": "ir",
+  "code_based": {
+    "context_id": "ctx-M",
+    "metrics": {
+      "char_count": 52525,
+      "word_count": 7286,
+      "section_headers_found": 48,
+      "section_headers_sample": [
+        "incident response policy",
+        "1. header block",
+        "2. purpose",
+        "3. scope",
+        "3.1 in scope",
+        "3.2 out of scope",
+        "4. definitions",
+        "5. roles and responsibilities",
+        "5.1 detachment commander",
+        "5.2 issm, j6 chain",
+        "5.3 j6 / cis operations",
+        "5.4 theatre soc / soc battle captain"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": false,
+        "effective_date": false,
+        "policy_owner": false,
+        "review_cycle": false
+      },
+      "header_block_score": 0.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 4,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 122,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 2,
+      "framework_hits": {
+        "NIST_CSF_2_0": 53,
+        "ISO_27001": 41,
+        "ISO_27002": 0,
+        "GDPR": 29,
+        "NIS2": 2,
+        "AI_Act": 0,
+        "AGID": 0,
+        "Codice_Privacy": 0,
+        "NATO_IS_Policy": 19,
+        "AC_35_D_1015": 3,
+        "AC_35_D_1029": 3,
+        "AJP_3_20": 5,
+        "Romanian_CSL": 3,
+        "SOFA": 7
+      },
+      "distinct_frameworks": 10,
+      "clause_level_citation_count": 185,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "classification_handling": 18,
+        "need_to_know": 5,
+        "comsec": 65,
+        "dual_key": 4,
+        "ncirc_reporting": 6,
+        "spillage": 14,
+        "tempest": 4,
+        "host_nation": 22
+      },
+      "obligations_present": 8,
+      "obligations_total": 8,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": false,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 0.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 1.0,
+      "length_ok": 1.0
+    },
+    "checks_passed": 11,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 5,
+        "justification": "The policy includes all standard sections (header, purpose, scope, definitions, roles, principles, severity classification, detailed requirements across IR lifecycle, special categories, exceptions, monitoring/metrics, compliance, references) with technically accurate citations to NIST SP 800-61r3, CSF 2.0, ISO/IEC 27001:2022 Annex A, GDPR Articles 32-34, and NATO C-M(2002)49-REV1. Statements are internally consistent (e.g., domain-specific PKI and 'no cross-domain identity federation' is reinforced in roles, principles, and containment) and reinforce each other across sections, with appropriate caveats where source clauses are unsupported.",
+        "evidence_quotes": [
+          "Maintains domain-specific administration; no cross-domain identity federation may be introduced as an incident workaround.",
+          "Where GDPR applies and a personal data breach is likely to result in risk to individuals, the DPO shall prepare supervisory-authority notification without undue delay and, where feasible, within 72 hours of awareness.",
+          "Containment shall occur within the affected classification domain. Cross-domain containment actions require ISSM approval and, for CDS changes, accreditation authority coordination where required."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 22989,
+        "output_tokens": 459,
+        "stop_reason": "end_turn",
+        "latency_s": 11.204,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 5,
+        "justification": "The policy is densely tailored to this exact organisation: it names the 2,000-person multinational NATO detachment in Romania, references the four specific domains (NU/NR/NS/MISSION SECRET), accredited CDS, COMSEC TPI, SIGINT compartmentation, SCIF/TEMPEST, SHAPE/NCIRC reporting, and host-nation specifics (DNSC, GEO 155/2024, SOFA). Sector-specific incident categories (spillage, COMSEC, SIGINT, kinetic-cyber convergence, insider with clearance) and the 6 exercises / 2 red-team / 40-hour training envelope match the input profile precisely.",
+        "evidence_quotes": [
+          "The policy is designed for a 2,000-person multinational military detachment operating in Romania under NATO Allied Command Operations operational control, with classified and unclassified domains, accredited cross-domain solutions, COMSEC material, SIGINT support functions, 24/7 theatre SOC monitoring",
+          "Separate annexes shall exist for NU, NR, NS, MISSION SECRET, CDS, COMSEC, SIGINT-support systems and personal data incidents.",
+          "Romanian GEO 155/2024 Article 15 requires covered essential/important entities to report significant incidents, including 24-hour early warning and 72-hour incident reporting"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23035,
+        "output_tokens": 510,
+        "stop_reason": "end_turn",
+        "latency_s": 11.506,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 5,
+        "justification": "Citations are pervasive and precise throughout, mapping requirements to specific NIST CSF 2.0 subcategories (e.g., RS.MA-03, PR.AA-05), ISO/IEC 27001:2022 Annex A controls, GDPR articles, NIST SP 800-61r3, and NATO documents with verifiable URLs. Critically, the policy explicitly flags unsupported or unverifiable references (e.g., 'Precise public clause unsupported') rather than fabricating, which is the hallmark of the top anchor.",
+        "evidence_quotes": [
+          "Authority: C-M(2002)49-REV1 Enclosure E; AC/322-D(2017)0009 reference; ISO/IEC 27001:2022 A.5.12, A.5.13, A.5.15, A.5.33.",
+          "AC/35-D/1015, Security within NATO | Referenced for NATO security procedures. Precise public clause unsupported in this policy. Validate against authorised NATO copy.",
+          "GDPR Article 33 requires supervisory-authority notification without undue delay and, where feasible, within 72 hours when the breach is likely to result in risk to individuals. ([gdprinfo.eu](https://gdprinfo.eu/en-article-33))"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23019,
+        "output_tokens": 471,
+        "stop_reason": "end_turn",
+        "latency_s": 9.931,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 5,
+        "justification": "The policy's controls align tightly with the stated resource envelope: 24/7 SOC, 6 exercises/year, 2 red-team engagements/year, and 40 hours/staff training all match the organisation profile exactly. Specialist roles (ISSM, COMSEC Custodian, DPO, Legal Adviser, S2/G2) reflect the actual staffing and command structure, and operational constraints (TPI for COMSEC, classification separation, ORCON, SOFA) are explicitly respected. Where authority is reserved elsewhere (national COMSEC, SIGINT, SHAPE), the policy defers rather than overreaches, and exception/escape provisions accommodate degraded operations.",
+        "evidence_quotes": [
+          "The detachment shall conduct at least six cyber exercises per year and two red-team engagements per year.",
+          "All personnel shall receive annual cyber incident-reporting training within the 40-hour training allocation.",
+          "Suspected compromised keying material shall be isolated, accounted for and handled under TPI; emergency rekey shall follow national COMSEC authority direction."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 22993,
+        "output_tokens": 411,
+        "stop_reason": "end_turn",
+        "latency_s": 10.65,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 5,
+        "justification": "The policy systematically addresses all applicable frameworks declared in the organisation profile: NATO C-M(2002)49-REV1, AC/35-D/1015, AC/35-D/1029, AC/322-D(2017)0009, Cyber Defence Pledge, AJP-3.20, NIST CSF 2.0, NIST SP 800-61r3, ISO/IEC 27001:2022, GDPR (with explicit 72-hour Article 33 and Article 34 obligations), Romanian GEO 155/2024 (NIS2 transposition with 24h/72h reporting), national COMSEC authority directives, and SOFA. Conflicts and overlaps (SOFA vs host-nation law, ORCON vs external notification, GDPR applicability vs NATO SOFA) are explicitly acknowledged and routed through Legal Adviser, and a dedicated regulatory decision matrix (IR-06) is mandated.",
+        "evidence_quotes": [
+          "Legal Adviser and ISSM shall maintain a matrix for NATO, SHAPE, NCIRC/NCSC, Romanian DNSC/CERT, GDPR supervisory authority, national COMSEC authority and coalition notification triggers.",
+          "Romanian GEO 155/2024 Article 15 requires covered essential/important entities to report significant incidents, including 24-hour early warning and 72-hour incident reporting.",
+          "Applicability to the detachment must be assessed through Legal Adviser due to NATO SOFA and mission-specific status."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23033,
+        "output_tokens": 563,
+        "stop_reason": "end_turn",
+        "latency_s": 11.044,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Nearly every substantive control (IR-01 through IR-52) and each principle/special category carries an explicit 'Authority / audit reference' line citing specific framework identifiers (e.g., NIST CSF 2.0 sub-categories like RS.AN-06, ISO/IEC 27001:2022 Annex A control numbers like A.5.28, GDPR Articles, Romanian GEO 155/2024 Article numbers). Multiple frameworks are distinguished rather than lumped, and the policy honestly flags where precise clauses are unsupported. It falls short of 5 because some attributions remain at the framework or document level (e.g., 'AJP-3.20', 'National COMSEC authority directives', 'AC/322-D(2017)0009 reference') without a specific clause, which the policy itself acknowledges.",
+        "evidence_quotes": [
+          "Authority / audit reference | NIST CSF 2.0 ID.IM-04; NIST SP 800-61r3 recommends plans based on organisational mission, size, structure and functions.",
+          "Authority: C-M(2002)49-REV1 Article 1 / Enclosure E; AC/322-D(2017)0009 reference; NIST CSF 2.0 RS.AN-03, RS.AN-07, RS.MA-03; ISO/IEC 27001:2022 A.5.12, A.5.13, A.8.10.",
+          "AC/35-D/1015, Security within NATO | Referenced for NATO security procedures. Precise public clause unsupported in this policy. Validate against authorised NATO copy."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23005,
+        "output_tokens": 571,
+        "stop_reason": "end_turn",
+        "latency_s": 11.957,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy aligns its requirements with the stated training (40 hours/year), exercise (6/year) and red-team (2/year) envelope from the organisation profile, showing some calibration to the resource envelope. However, there is no explicit acknowledgement of budget or staff constraints, no phased implementation, and no transparent trade-offs (e.g. choices made because of limited FTE or funding); the policy generally reads as fully resourced.",
+        "evidence_quotes": [
+          "The detachment shall conduct at least six cyber exercises per year and two red-team engagements per year.",
+          "All personnel shall receive annual cyber incident-reporting training within the 40-hour training allocation.",
+          "Ensures incident response is resourced commensurate with the detachment's threat profile."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 23029,
+        "output_tokens": 298,
+        "stop_reason": "end_turn",
+        "latency_s": 8.397,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 4.429,
+    "code_checks_passed": 11,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778159085
+}

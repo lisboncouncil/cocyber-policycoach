@@ -1,0 +1,105 @@
+# Test context — small Italian hospital
+# IWAPS 2026 — IL evaluation harness, ctx-H
+# Status: PROPOSAL v0.1 (6 mag 2026) — awaiting Davide's validation
+
+id: ctx-H
+short_name: small_italian_hospital
+long_name: "Small public hospital in Italy (province-level, generalist)"
+synthetic: true
+note: |
+  Fictional but plausible profile representative of a small Italian public
+  hospital at province level. No real organisational data and no specific
+  region or city are referenced — the profile is intentionally generic
+  Italian to keep the test context broadly representative.
+
+# --- Organisational profile ---
+organisation:
+  type: public_hospital
+  governance: "Servizio Sanitario Nazionale — regional ASL (Azienda Sanitaria Locale)"
+  size_band: small
+  staff_total: 200
+  staff_breakdown:
+    clinical: 130        # physicians, nurses, technicians, OSS
+    administrative: 50
+    technical_facility: 20
+  beds: 80
+  wards:
+    - internal_medicine
+    - general_surgery
+    - paediatrics
+    - long_term_care
+    - emergency_first_aid   # PS di base, no DEA
+  services_24_7: true
+
+# --- IT and security posture ---
+it_posture:
+  ciso_dedicated: false
+  it_staff_internal_fte: 1.5     # 1 sysadmin full-time + 0.5 helpdesk
+  msp_outsourced: true            # day-to-day operations on a managed services contract
+  identity: "on-prem Active Directory + regional SPID/CIE federation"
+  endpoint_estate:
+    workstations: 220
+    legacy_windows: 35           # Win10 21H2 not upgradable on legacy clinical kiosks
+    mobile: 60                   # tablets at point-of-care
+  servers:
+    on_prem: 12
+    regional_datacenter: "FSE / cartella clinica regionale (regional EHR), HL7 v2 messaging"
+  network:
+    perimeter: "single-vendor UTM, VPN client-to-site, no SD-WAN"
+    segmentation: "limited — clinical VLANs separated from admin, PACS island, no microsegmentation"
+  clinical_systems:
+    - "Cartella Clinica Elettronica (regional FSE)"
+    - "PACS / RIS for radiology"
+    - "LIS for laboratory"
+    - "ADT (Admission/Discharge/Transfer)"
+    - "Pharmacy management"
+  backups: "nightly to NAS, weekly off-site tape — last DR test 18 months ago"
+  detection: "no SIEM; AV vendor console only; no SOC"
+  incident_response: "ad-hoc, no documented runbook, escalation to MSP"
+
+# --- Resource envelope ---
+resources:
+  cybersecurity_budget_eur_year: 70000
+  cybersecurity_budget_band: "0.4% of ICT operating budget"
+  training_hours_per_staff_year: 2
+  external_consulting_eur_year: 15000
+
+# --- Regulatory regime ---
+regulatory:
+  applicable_frameworks:
+    - "GDPR (Regulation EU 2016/679)"
+    - "Codice in materia di protezione dei dati personali (D.Lgs. 196/2003 as amended by D.Lgs. 101/2018)"
+    - "NIS2 (Directive EU 2022/2555) — health sector classified as essential entity"
+    - "Linee Guida AGID per la sicurezza informatica nella PA"
+    - "Provvedimenti Garante Privacy in sanità"
+    - "Misure minime AGID per la PA"
+    - "Regional regulations on FSE (Fascicolo Sanitario Elettronico)"
+  recommended_frameworks:
+    - "NIST CSF 2.0"
+    - "ISO/IEC 27001:2022 (target — not yet certified)"
+  data_categories: ["special category — health data", "personal data of minors", "employee personal data"]
+
+# --- Threat profile ---
+threats_top:
+  - "ransomware on EHR / PACS (sector-typical, recurring incidents in Italian hospitals 2023–2025)"
+  - "data leak of patient records (insider, opportunistic credential theft)"
+  - "supply-chain compromise via MSP or medical device vendor"
+  - "phishing targeting clinical staff (high turnover, low cyber awareness)"
+  - "physical theft of mobile devices at point-of-care"
+
+# --- Operational constraints ---
+constraints:
+  business_continuity: "clinical services 24/7 — RTO 4h target for EHR, 1h for ADT/PS"
+  patient_safety_priority: "any control must not impede emergency clinical workflow"
+  procurement: "MEPA / CONSIP, public procurement timelines (months)"
+  staff_turnover_clinical: "high — frequent onboarding"
+  language: "Italian primary, technical documentation EN/IT mixed"
+
+# --- Stakeholder roles relevant to policy targeting ---
+stakeholders:
+  - direttore_generale
+  - direttore_sanitario
+  - direttore_amministrativo
+  - responsabile_sistemi_informativi   # de facto IT manager
+  - responsabile_protezione_dati       # DPO, part-time
+  - referenti_di_reparto

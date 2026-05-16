@@ -1,0 +1,268 @@
+{
+  "config": "C0_5+web",
+  "context_id": "ctx-H",
+  "policy_id": "P5",
+  "policy_short": "infosec",
+  "code_based": {
+    "context_id": "ctx-H",
+    "metrics": {
+      "char_count": 37002,
+      "word_count": 5431,
+      "section_headers_found": 36,
+      "section_headers_sample": [
+        "general cybersecurity policy",
+        "1. document control",
+        "2. purpose",
+        "3. scope",
+        "4. policy principles",
+        "5. roles and responsibilities",
+        "5.1 hospital management / direzione",
+        "5.2 it responsible officer / cybersecurity coordinator",
+        "5.3 data protection officer",
+        "5.4 managed service provider",
+        "5.5 medical directorate and department heads",
+        "5.6 all workforce members"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": false,
+        "effective_date": false,
+        "policy_owner": false,
+        "review_cycle": false
+      },
+      "header_block_score": 0.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 37,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 6,
+        "ISO_27001": 80,
+        "ISO_27002": 1,
+        "GDPR": 33,
+        "NIS2": 13,
+        "AI_Act": 0,
+        "AGID": 21,
+        "Codice_Privacy": 1,
+        "NATO_IS_Policy": 0,
+        "AC_35_D_1015": 0,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 0,
+        "Romanian_CSL": 0,
+        "SOFA": 0
+      },
+      "distinct_frameworks": 7,
+      "clause_level_citation_count": 46,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "breach_notification_72h": 5,
+        "dpia": 0,
+        "special_category_data": 6,
+        "data_retention": 0,
+        "access_logs": 1,
+        "patient_safety": 6,
+        "nis2_essential_entity": 12
+      },
+      "obligations_present": 5,
+      "obligations_total": 7,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": false,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 0.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 0.714,
+      "length_ok": 1.0
+    },
+    "checks_passed": 11,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 5,
+        "justification": "All standard policy sections are present (document control, purpose, scope, principles, roles, detailed requirements across 18 control domains, exceptions, monitoring, non-compliance, references). Technical claims are accurate (GDPR Art. 33/34 timelines, NIS2 D.Lgs. 138/2024 Art. 25 24h/72h/1-month notifications, AGID measures, ISO Annex A control identifiers correctly mapped). No internal contradictions detected \u2014 break-glass, MFA, segmentation, and backup statements are mutually reinforcing and consistent with the stated organisational constraints.",
+        "evidence_quotes": [
+          "Significant incidents affecting service provision must be notified to CSIRT Italia according to D.Lgs. 138/2024 Article 25: pre-notification within 24 hours, incident notification within 72 hours, intermediate reports on request, and final report within one month.",
+          "Emergency access is permitted only where needed for patient care, must be logged, and must be reviewed within 5 working days by the system owner or delegate.",
+          "MFA is mandatory for VPN, privileged accounts, MSP remote access, administrative portals and any cloud/regional portal that supports it."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 16753,
+        "output_tokens": 444,
+        "stop_reason": "end_turn",
+        "latency_s": 6.82,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 5,
+        "justification": "The policy is deeply tailored to this specific organisation: it explicitly references the small Italian ASL hospital context, 24/7 clinical operations, 1.5 FTE IT with MSP outsourcing, the 35 legacy Windows kiosks, 60 point-of-care mobile devices, specific clinical systems (FSE, PACS/RIS, LIS, ADT, Pharmacy), MEPA/CONSIP procurement constraints, RTOs of 1h/4h, and Italian-specific regulators (Garante, AGID, D.Lgs. 138/2024). Sector-specific patient-safety constraints (break-glass, downtime paper packs, clinical engineering coordination) and high-turnover wards (emergency, paediatrics) are woven throughout rather than appearing as generic boilerplate.",
+        "evidence_quotes": [
+          "This policy is designed for a small 24/7 public hospital with limited internal IT capacity and outsourced managed services.",
+          "Legacy kiosks must be isolated in dedicated VLANs, denied direct internet browsing/email, restricted to required clinical applications, protected by AV where possible and listed in a replacement or containment plan.",
+          "Target RTOs are: ADT/PS 1 hour; EHR/FSE 4 hours. Where technical recovery cannot meet these targets, downtime clinical procedures must bridge the gap."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 16799,
+        "output_tokens": 514,
+        "stop_reason": "end_turn",
+        "latency_s": 7.178,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 5,
+        "justification": "Citations are pervasive, precise and verifiable: nearly every control row in Section 6 carries explicit references to GDPR articles, D.Lgs. 138/2024 articles, ISO/IEC 27001:2022 Annex A control identifiers, NIST CSF 2.0 functions/categories and AGID/Garante guidance, with URLs to gazzettaufficiale.it, eur-lex, agid.gov.it, garanteprivacy.it and csrc.nist.gov. The reference list in Section 11 is consolidated, and the policy explicitly flags ISO copyright limitations rather than fabricating standard text, indicating disciplined citation practice.",
+        "evidence_quotes": [
+          "References: NIS2 Directive Article 21; D.Lgs. 138/2024 Article 24; NIST CSF 2.0 Govern function; ISO/IEC 27001:2022 clauses 5, 6, 9 and Annex A 5.1, 5.2, 5.4.",
+          "NIS2 incident notification ... pre-notification within 24 hours, incident notification within 72 hours, intermediate reports on request, and final report within one month. ([gazzettaufficiale.it]...)",
+          "Note on ISO citations: ISO/IEC 27001:2022 and ISO/IEC 27002:2022 are copyrighted standards. This policy cites clause and Annex A control identifiers for auditability but does not reproduce the standard text."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 16783,
+        "output_tokens": 531,
+        "stop_reason": "end_turn",
+        "latency_s": 6.832,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 4,
+        "justification": "The policy explicitly tailors controls to the hospital's constraints (1.5 IT FTE, MSP reliance, 70k EUR budget, legacy kiosks, 24/7 clinical priority) and offers compensating controls \u2014 e.g., centralised syslog before a full SIEM, daily MSP alert review with 24/7 escalation in lieu of an in-house SOC, break-glass procedures preserving clinical workflow, and MEPA/CONSIP interim controls. A few items remain ambitious for the envelope (quarterly authenticated vulnerability scans, monthly privileged access reviews, quarterly restore tests plus annual DR exercise, two annual incident exercises, and MDM rollout) but are not catastrophic and are framed as 'where feasible'; hence not a perfect 5.",
+        "evidence_quotes": [
+          "Within budget constraints, the hospital shall centralise logs from AD, UTM/VPN, endpoint protection, backup systems and critical servers using a low-cost syslog/log-management approach before procuring a full SIEM.",
+          "Where MEPA/CONSIP timelines delay preferred controls, the IT Responsible Officer must document interim compensating controls and expected procurement milestones.",
+          "Because clinical services operate 24/7, the MSP contract and internal escalation list must support urgent out-of-hours response for critical clinical systems."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 16757,
+        "output_tokens": 504,
+        "stop_reason": "end_turn",
+        "latency_s": 8.001,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 5,
+        "justification": "The policy systematically addresses all declared applicable frameworks: GDPR (Arts. 5, 9, 25, 28, 30, 32, 33, 34), Italian D.Lgs. 196/2003 and D.Lgs. 138/2024 implementing NIS2 (with specific Art. 24/25 obligations including 24h/72h/1-month notification timelines), AGID minimum measures and secure software guidance, Garante healthcare dossier guidance, and FSE references, plus the recommended NIST CSF 2.0 and ISO/IEC 27001:2022 alignment. Mandatory obligations (breach notification timelines, processor agreements, encryption, access logs for dossier sanitario, DPO involvement) are explicitly covered, and overlaps/proportionality between regimes are acknowledged.",
+        "evidence_quotes": [
+          "Significant incidents affecting service provision must be notified to CSIRT Italia according to D.Lgs. 138/2024 Article 25: pre-notification within 24 hours, incident notification within 72 hours, intermediate reports on request, and final report within one month.",
+          "It supports compliance with GDPR security and breach obligations, Italian data protection law, NIS2 as implemented in Italy by D.Lgs. 138/2024, AGID security measures for public administrations, Garante Privacy healthcare guidance, and the hospital's longer-term target of ISO/IEC 27001:2022 alignment.",
+          "Patient-record access audit | The hospital must be able to identify access to patient clinical dossiers/FSE-connected records by user, department, date and time"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 16797,
+        "output_tokens": 584,
+        "stop_reason": "end_turn",
+        "latency_s": 8.28,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 5,
+        "justification": "Virtually every substantive control in Section 6 has a dedicated 'Primary references' column citing specific clauses (e.g., GDPR Art. 32, D.Lgs. 138/2024 Art. 24(2)(l), ISO/IEC 27001 Annex A 8.13, NIST CSF subcategories like PR.AA, DE.CM). Attribution is per-control, distinguishes between frameworks rather than lumping them, and is granular down to specific articles/annex controls, making the policy audit-ready on this dimension. Minor imperfection: a few references use function-level NIST CSF tags (e.g., 'NIST CSF RS') rather than subcategory, but this is marginal.",
+        "evidence_quotes": [
+          "MFA is mandatory for VPN, privileged accounts, MSP remote access, administrative portals and any cloud/regional portal that supports it. | D.Lgs. 138/2024 Art. 24(2)(l); ISO/IEC 27001 Annex A 5.17, 8.5; NIST CSF PR.AA",
+          "At least one backup copy must be offline or otherwise protected from ransomware modification... | ISO/IEC 27001 Annex A 8.13; NIST CSF PR.DS, RC.RP",
+          "Significant incidents affecting service provision must be notified to CSIRT Italia according to D.Lgs. 138/2024 Article 25: pre-notification within 24 hours, incident notification within 72 hours"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 16769,
+        "output_tokens": 539,
+        "stop_reason": "end_turn",
+        "latency_s": 7.494,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 5,
+        "justification": "The policy explicitly references the hospital's limited budget, staff and procurement constraints as structural inputs, and provides an explicit prioritisation (Section 7) and interim trade-offs (e.g., syslog before SIEM, compensating controls for procurement delays). Trade-offs are transparent and tied to the stated resource envelope, satisfying the top anchor.",
+        "evidence_quotes": [
+          "This policy is designed for a small 24/7 public hospital with limited internal IT capacity and outsourced managed services.",
+          "Within budget constraints, the hospital shall centralise logs from AD, UTM/VPN, endpoint protection, backup systems and critical servers using a low-cost syslog/log-management approach before procuring a full SIEM.",
+          "Given the stated resource envelope, the following priorities shall guide annual planning"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 16793,
+        "output_tokens": 324,
+        "stop_reason": "end_turn",
+        "latency_s": 5.407,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 4.857,
+    "code_checks_passed": 11,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778504759
+}

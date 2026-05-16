@@ -1,0 +1,268 @@
+{
+  "config": "C0+web",
+  "context_id": "ctx-H",
+  "policy_id": "P3",
+  "policy_short": "accesscontrol",
+  "code_based": {
+    "context_id": "ctx-H",
+    "metrics": {
+      "char_count": 8345,
+      "word_count": 1215,
+      "section_headers_found": 16,
+      "section_headers_sample": [
+        "access control policy",
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "4. principles",
+        "5. access control requirements",
+        "5.1 user registration and de-registration",
+        "5.2 user access management",
+        "5.3 authentication",
+        "5.4 privileged access",
+        "5.5 network and device access",
+        "5.6 physical access"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": true,
+        "effective_date": true,
+        "policy_owner": false,
+        "review_cycle": true
+      },
+      "header_block_score": 0.75,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 9,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 1,
+        "ISO_27001": 16,
+        "ISO_27002": 0,
+        "GDPR": 5,
+        "NIS2": 6,
+        "AI_Act": 0,
+        "AGID": 16,
+        "Codice_Privacy": 4,
+        "NATO_IS_Policy": 0,
+        "AC_35_D_1015": 0,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 0,
+        "Romanian_CSL": 0,
+        "SOFA": 0
+      },
+      "distinct_frameworks": 6,
+      "clause_level_citation_count": 32,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "breach_notification_72h": 0,
+        "dpia": 0,
+        "special_category_data": 3,
+        "data_retention": 0,
+        "access_logs": 1,
+        "patient_safety": 2,
+        "nis2_essential_entity": 6
+      },
+      "obligations_present": 4,
+      "obligations_total": 7,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": true,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 0.75,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 0.571,
+      "length_ok": 1.0
+    },
+    "checks_passed": 12,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 4,
+        "justification": "All standard policy sections are present (purpose, scope, roles, principles, requirements, exceptions, monitoring, references) with technically sound and internally consistent controls. Minor issues prevent a 5: ISO/IEC 27001:2022 control references use the legacy 2013 numbering (A.9.x, A.11.x, A.15.x no longer exist in the 2022 Annex A), and the password guidance mixing 'complexity, regular rotation' is dated relative to current NIST/AGID guidance. No internal contradictions detected.",
+        "evidence_quotes": [
+          "Source: ISO/IEC 27001:2022 A.9.1.2; NIST CSF PR.AC-4; GDPR Art. 25(2)",
+          "Passwords must comply with current security best practices (minimum 12 characters, complexity, regular rotation for privileged accounts, no reuse).",
+          "ISO/IEC 27001:2022 (esp. A.6, A.9, A.11, A.15)"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5370,
+        "output_tokens": 375,
+        "stop_reason": "end_turn",
+        "latency_s": 6.748,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 4,
+        "justification": "The policy is clearly tailored to an Italian public hospital: it references SSN/ASL governance, the MSP outsourcing model, SPID/CIE federation, FSE/EHR, PACS/RIS, LIS, ADT, legacy Windows kiosks, and AGID Misure Minime / Garante Privacy \u2014 all specific to context. It falls short of 5 because it does not explicitly invoke size constraints (1.5 FTE, no CISO/SIEM), 24/7 clinical RTOs, or patient-safety overrides in operational depth beyond a brief mention.",
+        "evidence_quotes": [
+          "All users must be registered in the appropriate identity management system (on-prem AD, regional SPID/CIE) with unique identifiers.",
+          "Legacy devices (e.g. Windows kiosks) are restricted to essential functions, placed on dedicated VLANs, and subject to enhanced monitoring.",
+          "Administrative actions on critical systems (EHR, ADT, PACS) are logged and logs are retained for at least 12 months."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5416,
+        "output_tokens": 400,
+        "stop_reason": "end_turn",
+        "latency_s": 7.344,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 4,
+        "justification": "Citations are pervasive and largely accurate, mapping each major requirement to ISO 27001:2022 Annex A controls, NIST CSF subcategories, GDPR articles, NIS2 Article 21 sub-paragraphs, and AGID Misure Minime/Linee Guida. However, some references are imprecise or questionable: ISO 27001:2022 reorganised Annex A (the cited A.9.x and A.15.x numbering reflects the 2013 version, not 2022), and a few AGID Misure Minime numbers (e.g., 14.3.2, 17.1) are not standard ABSC identifiers. One statement is properly flagged as 'unsupported,' which is a positive signal.",
+        "evidence_quotes": [
+          "Source: ISO/IEC 27001:2022 A.9.1.2; NIST CSF PR.AC-4; GDPR Art. 25(2)",
+          "Source: AGID Misure Minime 10.1; unsupported (segmentation best practice)",
+          "Source: Provvedimenti Garante Privacy 2015/2018; AGID Misure Minime 15.2"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5400,
+        "output_tokens": 421,
+        "stop_reason": "end_turn",
+        "latency_s": 7.289,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 4,
+        "justification": "The policy generally aligns controls to the hospital's constrained envelope (1.5 IT FTE + MSP, no SOC, legacy kiosks) by leaning on the MSP, AD, and SPID/CIE federation, and by accommodating legacy systems via segmentation and exceptions with compensating controls. However, some requirements are ambitious given resources: monthly review of access events without a SIEM, MDM rollout across 60 mobile devices, 24h deprovisioning, and annual access reviews across all systems will strain 1.5 FTE and the 70k EUR budget; no explicit compensating controls are offered for the SOC/SIEM gap.",
+        "evidence_quotes": [
+          "Access control events (e.g. failed logins, privilege escalations) are logged and reviewed at least monthly by IT/MSP.",
+          "Legacy devices (e.g. Windows kiosks) are restricted to essential functions, placed on dedicated VLANs, and subject to enhanced monitoring.",
+          "Exceptions must include compensating controls and time limits; they are subject to review at least annually."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5374,
+        "output_tokens": 406,
+        "stop_reason": "end_turn",
+        "latency_s": 7.614,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy systematically references the major applicable frameworks (GDPR, Codice Privacy, NIS2, AGID Linee Guida and Misure Minime, Provvedimenti Garante, regional FSE) and maps controls to specific articles/clauses, plus aspirational ISO 27001 and NIST CSF. However, it omits some sector-specific obligations (e.g. DPIA triggers for health data, breach notification timelines under GDPR Art. 33 / NIS2 24h-72h, dossier sanitario Garante guidance) and does not acknowledge potential conflicts or overlaps between regimes, which prevents a top score.",
+        "evidence_quotes": [
+          "GDPR (Regulation EU 2016/679) ... Codice Privacy D.Lgs. 196/2003, as amended ... NIS2 Directive EU 2022/2555 ... AGID Linee Guida per la sicurezza informatica nella PA ... AGID Misure Minime per la PA ... Provvedimenti Garante Privacy in sanit\u00e0 ... Regional FSE regulations",
+          "Administrative actions on critical systems (EHR, ADT, PACS) are logged and logs are retained for at least 12 months. *Source: Provvedimenti Garante Privacy 2015/2018; AGID Misure Minime 15.2*",
+          "Multi-factor authentication (MFA) is required for remote access ... *Source: AGID Misure Minime 14.4; NIS2 Art. 21(2)(d); NIST CSF PR.AC-7*"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5414,
+        "output_tokens": 566,
+        "stop_reason": "end_turn",
+        "latency_s": 7.861,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 5,
+        "justification": "Nearly every substantive control statement is followed by an inline 'Source:' tag mapping to specific clauses across multiple frameworks (e.g., ISO 27001 Annex A subclauses, NIST CSF subcategories, GDPR articles, NIS2 Article 21 subsections, AGID Misure Minime numbered items). Multi-framework citations are distinguished separately rather than lumped, and where a control lacks a direct source it is honestly flagged as 'unsupported (segmentation best practice)', indicating an audit-ready level of attribution.",
+        "evidence_quotes": [
+          "Least Privilege: Access is granted only to the minimum resources necessary for role performance. Source: ISO/IEC 27001:2022 A.9.1.2; NIST CSF PR.AC-4; GDPR Art. 25(2)",
+          "Access rights must be promptly revoked upon termination or role change (within 24h of notification). Source: NIST CSF PR.AC-1; NIS2 Art. 21(2)(d); AGID Misure Minime 14.2",
+          "Legacy devices (e.g. Windows kiosks) are restricted to essential functions... Source: AGID Misure Minime 10.1; unsupported (segmentation best practice)"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5386,
+        "output_tokens": 465,
+        "stop_reason": "end_turn",
+        "latency_s": 7.986,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 2,
+        "justification": "The policy makes one general statement that controls are 'proportionate to the hospital's resource envelope' and acknowledges some constraints (legacy kiosks, MSP reliance, encryption 'where technically feasible'), but it does not visibly reason within the stated 70k EUR budget or 1.5 FTE envelope, nor does it phase implementation or make explicit trade-offs (e.g. absence of SIEM/SOC). Acknowledgement is in passing rather than structural.",
+        "evidence_quotes": [
+          "Controls are designed to be proportionate to the hospital's resource envelope and clinical context, prioritising patient safety and service continuity.",
+          "require screen lock, and full-disk encryption where technically feasible",
+          "Access control events (e.g. failed logins, privilege escalations) are logged and reviewed at least monthly by IT/MSP."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 5410,
+        "output_tokens": 332,
+        "stop_reason": "end_turn",
+        "latency_s": 6.761,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 3.857,
+    "code_checks_passed": 12,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778087930
+}

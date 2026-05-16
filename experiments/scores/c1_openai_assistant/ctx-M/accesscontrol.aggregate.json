@@ -1,0 +1,265 @@
+{
+  "config": "C1",
+  "context_id": "ctx-M",
+  "policy_id": "P3",
+  "policy_short": "accesscontrol",
+  "code_based": {
+    "context_id": "ctx-M",
+    "metrics": {
+      "char_count": 16026,
+      "word_count": 2197,
+      "section_headers_found": 49,
+      "section_headers_sample": [
+        "1. purpose",
+        "2. scope",
+        "3. roles and responsibilities",
+        "3.1 executive command (nato detachment commander)",
+        "3.2 information systems security manager (issm)",
+        "3.3 unit/department heads",
+        "3.4 system administrators (cis technical staff)",
+        "3.5 all users (military, civilian, contractor)",
+        "4. policy principles",
+        "4.1 need-to-know and least privilege",
+        "4.2 segregation of classification domains",
+        "4.3 multi-factor authentication and identity assurance"
+      ],
+      "section_presence": {
+        "purpose": true,
+        "scope": true,
+        "roles": true,
+        "responsibilities": true,
+        "principles": true,
+        "requirements": true,
+        "controls": true,
+        "exceptions": true,
+        "monitoring": true,
+        "review": true,
+        "references": true
+      },
+      "header_block": {
+        "organization_name": true,
+        "effective_date": true,
+        "policy_owner": true,
+        "review_cycle": true
+      },
+      "header_block_score": 1.0,
+      "institutional_hits": {
+        "ENISA": 0,
+        "NATO_CCDCOE": 0,
+        "WEF": 0,
+        "INCIBE": 0,
+        "CyberPeace": 0,
+        "GFCE": 0,
+        "NIST": 6,
+        "EC_JANUS": 0,
+        "CyFun": 0
+      },
+      "distinct_institutional": 1,
+      "framework_hits": {
+        "NIST_CSF_2_0": 1,
+        "ISO_27001": 11,
+        "ISO_27002": 0,
+        "GDPR": 9,
+        "NIS2": 3,
+        "AI_Act": 0,
+        "AGID": 0,
+        "Codice_Privacy": 0,
+        "NATO_IS_Policy": 7,
+        "AC_35_D_1015": 1,
+        "AC_35_D_1029": 0,
+        "AJP_3_20": 2,
+        "Romanian_CSL": 7,
+        "SOFA": 5
+      },
+      "distinct_frameworks": 9,
+      "clause_level_citation_count": 28,
+      "honesty_hits": 0,
+      "boilerplate_hits": 0,
+      "obligation_hits": {
+        "classification_handling": 10,
+        "need_to_know": 3,
+        "comsec": 5,
+        "dual_key": 4,
+        "ncirc_reporting": 3,
+        "spillage": 2,
+        "tempest": 1,
+        "host_nation": 10
+      },
+      "obligations_present": 8,
+      "obligations_total": 8,
+      "length_band": "ok"
+    },
+    "checks": {
+      "has_minimum_word_count": true,
+      "not_excessive_word_count": true,
+      "has_header_block": true,
+      "has_section_purpose": true,
+      "has_section_scope": true,
+      "has_section_roles": true,
+      "has_section_monitoring": true,
+      "has_section_references": true,
+      "has_at_least_one_framework": true,
+      "has_clause_level_attribution": true,
+      "boilerplate_below_threshold": true,
+      "context_obligations_majority": true
+    },
+    "partial_scores": {
+      "C1_content_quality_section_coverage": 1.0,
+      "C1_content_quality_header_block": 1.0,
+      "C2_contextual_adaptation_proxy": 1.0,
+      "C3_evidence_citation_breadth": 1.0,
+      "C3_honesty_bonus": 0.0,
+      "C5_regulatory_alignment_coverage": 1.0,
+      "C6_source_attribution_clauses": 1.0,
+      "C7_resource_consideration_obligations": 1.0,
+      "length_ok": 1.0
+    },
+    "checks_passed": 12,
+    "checks_total": 12
+  },
+  "model_based": {
+    "C1_content_quality": {
+      "parsed": {
+        "criterion_id": "C1_content_quality",
+        "score": 4,
+        "justification": "All standard policy sections are present (purpose, scope, roles, principles, requirements, monitoring, training, IR, compliance, enforcement, exceptions, appendices) and technical claims about PKI smart-card auth, CDS, two-person integrity, and NATO/ISO/NIST mappings are largely accurate and internally consistent. Minor weaknesses: NIST CSF 2.0 references (PR.AC-1, PR.AC-4) use CSF 1.1 subcategory IDs\u2014CSF 2.0 reorganised these under PR.AA\u2014and the ISO A.5.17 mapping to dual-control for COMSEC is imprecise (A.5.17 covers authentication information). No major contradictions, but these inaccuracies prevent a 5.",
+        "evidence_quotes": [
+          "Reference: NIST CSF PR.AC-1, ISO/IEC 27001:2022 A.5.16, NATO AC/322-D(2017)0009",
+          "Actions involving high-grade cryptographic materials, release of certain operational orders, or privileged administrative activity require dual-key/two-person control (COMSEC Manual, AJP-3.20, ISO/IEC 27001 A.5.17).",
+          "Reference: NIST CSF PR.AC-4, ISO/IEC 27001:2022 A.5.18"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8449,
+        "output_tokens": 490,
+        "stop_reason": "end_turn",
+        "latency_s": 9.85,
+        "raw_text": null
+      }
+    },
+    "C2_contextual_adaptation": {
+      "parsed": {
+        "criterion_id": "C2_contextual_adaptation",
+        "score": 5,
+        "justification": "The policy is heavily tailored to the specific organisational context: it explicitly names the NATO multinational detachment in Romania, references SHAPE J6, ISSM role, the four classification domains (NU/NR/NS/MISSION SECRET), SCIFs, CDS, COMSEC two-person integrity, SOFA, NCIRC, ROM-CERT, and Romanian Law 58/2019 alongside GDPR. Sector-specific operational constraints (cross-domain spillage, dual-key for operational orders, host-nation sovereignty for civilian/contractor data) are visible throughout, with very little generic boilerplate.",
+        "evidence_quotes": [
+          "Information systems and data classified as: NU, NR, NS, MISSION SECRET, or higher",
+          "Cleared contractors (subject to SOFA and host-nation vetting procedures)",
+          "Escalation: Detachment Commander, NCIRC incident report, host-nation CERT for civilian or infrastructure breach"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8495,
+        "output_tokens": 382,
+        "stop_reason": "end_turn",
+        "latency_s": 7.585,
+        "raw_text": null
+      }
+    },
+    "C3_evidence_citation": {
+      "parsed": {
+        "criterion_id": "C3_evidence_citation",
+        "score": 4,
+        "justification": "Citations are pervasive and largely accurate, with each control section mapped to specific NATO documents (C-M(2002)49, AC/322-D(2017)0009), ISO 27001:2022 Annex A controls (A.5.15-A.5.19, A.7.2), NIST CSF subcategories (PR.AC-1, PR.AC-4), and GDPR articles. However, some references are imprecise or questionable: NIST CSF 2.0 reorganised PR.AC into PR.AA (so 'PR.AC-1/PR.AC-4' reflect CSF 1.1 naming), and citations like 'NATO IS Policy para 21, 50-53, 65-68' cannot be readily verified and may not correspond to actual paragraph numbering in C-M(2002)49. No fabricated-looking sources, but precision falls short of a 5.",
+        "evidence_quotes": [
+          "Access is strictly limited to information and resources essential for assigned duties... (NATO IS Policy para 21, ISO/IEC 27001:2022 A.5.15).",
+          "Reference: NIST CSF PR.AC-1, ISO/IEC 27001:2022 A.5.16, NATO AC/322-D(2017)0009",
+          "Unsupported statements are not present; all controls above mapped to cited sources wherever possible."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8479,
+        "output_tokens": 488,
+        "stop_reason": "end_turn",
+        "latency_s": 9.832,
+        "raw_text": null
+      }
+    },
+    "C4_implementability": {
+      "parsed": {
+        "criterion_id": "C4_implementability",
+        "score": 5,
+        "justification": "Proposed controls (24/7 SOC monitoring, quarterly reviews, dual-key for COMSEC, PKI smart cards, CDS-only transfers, two-person rule, 40h training) align directly with the stated resource envelope (25 security FTE, theatre-level 24/7 SOC, accredited CDS, COMSEC two-person integrity, classified-but-ample budget). Operational constraints\u2014classification segregation, need-to-know, dual-key, SOFA/GDPR for civilian data\u2014are explicitly respected, and an exception/break-glass process with compensating controls is provided.",
+        "evidence_quotes": [
+          "Continuous monitoring of access logs by the 24/7 SOC with alerting on anomalies.",
+          "Privileged actions (e.g., change to security settings, key material handling) require dual authorization (two-person integrity).",
+          "Evidence of compensating controls (e.g., enhanced logging, temporary dual control)"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8453,
+        "output_tokens": 361,
+        "stop_reason": "end_turn",
+        "latency_s": 7.523,
+        "raw_text": null
+      }
+    },
+    "C5_regulatory_alignment": {
+      "parsed": {
+        "criterion_id": "C5_regulatory_alignment",
+        "score": 4,
+        "justification": "The policy systematically references the major applicable frameworks (NATO C-M(2002)49, AC/322-D(2017)0009, AJP-3.20, Romanian Law 58/2019/NIS2, GDPR, NIST CSF 2.0, ISO/IEC 27001:2022) and maps controls to specific clauses, and acknowledges SOFA in scope. However, secondary obligations are thin: AC/35-D/1029 (personnel security) and the NATO Cyber Defence Pledge are listed only in references, COSMIC TOP SECRET handling is omitted, and conflicts between GDPR/host-nation law and SOFA/NATO classification regimes are not explicitly acknowledged or reconciled.",
+        "evidence_quotes": [
+          "The policy implements and aligns with NATO Information Security Policy C-M(2002)49, AC/322-D(2017)0009, NIST CSF 2.0 (PR.AC), ISO/IEC 27001:2022 (Controls A.5.15-A.5.18), the Romanian Cybersecurity Law (Law 58/2019, NIS2), GDPR (for personal data of civilian/contractor staff), and mission-specific legal agreements.",
+          "All operations conducted in the territory of Romania and in accordance with status under NATO SOFA",
+          "Access to personal data held in systems relating to civilian staff or contractors is restricted to those with a GDPR-mandated legal need; all processing is logged and minimised."
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8493,
+        "output_tokens": 544,
+        "stop_reason": "end_turn",
+        "latency_s": 9.211,
+        "raw_text": null
+      }
+    },
+    "C6_source_attribution": {
+      "parsed": {
+        "criterion_id": "C6_source_attribution",
+        "score": 4,
+        "justification": "Nearly every substantive control section includes a 'Reference' line tying it to specific clauses (e.g., ISO/IEC 27001:2022 A.5.15, NATO IS Policy para 50-53, NIST CSF PR.AC-1, GDPR Art.5/32). Attribution distinguishes between frameworks rather than lumping. It falls short of 5 because some references are bundled at the sub-section level rather than per individual sub-control (e.g., 5.2 lists multiple authentication requirements under one combined reference block), and a few citations are slightly imprecise (e.g., 'NATO IS Policy Annex F' without paragraph).",
+        "evidence_quotes": [
+          "Reference: ISO/IEC 27001:2022 A.5.15, NATO IS Policy para 50-53",
+          "Reference: NIST CSF PR.AC-1, ISO/IEC 27001:2022 A.5.16, NATO AC/322-D(2017)0009",
+          "Reference: GDPR Art.5, Art.32, Romanian CSL Law 58/2019"
+        ]
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8465,
+        "output_tokens": 406,
+        "stop_reason": "end_turn",
+        "latency_s": 7.428,
+        "raw_text": null
+      }
+    },
+    "C7_resource_consideration": {
+      "parsed": {
+        "criterion_id": "C7_resource_consideration",
+        "score": 1,
+        "justification": "The policy contains no observable acknowledgement of the resource envelope (budget, the 25 FTE security staff, training hours). Controls are stated as absolute requirements with no phasing, trade-offs, or justification calibrated to staffing or budget constraints.",
+        "evidence_quotes": []
+      },
+      "judge_meta": {
+        "model": "claude-opus-4-7",
+        "input_tokens": 8489,
+        "output_tokens": 138,
+        "stop_reason": "end_turn",
+        "latency_s": 3.958,
+        "raw_text": null
+      }
+    }
+  },
+  "summary": {
+    "likert_scores_present": 7,
+    "likert_mean": 3.857,
+    "code_checks_passed": 12,
+    "code_checks_total": 12
+  },
+  "graded_at_unix": 1778088738
+}
