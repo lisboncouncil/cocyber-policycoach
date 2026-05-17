@@ -682,6 +682,24 @@ The gap is concentrated on normative traceability: source attribution
 where the models converge ($\Delta = 0.60$, 3~ties). Kimi K2.5 was
 selected as the private RAG backbone for the full benchmark.
 
+The pairwise outcome is consistent with the full-benchmark scoring:
+across the same matched set of ten artefacts per configuration, DeepSeek
+V3.2 averaged 3.12/5 versus Kimi K2.5's 4.15/5 --- a 1.03-point gap,
+larger than the 0.45-point gap between Kimi K2.5 and the best frontier
+configuration (gpt-5.5\,+\,web; cf.\ Table~\ref{tab:results}). The
+backbone-selection step is therefore methodologically necessary: the
+choice of open-weight backbone contributes more to output quality than
+the choice between the selected private RAG and the best frontier system.
+The gap reflects two distinct mechanisms. The first is the systematic
+deficit in normative traceability already reported above. The second is
+a generation-robustness failure observed on one DeepSeek artefact, in
+which a token-repetition loop iterated the string ``Govern'' throughout
+the NIST CSF compliance section, rendering that portion of the policy
+unusable; Kimi K2.5 produced no comparable failures across the matched
+set. Generation robustness under structured policy prompts is itself a
+legitimate selection criterion for a production private RAG backbone and
+is reported here alongside the quality gap.
+
 \subsection{Quality Scores Across Configurations}
 
 Table~\ref{tab:results} reports mean scores across all ten artefacts per
