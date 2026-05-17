@@ -693,7 +693,14 @@ baseline on the overall average.
 highest value per row. DeepSeek V3.2 was eliminated after backbone
 selection (Section~\ref{sec:backbone}) and is not included here.
 Cost estimates based on average token counts from generation logs and
-API list prices (May~2026). Latency: median wall-clock time, client-side.}
+API list prices (May~2026). Latency: median wall-clock time, client-side.
+$^{\ast}$~gpt-5.5 cost reflects token usage at OpenAI short-context list
+prices (\$5.00 / \$30.00 per 1M input / output) and does not include
+web\_search\_preview tool fees, which add an estimated \$0.30 per query
+(12.4 calls per query at typical tool pricing) bringing the all-in cost to
+$\sim$\$1.08 per query. Kimi K2.5 cost computed from Nebius list prices
+(\$0.50 / \$2.50 per 1M input / output) and average token usage of 25.5K
+input and 6.5K output per query.}
 \label{tab:results}
 \footnotesize
 \begin{tabularx}{\linewidth}{X c c c c c}
@@ -715,7 +722,7 @@ Resource consideration & 2.00 & 2.00 & \textbf{3.20} & 1.60 & \textbf{2.50} \\
 \midrule
 \textbf{Average}       & 3.83 & 3.90 & \textbf{4.60} & 3.70 & \textbf{4.15} \\
 \midrule
-Cost / query (USD)     & $\sim$0.02 & $\sim$0.03 & TBD & $\sim$0.07 & $\sim$0.05 \\
+Cost / query (USD)     & $\sim$0.02 & $\sim$0.03 & $\sim$0.77$^{\ast}$ & $\sim$0.07 & $\sim$0.03 \\
 Latency (s)            & 33 & 30 & 278 & 41 & 36 \\
 Tokens leaving EU      & all & all & all & all & \textbf{0} \\
 \bottomrule
@@ -776,9 +783,10 @@ where privacy posture matters most and where web search offers the least
 domain-specific value.
 
 The apparent advantage of gpt-5.5 + web search must be discounted by three
-caveats: two processors without DPA (OpenAI and Bing), $10\times$ higher
-cost, $7\times$ higher latency, and citations drawn from blogs and vendor
-whitepapers rather than institutional sources. The audit trail of a private
+caveats: two processors without DPA (OpenAI and Bing), more than
+$25\times$ higher cost (token-only; ${\sim}35\times$ including web search
+tool fees), $7\times$ higher latency, and citations drawn from blogs and
+vendor whitepapers rather than institutional sources. The audit trail of a private
 RAG with a curated KB is deterministic and reproducible; the audit trail
 of a frontier model with live web search is neither.
 
