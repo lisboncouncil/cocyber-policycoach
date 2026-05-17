@@ -447,15 +447,18 @@ in the evaluation pipeline itself.
 
 \subsection{Policy Generation}
 
-Each artefact is produced through a multi-turn adaptive interview. The
-system conducts 6--8 dialogue turns gathering organisational context
-(sector, size, regulatory regime, existing controls, cloud footprint), then
-generates the full policy document in a single final turn. The private RAG
-configurations augment this generation with retrieval from a curated
-knowledge base of 837~chunks drawn from NIST CSF~2.0, ISO/IEC~27001:2022,
-GDPR, NIS2, the AI Act, and sector-specific guidance for healthcare and
-defence. Frontier configurations either use no augmentation or rely on
-live web search.
+Each artefact is produced through a single prompt containing the full
+organisational profile, eliciting the policy in one response
+(\emph{rapid-policy} mode). The online deployment of PolicyCoach gathers
+the same profile through a 6--8-turn adaptive interview before generating
+the policy; for the benchmark, the interview output is rendered once per
+context from a structured YAML, equalising the input across all six
+configurations and isolating the policy-generation step as the single
+variable under test. The private RAG configurations augment this
+generation with retrieval from a curated knowledge base of 837~chunks
+drawn from NIST CSF~2.0, ISO/IEC~27001:2022, GDPR, NIS2, the AI Act, and
+sector-specific guidance for healthcare and defence. Frontier
+configurations either use no augmentation or rely on live web search.
 
 \subsection{Evaluation Framework}
 \label{sec:grader}
