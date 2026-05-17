@@ -117,7 +117,7 @@ ax.text(4.87, 3.5, "SEAL-3/4\ntarget zone\n(future work)", ha="right", va="cente
         fontsize=7, color="#888888", alpha=0.75, style="italic")
 
 # Axes — full SEAL scale
-ax.set_xlabel("Average quality score (1–7 scale)", fontsize=9)
+ax.set_xlabel("Average quality score (1–5 scale)", fontsize=9)
 ax.set_ylabel("Cloud Sovereignty Level (EC SEAL framework)", fontsize=9)
 ax.set_xlim(3.35, 4.95)
 ax.set_ylim(-0.55, 4.55)
