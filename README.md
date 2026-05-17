@@ -1,6 +1,6 @@
 # cocyber-policycoach
 
-Research sandbox and materials for **PolicyCoach** — an AI/RAG system for cybersecurity policy generation, developed in the context of the [COcyber project](https://www.cocyber.eu) (Grant Agreement No. 101158606, Horizon Europe DIGITAL-ECCC-2023-DEPLOY-CYBER-04).
+Research sandbox and materials for **PolicyCoach** — an AI/RAG system for cybersecurity policy generation, developed in the context of the [COcyber project](https://www.cocyber.eu) (Grant Agreement No. 101158606, Digital Europe DIGITAL-ECCC-2023-DEPLOY-CYBER-04).
 
 ---
 
