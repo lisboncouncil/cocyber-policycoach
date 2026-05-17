@@ -752,17 +752,18 @@ comparable but domain-specific citation discipline is not.
 
 A natural question is why the backbone selection did not include
 Mistral~Large, the most capable EU-origin open-weight model at the time
-of the experiments. The answer is methodological: the study benchmarks
-the \emph{best available} open-weight candidate, not the most
-sovereignty-compliant one. Including Mistral, whose preliminary
-performance on the 7-criterion rubric was substantially lower, would
-have artificially widened the quality gap and weakened the main thesis.
-The reported 9\% gap between Kimi K2.5 and gpt-5.5\,+\,web is therefore
-a conservative estimate: with a weaker backbone the gap would be larger.
+of the experiments. Mistral was considered as a third candidate:
+preliminary pilot scoring on the 7-criterion rubric placed it below
+both Kimi K2.5 and DeepSeek V3.2, and it was therefore not advanced to
+the full benchmark. We report this transparently: the choice of
+benchmarking the best-performing open-weight backbone available, rather
+than the most sovereignty-compliant one, leaves the EU-origin
+sovereignty--quality trade-off (the SEAL-3 path discussed in
+Section~\ref{sec:setup} and Section~7) empirically uncharacterised.
 Sovereignty and quality are orthogonal dimensions; the paper quantifies
 both separately, and the path from SEAL-2 to SEAL-3 via a Mistral-based
 backbone is identified as future work precisely because it carries a
-quality cost that has not yet been empirically characterised.
+quality cost that has not yet been measured under the present rubric.
 
 \subsection{Frontier Benchmark Interpretation}
 
