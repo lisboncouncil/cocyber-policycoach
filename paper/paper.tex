@@ -471,6 +471,18 @@ during generation, and a detailed scoring rubric. It returns a score from
 1 to~5 on each of seven quality dimensions (see Section~\ref{sec:rubric}),
 accompanied by a brief scoring rationale.
 
+The judge is invoked once per (artefact, criterion) pair with
+temperature~0.0, scoring one dimension at a time to prevent
+cross-criterion anchoring. The judge receives no configuration label or
+model identifier, eliminating self-preference and provenance-based bias
+in scoring. Following the Anthropic ``escape valve''
+principle~\cite{anthropic2024demystifying}, the judge returns
+\textit{insufficient\_evidence} (null) rather than guess when a criterion
+has no observable signal in the policy; null scores are excluded from
+per-configuration means. In our benchmark this occurred 5 times across
+350 artefact--criterion evaluations (1.4\,\%), predominantly on the
+\textit{Resource consideration} dimension.
+
 The rubric combines objective checks — for example, presence of specific
 regulatory citations or mandatory policy clauses — with holistic LLM-scored
 assessments of coherence and contextual fit. This two-layer structure
@@ -924,7 +936,10 @@ beyond the current~$\kappa_w = 0.65$. Second, the benchmark covers two
 organisational contexts (Italian public hospital and NATO detachment);
 broader coverage across sectors and jurisdictions is needed to assess
 generalisability. Third, cost estimates for gpt-5.5\,+\,web search are
-preliminary pending stable API pricing.
+preliminary pending stable API pricing. Fourth, evaluation relies on a
+single LLM judge model (Claude Opus~4.7); cross-validation against a
+second judge or against a broader human-rater panel is left as future
+work.
 
 A natural next step is to characterise the path from the current SEAL-2
 private RAG architecture to SEAL-3. The binding constraint is the model
