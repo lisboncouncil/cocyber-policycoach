@@ -703,9 +703,11 @@ is reported here alongside the quality gap.
 \subsection{Quality Scores Across Configurations}
 
 Table~\ref{tab:results} reports mean scores across all ten artefacts per
-configuration (two contexts $\times$ five policy types).
-gpt-5.5 + web search achieves the highest average (4.60), followed by
-Kimi K2.5 private RAG (4.15) and gpt-4.1 + web search (3.90).
+configuration (two contexts $\times$ five policy types), with
+per-configuration standard deviation in the row below.
+gpt-5.5\,+\,web search achieves the highest average
+(4.60, SD~0.82), followed by Kimi K2.5 private RAG (4.15, SD~0.94)
+and gpt-4.1\,+\,web search (3.90, SD~0.89).
 The OpenAI Assistants RAG configuration falls below the no-RAG gpt-4.1
 baseline on the overall average.
 
@@ -742,6 +744,7 @@ Source attribution     & 4.20 & 4.50 & \textbf{4.50} & 3.80 & 4.10 \\
 Resource consideration & 2.00 & 2.00 & \textbf{3.20} & 1.60 & \textbf{2.50} \\
 \midrule
 \textbf{Average}       & 3.83 & 3.90 & \textbf{4.60} & 3.70 & \textbf{4.15} \\
+Std.\ dev.\            & 0.91 & 0.89 & 0.82 & 1.01 & 0.94 \\
 \midrule
 Cost / query (USD)     & $\sim$0.02 & $\sim$0.03 & $\sim$0.77$^{\ast}$ & $\sim$0.07 & $\sim$0.03 \\
 Latency (s)            & 33 & 30 & 278 & 41 & 36 \\
