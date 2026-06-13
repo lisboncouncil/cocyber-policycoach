@@ -70,13 +70,6 @@ Historical materials from earlier PolicyCoach development phases.
 
 ---
 
-## Preliminary policy evaluator (GPT)
-
-A preliminary policy evaluator is available as a GPT at:  
-https://chatgpt.com/g/g-6851a050ec0c81918143add37674a19d-policy-evaluator
-
----
-
 ## COcyber project
 
 This work is carried out in the context of the **COcyber** project (*Coordination Between the Cybersecurity Civilian and Defence Spheres*), funded by the European Union under the Horizon Europe programme, Grant Agreement No. 101158606 (Call DIGITAL-ECCC-2023-DEPLOY-CYBER-04). Views and opinions expressed are those of the authors only and do not necessarily reflect those of the European Union or the European Cybersecurity Competence Centre (ECCC).
