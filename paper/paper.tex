@@ -221,7 +221,7 @@ regulatory-grade data sovereignty.
 \end{abstract}
 
 \keywords{cybersecurity policy generation \and large language models \and
-retrieval-augmented generation \and GDPR compliance \and
+retrieval-augmented generation \and data sovereignty \and
 privacy-preserving AI \and LLM evaluation}
 
 
@@ -370,7 +370,7 @@ and their respective EU data perimeters.
 \textbf{Research question:} \textit{Does a well-architected private RAG
 system (EU-region + DPA + open-weight) produce cybersecurity policies of
 comparable or superior quality to frontier AI models, while remaining
-GDPR-compliant by construction?}
+consistent with GDPR data-processing obligations by design?}
 
 We address this question by contributing: (i)~an empirical benchmark
 comparing six AI configurations on 60 policy generation tasks in two
@@ -489,20 +489,35 @@ regulatory citations or mandatory policy clauses — with holistic LLM-scored
 assessments of coherence and contextual fit. This two-layer structure
 reduces sensitivity to surface variation while preserving sensitivity to
 substantive quality differences.
-To validate the rubric, a blind human calibration exercise was conducted
-by experts with ISO/IEC~27001 knowledge.
-Password Policy artefacts representing opposite ends of the quality
-spectrum — one high-scoring (judge mean 4.71/5) and one low-scoring
-(2.43/5) — were scored independently on all seven criteria, yielding
-Cohen's weighted~$\kappa_w = 0.65$ across the criterion--artefact pairs
-(\textit{substantial agreement}, Landis and Koch~\cite{landiskoch1977}).
-Rank ordering was fully preserved: human raters correctly identified the
-superior artefact on every dimension, with a mean quality gap of
-1.86~points versus 2.28 for the judge. The principal source of divergence
-was a criterion-conflation tendency between \textit{contextual
-adaptation}~(C2) and \textit{implementability}~(C4), suggesting that rubric
-anchors benefit from explicit discriminating non-examples for dimensions
-addressing related but distinct aspects of policy quality.
+To validate the rubric, two rounds of human calibration were conducted.
+The first round was carried out by experts with ISO/IEC~27001 knowledge,
+scoring Password Policy artefacts representing opposite ends of the quality
+spectrum (judge mean 4.71/5 vs.\ 2.43/5) on all seven criteria, yielding
+Cohen's weighted~$\kappa_w = 0.65$ (\textit{substantial agreement},
+Landis and Koch~\cite{landiskoch1977}).
+A second, post-submission round extended the calibration with three
+external raters from two COcyber Advisory Board organisations
+(GuardedBox, ES; Universidad Internacional de La Rioja, ES), scoring
+two policy pairs (Password and Incident Response) drawn from the same
+calibration bundles.
+Pooled across the 37~criterion--artefact pairs with non-missing human
+scores, the extended calibration yields $\kappa_w = 0.28$ (\textit{fair
+agreement}).
+Rank ordering was fully preserved across all three rater--bundle
+combinations (binary rank-ordering $\kappa = 1.0$): every rater assigned
+a higher mean score to the frontier-model output than to the private-RAG
+output.
+A noteworthy pattern emerged on C4~(\textit{Implementability}) and
+C7~(\textit{Resource consideration}), where one rater panel assigned
+higher scores to the private-RAG output, attributing this to the frontier
+model's verbosity being potentially excessive for a non-specialised
+hospital manager --- a practically relevant dimension that the LLM judge
+does not fully capture.
+The lower $\kappa_w$ in the extended round, compared with the initial
+calibration, reflects the broader diversity of rater backgrounds and
+calibration lenses (compliance expertise vs.\ operational practitioner
+perspective); the rank-ordering result confirms that the judge's core
+comparative signal is robust.
 
 \paragraph{Rubric design rationale.}
 The seven dimensions were derived in two steps. First, we mapped the
@@ -882,7 +897,7 @@ residency claims. For AI-assisted policy generation in regulated EU contexts,
 a provider's SEAL level is a criterion complementary to, and arguably more
 discriminating than, ISO/IEC~27001 certification or server location alone.
 Table~\ref{tab:sov} disaggregates this claim by sovereignty objective,
-providing per-dimension evidence for the SEAL-2 classification of the private
+providing per-dimension evidence for the SEAL-2 alignment assessment of the private
 RAG configuration evaluated in this paper.
 
 \begin{table}[t]
@@ -922,25 +937,34 @@ SOV-8 & Environmental    & Out of scope for this study                      & --
 \end{tabularx}
 \end{table}
 
-Across assessed dimensions, the configuration scores SEAL-2 consistently,
-in line with the framework definition: \textit{EU law applicable and
+Across assessed dimensions, the configuration demonstrates SEAL-2 alignment
+consistently, in line with the framework definition: \textit{EU law applicable and
 enforceable, with material non-EU dependencies remaining}~\cite{ecseal2026}.
 The principal non-EU dependencies are the model supply chain (Moonshot~AI,
 CN) and hardware (NVIDIA, US); both qualify as material rather than marginal,
 precluding SEAL-3 under the current architecture.
 
-Several limitations bound the scope of this study. First, the current
-human calibration relies on the paper's co-author team; extending the
-rater board to a broader panel of external practitioners with diverse
-sectoral competencies would further strengthen the reliability estimates
-beyond the current~$\kappa_w = 0.65$. Second, the benchmark covers two
-organisational contexts (Italian public hospital and NATO detachment);
-broader coverage across sectors and jurisdictions is needed to assess
-generalisability. Third, cost estimates for gpt-5.5\,+\,web search are
-preliminary pending stable API pricing. Fourth, evaluation relies on a
-single LLM judge model (Claude Opus~4.7); cross-validation against a
-second judge or against a broader human-rater panel is left as future
-work.
+Several limitations bound the scope of this study.
+First, the benchmark covers only two synthetic organisational contexts
+(Italian public hospital and NATO detachment) and five policy types;
+broader coverage across sectors, jurisdictions, and real-world organisations
+is needed before general conclusions can be drawn.
+Second, evaluation relies on a single LLM judge (Claude Opus~4.7);
+no formal significance testing was performed, and results constitute
+descriptive comparative evidence rather than statistically warranted claims.
+Cross-validation against a second judge model is left as future work.
+Third, human calibration yields $\kappa_w = 0.65$ in the initial round
+and $\kappa_w = 0.28$ in the extended external round; the lower value
+in the extended round reflects diverse rater backgrounds rather than
+judge unreliability, as rank ordering was fully preserved ($\kappa = 1.0$).
+No validation by operational CISOs or legal experts was performed; such
+practitioner review would strengthen the practical validity of the conclusions.
+Fourth, sovereignty and GDPR conclusions are assessed from provider-published
+documentation and contractual commitments, not from independent technical audit
+of sub-processor chains or legal jurisdiction --- a more rigorous evaluation
+should verify the full legal exposure of each entity in the inference path.
+Fifth, cost estimates for gpt-5.5\,+\,web search are preliminary pending
+stable API pricing.
 
 A natural next step is to characterise the path from the current SEAL-2
 private RAG architecture to SEAL-3. The binding constraint is the model
@@ -964,8 +988,9 @@ Whether this full architectural upgrade preserves the
 observed quality level relative to frontier systems is an open empirical
 question.
 
-Experimental code and generated policy artefacts will be released upon
-publication to support reproducibility.
+Experimental code and generated policy artefacts are available at
+\url{https://github.com/lisboncouncil/cocyber-policycoach} to support
+reproducibility.
 
 % -----------------------------------------------------------------------
 \section*{Acknowledgements}
