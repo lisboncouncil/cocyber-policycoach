@@ -10,6 +10,11 @@
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{orcidlink}
+% Render \orcidID{} as the linked ORCID icon (LNCS default is the bracketed
+% number, which Springer production replaces with the icon; this makes the
+% icon already visible in the compiled camera-ready PDF).
+\renewcommand{\orcidID}[1]{\,\orcidlink{#1}}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds,calc,matrix,decorations.pathreplacing}
 \usepackage{xcolor}
