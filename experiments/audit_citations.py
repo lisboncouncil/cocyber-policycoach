@@ -24,7 +24,7 @@ from urllib.parse import urlparse
 
 import yaml
 
-ROOT = Path("/Users/erreclaudea/erre-claudia/topics/personal/ares-iwaps-2026/files/experiments")
+ROOT = Path(__file__).resolve().parent
 OUTPUTS = ROOT / "outputs"
 
 

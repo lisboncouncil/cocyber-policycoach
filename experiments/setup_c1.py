@@ -13,16 +13,18 @@ Persists metadata in c1_setup.json and smoke result in c1_smoke.json.
 
 from __future__ import annotations
 import json
+import os
 import sys
 import time
 from pathlib import Path
 
 from openai import OpenAI
 
-ROOT = Path("/Users/erreclaudea/erre-claudia")
-SECRETS = ROOT / "secrets"
-COCYBER3 = ROOT / "external-repos" / "cocyber3"
-EXP = ROOT / "topics" / "personal" / "ares-iwaps-2026" / "files" / "experiments"
+# Paths resolved from the environment; no machine-specific paths committed.
+EXP = Path(__file__).resolve().parent
+SECRETS = Path(os.environ.get("POLICYCOACH_SECRETS", EXP / "secrets"))
+# External KB repo lives outside this repository; point COCYBER3_DIR at it.
+COCYBER3 = Path(os.environ.get("COCYBER3_DIR", EXP / "external-repos" / "cocyber3"))
 
 MODEL = "gpt-4.1"
 ASSISTANT_NAME = "policycoach-iwaps-c1"
@@ -31,7 +33,7 @@ SMOKE_QUERY = "What is the purpose of an Information Security Policy and what ar
 
 
 def main() -> int:
-    api_key = (SECRETS / "openai_api_key").read_text().strip()
+    api_key = os.environ.get("OPENAI_API_KEY") or (SECRETS / "openai_api_key").read_text().strip()
     client = OpenAI(api_key=api_key)
 
     sp = (COCYBER3 / "system-prompt").read_text()

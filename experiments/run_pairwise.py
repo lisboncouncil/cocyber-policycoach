@@ -12,6 +12,7 @@ Writes results to: results/pairwise_c2_vs_c2b.json
 
 from __future__ import annotations
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -31,8 +32,8 @@ sys.path.insert(0, str(PROMPTS_DIR))
 from context_renderer import render as render_context  # type: ignore
 
 JUDGE_MODEL = "claude-opus-4-7"
-SECRETS = Path("/Users/erreclaudea/erre-claudia/secrets")
-ANTHROPIC_KEY = (SECRETS / "anthropic_api_key_clodia_5").read_text().strip()
+SECRETS = Path(os.environ.get("POLICYCOACH_SECRETS", ROOT / "secrets"))
+ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY") or (SECRETS / "anthropic_api_key").read_text().strip()
 _anthropic = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
 
 CONTEXT_FILES = {

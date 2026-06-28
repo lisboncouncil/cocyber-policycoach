@@ -19,6 +19,7 @@ Defaults: dry-run prints the matrix. --execute makes API calls.
 from __future__ import annotations
 import argparse
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -41,8 +42,8 @@ from context_renderer import render as render_context  # type: ignore
 
 JUDGE_MODEL = "claude-opus-4-7"
 JUDGE_MAX_TOKENS = 1500
-SECRETS = Path("/Users/erreclaudea/erre-claudia/secrets")
-ANTHROPIC_KEY = (SECRETS / "anthropic_api_key_clodia_5").read_text().strip()
+SECRETS = Path(os.environ.get("POLICYCOACH_SECRETS", ROOT / "secrets"))
+ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY") or (SECRETS / "anthropic_api_key").read_text().strip()
 _anthropic = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
 
 

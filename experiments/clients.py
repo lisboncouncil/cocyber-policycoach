@@ -26,6 +26,7 @@ to keep the comparison fair.
 
 from __future__ import annotations
 import json
+import os
 import time
 from pathlib import Path
 from typing import Any
@@ -37,11 +38,13 @@ from openai import OpenAI
 # Constants and clients
 # ---------------------------------------------------------------------------
 
-ROOT = Path("/Users/erreclaudea/erre-claudia")
-SECRETS = ROOT / "secrets"
-EXP = ROOT / "topics" / "personal" / "ares-iwaps-2026" / "files" / "experiments"
+# Paths are resolved from the environment so no machine-specific paths are
+# committed. SECRETS defaults to a local "secrets" dir next to this package.
+SECRETS = Path(os.environ.get("POLICYCOACH_SECRETS", Path(__file__).resolve().parent / "secrets"))
+EXP = Path(__file__).resolve().parent
 
-OPENAI_KEY = (SECRETS / "openai_api_key").read_text().strip()
+# Prefer the standard env var; fall back to a key file under SECRETS.
+OPENAI_KEY = os.environ.get("OPENAI_API_KEY") or (SECRETS / "openai_api_key").read_text().strip()
 _openai = OpenAI(api_key=OPENAI_KEY)
 
 # Loaded lazily for C1 (it depends on c1_setup.json existing).

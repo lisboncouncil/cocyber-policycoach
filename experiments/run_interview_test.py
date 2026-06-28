@@ -13,6 +13,7 @@ Output: results/interview_test_YYYYMMDD_HHMMSS.log
 """
 from __future__ import annotations
 import json
+import os
 import uuid
 import time
 import re
@@ -34,8 +35,8 @@ ANSWER_MODEL = "claude-haiku-4-5-20251001"
 
 ROOT = Path(__file__).resolve().parent
 RESULTS_DIR = ROOT / "results"
-SECRETS = Path("/Users/erreclaudea/erre-claudia/secrets")
-ANTHROPIC_KEY = (SECRETS / "anthropic_api_key_clodia_5").read_text().strip()
+SECRETS = Path(os.environ.get("POLICYCOACH_SECRETS", ROOT / "secrets"))
+ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY") or (SECRETS / "anthropic_api_key").read_text().strip()
 
 # ---------------------------------------------------------------------------
 # Session profiles

@@ -9,3 +9,17 @@ paper/*.out
 # Python
 __pycache__/
 *.pyc
+
+# macOS
+.DS_Store
+
+# Secrets (API keys live here, never commit)
+secrets/
+*.env
+.env
+
+# Paper build bundles
+paper/*.zip
+
+# Local editor/agent settings
+.claude/settings.local.json
