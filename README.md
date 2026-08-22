@@ -72,4 +72,4 @@ Historical materials from earlier PolicyCoach development phases.
 
 ## COcyber project
 
-This work is carried out in the context of the **COcyber** project (*Coordination Between the Cybersecurity Civilian and Defence Spheres*), funded by the European Union under the Horizon Europe programme, Grant Agreement No. 101158606 (Call DIGITAL-ECCC-2023-DEPLOY-CYBER-04). Views and opinions expressed are those of the authors only and do not necessarily reflect those of the European Union or the European Cybersecurity Competence Centre (ECCC).
+This work is carried out in the context of the **COcyber** project (*Coordination Between the Cybersecurity Civilian and Defence Spheres*), funded by the European Union under the Digital Europe programme, Grant Agreement No. 101158606 (Call DIGITAL-ECCC-2023-DEPLOY-CYBER-04). Views and opinions expressed are those of the authors only and do not necessarily reflect those of the European Union or the European Cybersecurity Competence Centre (ECCC).
